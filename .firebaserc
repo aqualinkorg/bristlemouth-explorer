@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "project-name"
+  },
+  "targets": {
+    "project-name": {
+      "hosting": {
+        "staging-target": [
+          "name-staging"
+        ],
+        "prod-target": [
+          "name-prod"
+        ]
+      }
+    }
+  }
+}
