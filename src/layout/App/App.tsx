@@ -11,8 +11,8 @@ import About from 'src/routes/About';
 
 const router = createBrowserRouter(
   createRoutesFromElements([
-    <Route path="/" element={<Home />} />,
-    <Route path="about" element={<About />} />,
+    <Route key="/" path="/" element={<Home />} />,
+    <Route key="about" path="about" element={<About />} />,
   ]),
 );
 
