@@ -1,4 +1,5 @@
 import { AppBar, Grid, Typography, styled, useTheme } from '@mui/material';
+import { DateTime } from 'luxon';
 import aqualinkLogo from 'src/assets/aqualink-logo.png';
 import sofarLogo from 'src/assets/sofar-logo.png';
 
@@ -64,7 +65,8 @@ function Footer() {
 
         <Grid item>
           <Typography textAlign="right">
-            © 2023 All rights reserved <br /> Privacy policy - Contact Us
+            © {DateTime.utc().year} All rights reserved <br /> Privacy policy -
+            Contact Us
           </Typography>
         </Grid>
       </GridContainer>
