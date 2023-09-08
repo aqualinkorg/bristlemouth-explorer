@@ -21,22 +21,32 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies.
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies if needed.
         id: install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
           yarn install --frozen-lockfile
 
       - name: Run website lint
-        if: steps.install.conclusion == 'success'
+        if: steps.install.conclusion == 'skipped' || steps.install.conclusion == 'success'
         run: yarn lint
 
       - name: Run website tests
-        if: steps.install.conclusion == 'success'
+        if: steps.install.conclusion == 'skipped' || steps.install.conclusion == 'success'
         run: yarn test
 
       - name: Build website
         id: build_website
-        if: steps.install.conclusion == 'success'
+        if: steps.install.conclusion == 'skipped' || steps.install.conclusion == 'success'
         run: yarn build
 
       - name: Deploy pull request on surge
