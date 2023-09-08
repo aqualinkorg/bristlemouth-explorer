@@ -28,18 +28,15 @@ jobs:
 
       - name: Run website lint
         if: steps.install.conclusion == 'success'
-        working-directory: packages/website
         run: yarn lint
 
       - name: Run website tests
         if: steps.install.conclusion == 'success'
-        working-directory: packages/website
         run: yarn test
 
       - name: Build website
         id: build_website
         if: steps.install.conclusion == 'success'
-        working-directory: packages/website
         run: yarn build
 
       - name: Deploy pull request on surge
@@ -47,7 +44,7 @@ jobs:
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: ${{ env.surge_url }}
-          project: "packages/website/build/."
+          project: "dist/."
           login: ${{ secrets.surge_login }}
           token: ${{ secrets.surge_token }}
 
