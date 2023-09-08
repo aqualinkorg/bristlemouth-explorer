@@ -2,10 +2,10 @@ import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
-    dark: Palette['primary'];
+    dark?: Palette['primary'];
   }
   interface PaletteOptions {
-    dark: PaletteOptions['primary'];
+    dark?: PaletteOptions['primary'];
   }
 }
 

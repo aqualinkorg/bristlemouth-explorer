@@ -6,7 +6,7 @@ import sofarLogo from 'src/assets/sofar-logo.png';
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   top: 'auto',
   bottom: 0,
-  backgroundColor: theme.palette.dark.main,
+  backgroundColor: theme.palette.dark?.main,
   color: 'white',
 }));
 

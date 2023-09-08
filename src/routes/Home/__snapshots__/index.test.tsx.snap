@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as expected 1`] = `
+<div>
+  <div>
+    Home Page
+  </div>
+  <header
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container css-1so0nez-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <h5
+          class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
+        >
+          Bristlemouth for developers
+        </h5>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+          style="gap: 32px;"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+              style="gap: 8px;"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+              >
+                Developed with ❤️ by
+              </p>
+              <img
+                alt="Aqualink logo"
+                class="css-4vnfkb"
+                src="[object Object]"
+              />
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+              style="gap: 16px;"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-zpphrz-MuiTypography-root"
+              >
+                Bristlemouth is an open 
+                <br />
+                 standard pioneered by
+              </p>
+              <img
+                alt="Sofar logo"
+                class="css-4vnfkb"
+                src="[object Object]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-hlnzui-MuiTypography-root"
+        >
+          © 
+          2023
+           All rights reserved 
+          <br />
+           Privacy policy - Contact Us
+        </p>
+      </div>
+    </div>
+  </header>
+</div>
+`;
