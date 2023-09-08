@@ -1,15 +1,15 @@
 {
   "projects": {
-    "default": "project-name"
+    "default": "bristlemouth-explorer"
   },
   "targets": {
-    "project-name": {
+    "bristlemouth-explorer": {
       "hosting": {
         "staging-target": [
-          "name-staging"
+          "bristlemouth-explorer-staging"
         ],
         "prod-target": [
-          "name-prod"
+          "bristlemouth-explorer"
         ]
       }
     }
