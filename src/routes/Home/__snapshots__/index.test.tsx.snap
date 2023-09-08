@@ -2,87 +2,171 @@
 
 exports[`renders as expected 1`] = `
 <div>
-  <div>
-    Home Page
-  </div>
-  <header
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
+  <div
+    class="css-1p6v9gv"
   >
     <div
-      class="MuiGrid-root MuiGrid-container css-1so0nez-MuiGrid-root"
+      class="MuiStack-root css-ki718v-MuiStack-root"
     >
+      <img
+        alt="Bristlemouth logo"
+        class="css-1vkyz3t"
+        src="[object Object]"
+      />
       <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        class="MuiStack-root css-57vmio-MuiStack-root"
       >
-        <h5
-          class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
+        <h3
+          class="MuiTypography-root MuiTypography-h3 css-1ey9xtw-MuiTypography-root"
         >
           Bristlemouth for developers
-        </h5>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
+        </h3>
         <div
-          class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-          style="gap: 32px;"
+          class="MuiStack-root css-7fatpr-MuiStack-root"
         >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Enter your Bristlemouth API Token
+          </p>
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-              style="gap: 8px;"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-              >
-                Developed with ❤️ by
-              </p>
-              <img
-                alt="Aqualink logo"
-                class="css-4vnfkb"
-                src="[object Object]"
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
+                id=":r0:"
+                placeholder="XXXX-XXX-XXXX-XXX"
+                type="text"
+                value=""
               />
+              <fieldset
+                aria-hidden="true"
+                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="css-ihdtdm"
+                >
+                  <span
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
             </div>
           </div>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1hvsj9x-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            GO
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+        <div
+          class="MuiStack-root css-aha7cr-MuiStack-root"
+        >
+          <a
+            class="css-1xu3tth"
+            href="google.com"
+          >
+            Can’t find or need a Bristlemouth API Token?
+          </a>
+          <a
+            class="css-1xu3tth"
+            href="google.com"
+          >
+            What can you do with this Bristlemouth API?
+          </a>
+        </div>
+      </div>
+    </div>
+    <header
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container css-1so0nez-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        >
+          <h5
+            class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
+          >
+            Bristlemouth for developers
+          </h5>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        >
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+            style="gap: 32px;"
           >
             <div
-              class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-              style="gap: 16px;"
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-zpphrz-MuiTypography-root"
+              <div
+                class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+                style="gap: 8px;"
               >
-                Bristlemouth is an open 
-                <br />
-                 standard pioneered by
-              </p>
-              <img
-                alt="Sofar logo"
-                class="css-4vnfkb"
-                src="[object Object]"
-              />
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+                >
+                  Developed with ❤️ by
+                </p>
+                <img
+                  alt="Aqualink logo"
+                  class="css-4vnfkb"
+                  src="[object Object]"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+                style="gap: 16px;"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-zpphrz-MuiTypography-root"
+                >
+                  Bristlemouth is an open 
+                  <br />
+                   standard pioneered by
+                </p>
+                <img
+                  alt="Sofar logo"
+                  class="css-4vnfkb"
+                  src="[object Object]"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-hlnzui-MuiTypography-root"
+        <div
+          class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
         >
-          © 
-          2023
-           All rights reserved 
-          <br />
-           Privacy policy - Contact Us
-        </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-hlnzui-MuiTypography-root"
+          >
+            © 
+            2023
+             All rights reserved 
+            <br />
+             Privacy policy - Contact Us
+          </p>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 </div>
 `;
