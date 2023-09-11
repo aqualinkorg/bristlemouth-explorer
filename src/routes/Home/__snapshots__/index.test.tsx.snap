@@ -27,7 +27,7 @@ exports[`renders as expected 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
           >
-            Enter your Bristlemouth API Token
+            Enter your Sofar API Token
           </p>
           <div
             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
@@ -77,13 +77,13 @@ exports[`renders as expected 1`] = `
             class="css-1xu3tth"
             href="google.com"
           >
-            Can’t find or need a Bristlemouth API Token?
+            Can’t find or need a Sofar API Token?
           </a>
           <a
             class="css-1xu3tth"
             href="google.com"
           >
-            What can you do with this Bristlemouth API?
+            What can you do with this Sofar API?
           </a>
         </div>
       </div>

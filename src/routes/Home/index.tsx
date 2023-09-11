@@ -81,7 +81,7 @@ function Home() {
           </Typography>
           <Stack direction="column" spacing={1} width="50%">
             <Typography fontWeight="bold">
-              Enter your Bristlemouth API Token
+              Enter your Sofar API Token
             </Typography>
             <TextField
               value={token}
@@ -100,10 +100,10 @@ function Home() {
           </Stack>
           <Stack direction="column" alignItems="center" spacing={1}>
             <StyledLink href="google.com">
-              Can’t find or need a Bristlemouth API Token?
+              Can’t find or need a Sofar API Token?
             </StyledLink>
             <StyledLink href="google.com">
-              What can you do with this Bristlemouth API?
+              What can you do with this Sofar API?
             </StyledLink>
           </Stack>
         </Stack>
