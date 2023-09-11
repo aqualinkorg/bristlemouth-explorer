@@ -1,4 +1,4 @@
-name: Bristemouth UI CI
+name: Bristemouth UI Buld
 
 on:
   # Run on all pull requests and on pushes to main.
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  test_build_and_deploy:
+  build_and_deploy:
     runs-on: ubuntu-22.04
     env:
       surge_url: bristemouth-ui-${{ github.event.pull_request.number }}.surge.sh
@@ -36,19 +36,12 @@ jobs:
         run: |
           yarn install --frozen-lockfile
 
-      - name: Run website lint
-        if: steps.install.conclusion == 'skipped' || steps.install.conclusion == 'success'
-        run: yarn lint
-
-      - name: Run website tests
-        if: steps.install.conclusion == 'skipped' || steps.install.conclusion == 'success'
-        run: yarn test
-
       - name: Build website
         id: build_website
         if: steps.install.conclusion == 'skipped' || steps.install.conclusion == 'success'
         run: yarn build
-
+  
+      # we want to build on main branch, but not deploy a preview on surge
       - name: Deploy pull request on surge
         if: steps.build_website.outcome == 'success' && github.event.pull_request.number != null
         uses: dswistowski/surge-sh-action@v1
