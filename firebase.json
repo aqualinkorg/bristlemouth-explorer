@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "prod-target",
-      "public": "build",
+      "public": "dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -13,7 +13,7 @@
     },
     {
       "target": "staging-target",
-      "public": "build",
+      "public": "dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {

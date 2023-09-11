@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Firebase
+.firebase/
+
+# misc
+.env
+.env.prod
+.env.staging

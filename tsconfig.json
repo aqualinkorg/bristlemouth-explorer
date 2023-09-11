@@ -19,11 +19,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "esModuleInterop": true
   },
   "include": ["src"],
-  "files": [
-    "src/custom.d.ts"
-  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
