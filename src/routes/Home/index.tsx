@@ -1,7 +1,25 @@
-import { Button, Stack, TextField, Typography, styled } from '@mui/material';
+import {
+  Backdrop,
+  Button,
+  CircularProgress,
+  Link,
+  Stack,
+  TextField,
+  Typography,
+  styled,
+} from '@mui/material';
 import Footer from 'src/common/Footer';
 import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
 import React from 'react';
+import {
+  spottersListErrorSelector,
+  spottersListLoadingSelector,
+  spottersListSelector,
+  spottersRequest,
+} from 'src/store/spotters/spottersSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from 'src/store/hooks';
+import { toast } from 'react-toastify';
 
 const WrapperDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -28,12 +46,35 @@ const StyledLink = styled('a')(() => ({
 }));
 
 function Home() {
+  const dispatch = useAppDispatch();
   const [token, setToken] = React.useState<string>('');
+  const spottersRequestLoading = useSelector(spottersListLoadingSelector);
+  const spotters = useSelector(spottersListSelector);
+  const spottersRequestError = useSelector(spottersListErrorSelector);
+
+  function onTokenSubmit() {
+    dispatch(spottersRequest(token));
+  }
+
+  React.useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(spotters);
+  }, [spotters]);
+
+  React.useEffect(() => {
+    if (spottersRequestError !== null) toast.warn(spottersRequestError);
+  }, [spottersRequestError]);
 
   return (
     <WrapperDiv>
       <Stack direction="column" alignItems="center" spacing={10}>
-        <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://www.bristlemouth.org/"
+        >
+          <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
+        </Link>
         <Stack direction="column" alignItems="center" spacing={5}>
           <Typography variant="h3" fontWeight="bold">
             Bristlemouth for developers
@@ -49,7 +90,11 @@ function Home() {
               variant="outlined"
               size="small"
             />
-            <StyledButton color="primary" variant="contained">
+            <StyledButton
+              color="primary"
+              variant="contained"
+              onClick={() => onTokenSubmit()}
+            >
               GO
             </StyledButton>
           </Stack>
@@ -63,6 +108,10 @@ function Home() {
           </Stack>
         </Stack>
       </Stack>
+
+      <Backdrop open={spottersRequestLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
 
       <Footer />
     </WrapperDiv>

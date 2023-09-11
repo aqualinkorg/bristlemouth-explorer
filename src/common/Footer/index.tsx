@@ -1,4 +1,11 @@
-import { AppBar, Grid, Typography, styled, useTheme } from '@mui/material';
+import {
+  AppBar,
+  Grid,
+  Link,
+  Typography,
+  styled,
+  useTheme,
+} from '@mui/material';
 import { DateTime } from 'luxon';
 import aqualinkLogo from 'src/assets/aqualink-logo.png';
 import sofarLogo from 'src/assets/sofar-logo.png';
@@ -41,7 +48,17 @@ function Footer() {
     <StyledAppBar position="fixed">
       <GridContainer container>
         <Grid item>
-          <MainText variant="h5">Bristlemouth for developers</MainText>
+          <MainText variant="h5">
+            <Link
+              target="_blank"
+              rel="noopener"
+              href="https://www.bristlemouth.org/"
+              style={{ textDecoration: 'none' }}
+            >
+              Bristlemouth
+            </Link>{' '}
+            for developers
+          </MainText>
         </Grid>
 
         <Grid item>
@@ -49,7 +66,13 @@ function Footer() {
             <Grid item>
               <GridMiddleContainer container style={{ gap: theme.spacing(1) }}>
                 <Typography textAlign="center">Developed with ❤️ by</Typography>
-                <Logo src={aqualinkLogo} alt="Aqualink logo" />
+                <Link
+                  target="_blank"
+                  rel="noopener"
+                  href="https://aqualink.org"
+                >
+                  <Logo src={aqualinkLogo} alt="Aqualink logo" />
+                </Link>
               </GridMiddleContainer>
             </Grid>
             <Grid item>
@@ -57,7 +80,13 @@ function Footer() {
                 <Typography textAlign="left">
                   Bristlemouth is an open <br /> standard pioneered by
                 </Typography>
-                <Logo src={sofarLogo} alt="Sofar logo" />
+                <Link
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.sofarocean.com"
+                >
+                  <Logo src={sofarLogo} alt="Sofar logo" />
+                </Link>
               </GridMiddleContainer>
             </Grid>
           </GridMiddleContainer>
