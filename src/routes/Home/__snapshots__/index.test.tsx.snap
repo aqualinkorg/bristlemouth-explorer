@@ -2,87 +2,238 @@
 
 exports[`renders as expected 1`] = `
 <div>
-  <div>
-    Home Page
-  </div>
-  <header
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
+  <div
+    class="css-1p6v9gv"
   >
     <div
-      class="MuiGrid-root MuiGrid-container css-1so0nez-MuiGrid-root"
+      class="MuiStack-root css-ki718v-MuiStack-root"
     >
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+        href="https://www.bristlemouth.org/"
+        rel="noopener"
+        target="_blank"
       >
-        <h5
-          class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
+        <img
+          alt="Bristlemouth logo"
+          class="css-1vkyz3t"
+          src="[object Object]"
+        />
+      </a>
+      <div
+        class="MuiStack-root css-57vmio-MuiStack-root"
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3 css-1ey9xtw-MuiTypography-root"
         >
           Bristlemouth for developers
-        </h5>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
+        </h3>
         <div
-          class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-          style="gap: 32px;"
+          class="MuiStack-root css-7fatpr-MuiStack-root"
         >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Enter your Sofar API Token
+          </p>
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-              style="gap: 8px;"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-              >
-                Developed with ❤️ by
-              </p>
-              <img
-                alt="Aqualink logo"
-                class="css-4vnfkb"
-                src="[object Object]"
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
+                id=":r0:"
+                placeholder="XXXX-XXX-XXXX-XXX"
+                type="text"
+                value=""
               />
+              <fieldset
+                aria-hidden="true"
+                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="css-ihdtdm"
+                >
+                  <span
+                    class="notranslate"
+                  >
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
             </div>
           </div>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1hvsj9x-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            GO
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+        <div
+          class="MuiStack-root css-aha7cr-MuiStack-root"
+        >
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-14kpg5b-MuiTypography-root-MuiLink-root"
+            href="mailto:info@aqualink.org"
+            rel="noopener"
+            target="_blank"
+          >
+            Can't find or need a Sofar API Token?
+          </a>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-14kpg5b-MuiTypography-root-MuiLink-root"
+            href="https://docs.sofarocean.com/"
+            rel="noopener"
+            target="_blank"
+          >
+            What can you do with this Sofar API?
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiBackdrop-root css-sox5kk-MuiBackdrop-root"
+      style="opacity: 0; visibility: hidden;"
+    >
+      <span
+        class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorInherit css-62e83j-MuiCircularProgress-root"
+        role="progressbar"
+        style="width: 40px; height: 40px;"
+      >
+        <svg
+          class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+          viewBox="22 22 44 44"
+        >
+          <circle
+            class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+            cx="44"
+            cy="44"
+            fill="none"
+            r="20.2"
+            stroke-width="3.6"
+          />
+        </svg>
+      </span>
+    </div>
+    <header
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container css-1so0nez-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        >
+          <h5
+            class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
+          >
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+              href="https://www.bristlemouth.org/"
+              rel="noopener"
+              target="_blank"
+            >
+              Bristlemouth
+            </a>
+             
+            for developers
+          </h5>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        >
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+            style="gap: 32px;"
           >
             <div
-              class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-              style="gap: 16px;"
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-zpphrz-MuiTypography-root"
+              <div
+                class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+                style="gap: 8px;"
               >
-                Bristlemouth is an open 
-                <br />
-                 standard pioneered by
-              </p>
-              <img
-                alt="Sofar logo"
-                class="css-4vnfkb"
-                src="[object Object]"
-              />
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
+                >
+                  Developed with ❤️ by
+                </p>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+                  href="https://aqualink.org"
+                  rel="noopener"
+                  target="_blank"
+                >
+                  <img
+                    alt="Aqualink logo"
+                    class="css-4vnfkb"
+                    src="[object Object]"
+                  />
+                </a>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
+                style="gap: 16px;"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-zpphrz-MuiTypography-root"
+                >
+                  Bristlemouth is an open 
+                  <br />
+                   standard pioneered by
+                </p>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+                  href="https://www.sofarocean.com"
+                  rel="noopener"
+                  target="_blank"
+                >
+                  <img
+                    alt="Sofar logo"
+                    class="css-4vnfkb"
+                    src="[object Object]"
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-hlnzui-MuiTypography-root"
+        <div
+          class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
         >
-          © 
-          2023
-           All rights reserved 
-          <br />
-           Privacy policy - Contact Us
-        </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-hlnzui-MuiTypography-root"
+          >
+            © 
+            2023
+             All rights reserved 
+            <br />
+             Privacy policy - 
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+              href="mailto:info@aqualink.org"
+              rel="noopener"
+              target="_blank"
+            >
+              Contact Us
+            </a>
+          </p>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 </div>
 `;
