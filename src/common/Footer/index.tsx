@@ -9,6 +9,7 @@ import {
 import { DateTime } from 'luxon';
 import aqualinkLogo from 'src/assets/aqualink-logo.png';
 import sofarLogo from 'src/assets/sofar-logo.png';
+import { aqualinkURL, bristlemouthURL, sofarURL } from 'src/helpers/constants';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   top: 'auto',
@@ -42,6 +43,10 @@ const Logo = styled('img')(() => ({
   height: '2.5rem',
 }));
 
+const StyledLink = styled(Link)(() => ({
+  textDecoration: 'none',
+}));
+
 function Footer() {
   const theme = useTheme();
   return (
@@ -49,14 +54,9 @@ function Footer() {
       <GridContainer container>
         <Grid item>
           <MainText variant="h5">
-            <Link
-              target="_blank"
-              rel="noopener"
-              href="https://www.bristlemouth.org/"
-              style={{ textDecoration: 'none' }}
-            >
+            <StyledLink target="_blank" rel="noopener" href={bristlemouthURL}>
               Bristlemouth
-            </Link>{' '}
+            </StyledLink>{' '}
             for developers
           </MainText>
         </Grid>
@@ -66,11 +66,7 @@ function Footer() {
             <Grid item>
               <GridMiddleContainer container style={{ gap: theme.spacing(1) }}>
                 <Typography textAlign="center">Developed with ❤️ by</Typography>
-                <Link
-                  target="_blank"
-                  rel="noopener"
-                  href="https://aqualink.org"
-                >
+                <Link target="_blank" rel="noopener" href={aqualinkURL}>
                   <Logo src={aqualinkLogo} alt="Aqualink logo" />
                 </Link>
               </GridMiddleContainer>
@@ -80,11 +76,7 @@ function Footer() {
                 <Typography textAlign="left">
                   Bristlemouth is an open <br /> standard pioneered by
                 </Typography>
-                <Link
-                  target="_blank"
-                  rel="noopener"
-                  href="https://www.sofarocean.com"
-                >
+                <Link target="_blank" rel="noopener" href={sofarURL}>
                   <Logo src={sofarLogo} alt="Sofar logo" />
                 </Link>
               </GridMiddleContainer>
@@ -94,8 +86,15 @@ function Footer() {
 
         <Grid item>
           <Typography textAlign="right">
-            © {DateTime.utc().year} All rights reserved <br /> Privacy policy -
-            Contact Us
+            © {DateTime.utc().year} All rights reserved <br /> Privacy policy
+            -&nbsp;
+            <StyledLink
+              target="_blank"
+              rel="noopener"
+              href="mailto:info@aqualink.org"
+            >
+              Contact Us
+            </StyledLink>
           </Typography>
         </Grid>
       </GridContainer>

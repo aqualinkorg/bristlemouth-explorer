@@ -14,7 +14,16 @@ exports[`renders as expected 1`] = `
         <h5
           class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
         >
-          Bristlemouth for developers
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+            href="https://www.bristlemouth.org/"
+            rel="noopener"
+            target="_blank"
+          >
+            Bristlemouth
+          </a>
+           
+          for developers
         </h5>
       </div>
       <div
@@ -36,11 +45,18 @@ exports[`renders as expected 1`] = `
               >
                 Developed with ❤️ by
               </p>
-              <img
-                alt="Aqualink logo"
-                class="css-4vnfkb"
-                src="[object Object]"
-              />
+              <a
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+                href="https://aqualink.org"
+                rel="noopener"
+                target="_blank"
+              >
+                <img
+                  alt="Aqualink logo"
+                  class="css-4vnfkb"
+                  src="[object Object]"
+                />
+              </a>
             </div>
           </div>
           <div
@@ -57,11 +73,18 @@ exports[`renders as expected 1`] = `
                 <br />
                  standard pioneered by
               </p>
-              <img
-                alt="Sofar logo"
-                class="css-4vnfkb"
-                src="[object Object]"
-              />
+              <a
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+                href="https://www.sofarocean.com"
+                rel="noopener"
+                target="_blank"
+              >
+                <img
+                  alt="Sofar logo"
+                  class="css-4vnfkb"
+                  src="[object Object]"
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -76,7 +99,15 @@ exports[`renders as expected 1`] = `
           2023
            All rights reserved 
           <br />
-           Privacy policy - Contact Us
+           Privacy policy - 
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+            href="mailto:info@aqualink.org"
+            rel="noopener"
+            target="_blank"
+          >
+            Contact Us
+          </a>
         </p>
       </div>
     </div>

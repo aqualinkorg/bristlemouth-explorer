@@ -22,7 +22,6 @@ export class Request {
   }
 
   agent = (contentType?: string) => {
-    // eslint-disable-next-line fp/no-mutation
     this.instance.defaults.headers['Content-Type'] =
       contentType || 'application/json';
 

@@ -20,6 +20,7 @@ import {
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'src/store/hooks';
 import { toast } from 'react-toastify';
+import { bristlemouthURL, sofarDocsURL } from 'src/helpers/constants';
 
 const WrapperDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -41,8 +42,9 @@ const StyledButton = styled(Button)(() => ({
   color: 'white',
 }));
 
-const StyledLink = styled('a')(() => ({
+const StyledLink = styled(Link)(() => ({
   color: 'black',
+  textDecorationColor: 'unset',
 }));
 
 function Home() {
@@ -68,11 +70,7 @@ function Home() {
   return (
     <WrapperDiv>
       <Stack direction="column" alignItems="center" spacing={10}>
-        <Link
-          target="_blank"
-          rel="noopener"
-          href="https://www.bristlemouth.org/"
-        >
+        <Link target="_blank" rel="noopener" href={bristlemouthURL}>
           <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
         </Link>
         <Stack direction="column" alignItems="center" spacing={5}>
@@ -99,11 +97,15 @@ function Home() {
             </StyledButton>
           </Stack>
           <Stack direction="column" alignItems="center" spacing={1}>
-            <StyledLink href="google.com">
-              Can’t find or need a Bristlemouth API Token?
+            <StyledLink
+              target="_blank"
+              rel="noopener"
+              href="mailto:info@aqualink.org"
+            >
+              Can&apos;t find or need a Sofar API Token?
             </StyledLink>
-            <StyledLink href="google.com">
-              What can you do with this Bristlemouth API?
+            <StyledLink target="_blank" rel="noopener" href={sofarDocsURL}>
+              What can you do with this Sofar API?
             </StyledLink>
           </Stack>
         </Stack>

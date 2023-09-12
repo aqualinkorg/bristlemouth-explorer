@@ -8,11 +8,18 @@ exports[`renders as expected 1`] = `
     <div
       class="MuiStack-root css-ki718v-MuiStack-root"
     >
-      <img
-        alt="Bristlemouth logo"
-        class="css-1vkyz3t"
-        src="[object Object]"
-      />
+      <a
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+        href="https://www.bristlemouth.org/"
+        rel="noopener"
+        target="_blank"
+      >
+        <img
+          alt="Bristlemouth logo"
+          class="css-1vkyz3t"
+          src="[object Object]"
+        />
+      </a>
       <div
         class="MuiStack-root css-57vmio-MuiStack-root"
       >
@@ -74,19 +81,48 @@ exports[`renders as expected 1`] = `
           class="MuiStack-root css-aha7cr-MuiStack-root"
         >
           <a
-            class="css-1xu3tth"
-            href="google.com"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-14kpg5b-MuiTypography-root-MuiLink-root"
+            href="mailto:info@aqualink.org"
+            rel="noopener"
+            target="_blank"
           >
-            Can’t find or need a Bristlemouth API Token?
+            Can't find or need a Sofar API Token?
           </a>
           <a
-            class="css-1xu3tth"
-            href="google.com"
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-14kpg5b-MuiTypography-root-MuiLink-root"
+            href="https://docs.sofarocean.com/"
+            rel="noopener"
+            target="_blank"
           >
-            What can you do with this Bristlemouth API?
+            What can you do with this Sofar API?
           </a>
         </div>
       </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiBackdrop-root css-sox5kk-MuiBackdrop-root"
+      style="opacity: 0; visibility: hidden;"
+    >
+      <span
+        class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorInherit css-62e83j-MuiCircularProgress-root"
+        role="progressbar"
+        style="width: 40px; height: 40px;"
+      >
+        <svg
+          class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+          viewBox="22 22 44 44"
+        >
+          <circle
+            class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+            cx="44"
+            cy="44"
+            fill="none"
+            r="20.2"
+            stroke-width="3.6"
+          />
+        </svg>
+      </span>
     </div>
     <header
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
@@ -100,7 +136,16 @@ exports[`renders as expected 1`] = `
           <h5
             class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
           >
-            Bristlemouth for developers
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+              href="https://www.bristlemouth.org/"
+              rel="noopener"
+              target="_blank"
+            >
+              Bristlemouth
+            </a>
+             
+            for developers
           </h5>
         </div>
         <div
@@ -122,11 +167,18 @@ exports[`renders as expected 1`] = `
                 >
                   Developed with ❤️ by
                 </p>
-                <img
-                  alt="Aqualink logo"
-                  class="css-4vnfkb"
-                  src="[object Object]"
-                />
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+                  href="https://aqualink.org"
+                  rel="noopener"
+                  target="_blank"
+                >
+                  <img
+                    alt="Aqualink logo"
+                    class="css-4vnfkb"
+                    src="[object Object]"
+                  />
+                </a>
               </div>
             </div>
             <div
@@ -143,11 +195,18 @@ exports[`renders as expected 1`] = `
                   <br />
                    standard pioneered by
                 </p>
-                <img
-                  alt="Sofar logo"
-                  class="css-4vnfkb"
-                  src="[object Object]"
-                />
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+                  href="https://www.sofarocean.com"
+                  rel="noopener"
+                  target="_blank"
+                >
+                  <img
+                    alt="Sofar logo"
+                    class="css-4vnfkb"
+                    src="[object Object]"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -162,7 +221,15 @@ exports[`renders as expected 1`] = `
             2023
              All rights reserved 
             <br />
-             Privacy policy - Contact Us
+             Privacy policy - 
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+              href="mailto:info@aqualink.org"
+              rel="noopener"
+              target="_blank"
+            >
+              Contact Us
+            </a>
           </p>
         </div>
       </div>
