@@ -79,7 +79,7 @@ function Home() {
           </Typography>
           <Stack direction="column" spacing={1} width="50%">
             <Typography fontWeight="bold">
-              Enter your Bristlemouth API Token
+              Enter your Sofar API Token
             </Typography>
             <TextField
               value={token}

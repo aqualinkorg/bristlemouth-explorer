@@ -34,7 +34,7 @@ exports[`renders as expected 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
           >
-            Enter your Bristlemouth API Token
+            Enter your Sofar API Token
           </p>
           <div
             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
