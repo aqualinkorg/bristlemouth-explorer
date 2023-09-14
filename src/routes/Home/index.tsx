@@ -8,7 +8,6 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-import Footer from 'src/common/Footer';
 import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
 import React from 'react';
 import {
@@ -20,7 +19,13 @@ import {
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'src/store/hooks';
 import { toast } from 'react-toastify';
-import { bristlemouthURL, sofarDocsURL } from 'src/helpers/constants';
+import {
+  bristlemouthURL,
+  sofarApiTokenLocalStorageKey,
+  sofarDocsURL,
+} from 'src/helpers/constants';
+import useLocalStorage from 'src/helpers/useLocalStorage';
+import Footer from 'src/common/Footer';
 
 const WrapperDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -31,14 +36,14 @@ const WrapperDiv = styled('div')(({ theme }) => ({
   gap: theme.spacing(12),
 }));
 
-const Logo = styled('img')(() => ({
-  borderRadius: '8px',
+const Logo = styled('img')(({ theme }) => ({
+  borderRadius: theme.spacing(1),
   height: '5rem',
   width: '5rem',
 }));
 
-const StyledButton = styled(Button)(() => ({
-  borderRadius: '16px',
+const StyledButton = styled(Button)(({ theme }) => ({
+  borderRadius: theme.spacing(2),
   color: 'white',
 }));
 
@@ -49,7 +54,10 @@ const StyledLink = styled(Link)(() => ({
 
 function Home() {
   const dispatch = useAppDispatch();
-  const [token, setToken] = React.useState<string>('');
+  const [token, setToken] = useLocalStorage<string>(
+    sofarApiTokenLocalStorageKey,
+    '',
+  );
   const spottersRequestLoading = useSelector(spottersListLoadingSelector);
   const spotters = useSelector(spottersListSelector);
   const spottersRequestError = useSelector(spottersListErrorSelector);
