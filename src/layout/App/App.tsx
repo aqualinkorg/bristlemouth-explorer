@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Sensors from 'src/routes/Sensors';
 import {
+  sensorDataLoadingSelector,
   spottersListErrorSelector,
   spottersListLoadingSelector,
 } from 'src/store/spotters/spottersSlice';
@@ -26,9 +27,12 @@ const StyledBackdrop = styled(Backdrop)(({ theme }) => ({
 function Contents() {
   // Loading Selectors
   const spottersRequestLoading = useSelector(spottersListLoadingSelector);
+  const sensorDataLoading = useSelector(sensorDataLoadingSelector);
 
   // Error Selectors
   const spottersRequestError = useSelector(spottersListErrorSelector);
+
+  const backdropOpen = spottersRequestLoading || sensorDataLoading;
 
   React.useEffect(() => {
     if (spottersRequestError) toast.warn(spottersRequestError);
@@ -48,7 +52,7 @@ function Contents() {
         pauseOnHover={false}
         theme="light"
       />
-      <StyledBackdrop open={spottersRequestLoading}>
+      <StyledBackdrop open={backdropOpen}>
         <CircularProgress color="primary" />
       </StyledBackdrop>
       <Routes>

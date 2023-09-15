@@ -45,9 +45,11 @@ export class Request {
   instance: AxiosInstance;
 }
 
-export const generateUrlQueryParams = (params: Record<string, string>) => {
+export const generateUrlQueryParams = (
+  params: Record<string, string | undefined>,
+) => {
   const filteredParams = Object.entries(params).filter(
-    ([, value]) => value !== undefined,
+    (x): x is [string, string] => x[1] !== undefined,
   );
 
   const stringifiedParams = new URLSearchParams(

@@ -38,7 +38,7 @@ function Sensors() {
   React.useEffect(() => {
     async function getSpotters() {
       if (token !== '' && spottersList.length === 0) {
-        const result = await dispatch(spottersRequest(token));
+        const result = await dispatch(spottersRequest({ token }));
         if (result.meta.requestStatus === 'fulfilled') return;
 
         navigate('/');

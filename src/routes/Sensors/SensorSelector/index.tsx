@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Button,
   Divider,
+  Link,
   Menu,
   MenuItem,
   Paper,
@@ -15,8 +16,8 @@ import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { useSelector } from 'react-redux';
 import {
+  sensorDataRequest,
   spottersListSelector,
-  spottersRequest,
 } from 'src/store/spotters/spottersSlice';
 import useLocalStorage from 'src/helpers/useLocalStorage';
 import {
@@ -28,7 +29,6 @@ import {
 import { Spotter } from 'src/helpers/types';
 import { DateTime } from 'luxon';
 import { useAppDispatch } from 'src/store/hooks';
-import { useNavigate } from 'react-router-dom';
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: '15rem',
@@ -55,7 +55,6 @@ function parseDateTime(parsedValue: unknown) {
 
 function SensorSelector() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [token] = useLocalStorage<string>(sofarApiTokenStorageKey, '');
   const [startDate, setStartDate] = useLocalStorage<DateTime | null>(
@@ -88,77 +87,96 @@ function SensorSelector() {
     setAnchorEl(null);
   };
 
+  async function handleRefresh() {
+    if (selectedSpotter?.spotterId && token)
+      dispatch(
+        sensorDataRequest({
+          token,
+          spotterId: selectedSpotter?.spotterId,
+          startDate: startDate?.startOf('day').toISO() || undefined,
+          endDate: endDate?.endOf('day').toISO() || undefined,
+        }),
+      );
+  }
+
+  // automatically fetch information on first render
+  React.useEffect(() => {
+    handleRefresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   React.useEffect(() => {
     if (selectedSpotter === null && spottersList.length !== 0) {
       setSelectedSpotter(spottersList[0]);
     }
   }, [setSelectedSpotter, selectedSpotter, spottersList]);
 
-  async function handleRefresh() {
-    const result = await dispatch(spottersRequest(token));
-    if (result.meta.requestStatus === 'fulfilled') return;
-
-    navigate('/');
-  }
-
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
       <PaperContainer>
-        <Stack gap="2rem">
-          <TypographyWrapText variant="h6" fontWeight="bold">
-            {selectedSpotter?.name || '(no name)'}
-          </TypographyWrapText>
-          <Stack>
-            <Stack direction="row" justifyContent="space-between">
-              <StyledButton
-                onClick={(e) => handleChangeSpotterClick(e)}
-                variant="text"
-                endIcon={<ExpandCircleDownIcon />}
-              >
-                Change
-              </StyledButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={() => handleChangeSpotterClose()}
-              >
-                {spottersList.map((spotter) => (
-                  <MenuItem onClick={() => handleChangeSpotterClose(spotter)}>
-                    {spotter.spotterId}
-                  </MenuItem>
-                ))}
-              </Menu>
-              <StyledButton disabled variant="text" endIcon={<MapIcon />}>
-                Locate on map
-              </StyledButton>
+        <Stack justifyContent="space-between" height="100%">
+          <Stack gap="2rem">
+            <TypographyWrapText variant="h6" fontWeight="bold">
+              {selectedSpotter?.name || '(no name)'}
+            </TypographyWrapText>
+            <Stack>
+              <Stack direction="row" justifyContent="space-between">
+                <StyledButton
+                  onClick={(e) => handleChangeSpotterClick(e)}
+                  variant="text"
+                  endIcon={<ExpandCircleDownIcon />}
+                >
+                  Change
+                </StyledButton>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={() => handleChangeSpotterClose()}
+                >
+                  {spottersList.map((spotter) => (
+                    <MenuItem
+                      key={spotter.spotterId}
+                      onClick={() => handleChangeSpotterClose(spotter)}
+                    >
+                      {spotter.spotterId}
+                    </MenuItem>
+                  ))}
+                </Menu>
+                <StyledButton disabled variant="text" endIcon={<MapIcon />}>
+                  Locate on map
+                </StyledButton>
+              </Stack>
+              <Divider />
             </Stack>
-            <Divider />
+            <TypographyWrapText variant="h5" fontWeight="bold">
+              {selectedSpotter?.spotterId}
+            </TypographyWrapText>
+
+            <DatePicker
+              timezone="UTC"
+              label="Start Date"
+              value={startDate}
+              onChange={(newValue) => setStartDate(newValue)}
+            />
+            <DatePicker
+              timezone="UTC"
+              label="End Date"
+              value={endDate}
+              onChange={(newValue) => setEndDate(newValue)}
+            />
+
+            <StyledButton variant="contained" onClick={() => handleRefresh()}>
+              <Typography
+                lineHeight="2rem"
+                fontWeight="bold"
+                color="white"
+                height="2rem"
+              >
+                Refresh
+              </Typography>
+            </StyledButton>
           </Stack>
-          <TypographyWrapText variant="h5" fontWeight="bold">
-            {selectedSpotter?.spotterId}
-          </TypographyWrapText>
-
-          <DatePicker
-            label="Start Date"
-            value={startDate}
-            onChange={(newValue) => setStartDate(newValue)}
-          />
-          <DatePicker
-            label="Start Date"
-            value={endDate}
-            onChange={(newValue) => setEndDate(newValue)}
-          />
-
-          <StyledButton variant="contained" onClick={() => handleRefresh()}>
-            <Typography
-              lineHeight="2rem"
-              fontWeight="bold"
-              color="white"
-              height="2rem"
-            >
-              Refresh
-            </Typography>
-          </StyledButton>
+          <Link href="/">Change your api token</Link>
         </Stack>
       </PaperContainer>
     </LocalizationProvider>

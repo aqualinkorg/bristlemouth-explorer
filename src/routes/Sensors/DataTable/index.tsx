@@ -15,10 +15,13 @@ import {
   styled,
 } from '@mui/material';
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import { useSelector } from 'react-redux';
+import { sensorDataSelector } from 'src/store/spotters/spottersSlice';
+import { SensorData } from 'src/helpers/types';
 
 interface TableData {
   timestamp: string;
-  nodeId: string;
+  sensorPosition: string;
   rawData: string;
 }
 
@@ -39,20 +42,20 @@ function Row({ data }: RowProps) {
             onClick={() => setOpen(!open)}
           >
             {open ? (
-              <ExpandCircleDownIcon color="primary" fontSize="small" />
-            ) : (
               <ExpandCircleDownIcon
                 color="primary"
                 fontSize="small"
                 style={{ transform: 'rotate(180deg)' }}
               />
+            ) : (
+              <ExpandCircleDownIcon color="primary" fontSize="small" />
             )}
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
           {data.timestamp}
         </TableCell>
-        <TableCell align="right">{data.nodeId}</TableCell>
+        <TableCell align="right">{data.sensorPosition}</TableCell>
         <TableCell align="right">{data.rawData}</TableCell>
       </TableRow>
       <TableRow>
@@ -87,55 +90,40 @@ const HeaderTableCell = styled(TableCell)(() => ({
   fontWeight: 'bold',
 }));
 
-const mockData: TableData[] = [
-  {
-    timestamp: '2023-09-14T00:00:00Z',
-    nodeId: 'node001',
-    rawData: '123.45',
-  },
-  {
-    timestamp: '2023-09-14T12:30:00Z',
-    nodeId: 'node002',
-    rawData: '78.90',
-  },
-  {
-    timestamp: '2023-09-14T16:15:00Z',
-    nodeId: 'node003',
-    rawData: '56.78',
-  },
-  {
-    timestamp: '2023-09-15T08:45:00Z',
-    nodeId: 'node001',
-    rawData: '98.76',
-  },
-  {
-    timestamp: '2023-09-15T18:20:00Z',
-    nodeId: 'node002',
-    rawData: '34.21',
-  },
-];
+function transform(data: SensorData[]): TableData[] {
+  return data.map((x) => ({
+    timestamp: x.timestamp,
+    sensorPosition: String(x.sensorPosition),
+    rawData: x.value as string,
+  }));
+}
 
 function DataTable() {
+  const sensorData = useSelector(sensorDataSelector);
+
   return (
     <PaperContainer>
-      <Stack gap="2rem">
+      <Stack gap="2rem" height="100%">
         <Typography variant="h6" fontWeight="bold">
           Data
         </Typography>
 
         <TableContainer>
-          <Table size="small">
+          <Table size="small" stickyHeader>
             <StyledTableHead>
               <TableRow>
                 <HeaderTableCell />
                 <HeaderTableCell>Timestamp</HeaderTableCell>
-                <HeaderTableCell align="right">Node_ID</HeaderTableCell>
+                <HeaderTableCell align="right">Sensor Position</HeaderTableCell>
                 <HeaderTableCell align="right">Encoded value</HeaderTableCell>
               </TableRow>
             </StyledTableHead>
             <TableBody>
-              {mockData.map((data) => (
-                <Row key={`${data.timestamp}_${data.nodeId}`} data={data} />
+              {transform(sensorData).map((data) => (
+                <Row
+                  key={`${data.timestamp}_${data.sensorPosition}`}
+                  data={data}
+                />
               ))}
             </TableBody>
           </Table>

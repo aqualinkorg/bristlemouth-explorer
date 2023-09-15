@@ -15,6 +15,8 @@ function getSavedValue<T>(
   return (savedJson || initValue) as T;
 }
 
+// This hook is not for handling global state.
+// It is only meant for accessing and saving information to local storage.
 export default function useLocalStorage<T>(
   key: string,
   initValue: T,

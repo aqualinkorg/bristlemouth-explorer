@@ -52,7 +52,7 @@ function Home() {
   );
 
   async function onTokenSubmit() {
-    const result = await dispatch(spottersRequest(token));
+    const result = await dispatch(spottersRequest({ token }));
     if (result.meta.requestStatus === 'rejected') return;
 
     navigate('/sensors');
