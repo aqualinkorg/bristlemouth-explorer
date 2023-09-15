@@ -1,17 +1,27 @@
 import React from 'react';
 
-function getSavedValue(key: string, initValue: unknown) {
+function getSavedValue<T>(
+  key: string,
+  initValue: T,
+  parseCallback?: (parsedValue: unknown) => T,
+) {
   const savedRaw = localStorage.getItem(key);
   const savedJson = JSON.parse(
     savedRaw !== 'undefined' && savedRaw ? savedRaw : 'null',
   );
 
-  return savedJson || initValue;
+  if (savedJson && parseCallback) return parseCallback(savedJson);
+
+  return (savedJson || initValue) as T;
 }
 
-export default function useLocalStorage<T>(key: string, initValue: T) {
+export default function useLocalStorage<T>(
+  key: string,
+  initValue: T,
+  parseCallback?: (parsedValue: unknown) => T,
+) {
   const [value, setValue] = React.useState<T>(() =>
-    getSavedValue(key, initValue),
+    getSavedValue(key, initValue, parseCallback),
   );
 
   React.useEffect(() => {

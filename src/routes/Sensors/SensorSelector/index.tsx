@@ -2,6 +2,8 @@ import React from 'react';
 import {
   Button,
   Divider,
+  Menu,
+  MenuItem,
   Paper,
   Stack,
   Typography,
@@ -11,7 +13,22 @@ import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import MapIcon from '@mui/icons-material/Map';
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { useSelector } from 'react-redux';
+import {
+  spottersListSelector,
+  spottersRequest,
+} from 'src/store/spotters/spottersSlice';
+import useLocalStorage from 'src/helpers/useLocalStorage';
+import {
+  selectedSpotterStorageKey,
+  sofarApiTokenStorageKey,
+  spotterDataEndDateStorageKey,
+  spotterDataStartDateStorageKey,
+} from 'src/helpers/constants';
+import { Spotter } from 'src/helpers/types';
 import { DateTime } from 'luxon';
+import { useAppDispatch } from 'src/store/hooks';
+import { useNavigate } from 'react-router-dom';
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: '15rem',
@@ -27,31 +44,99 @@ const StyledButton = styled(Button)(() => ({
   borderRadius: '50px',
 }));
 
+const TypographyWrapText = styled(Typography)(() => ({
+  wordWrap: 'break-word',
+}));
+
+function parseDateTime(parsedValue: unknown) {
+  if (typeof parsedValue !== 'string') return null;
+  return DateTime.fromISO(parsedValue);
+}
+
 function SensorSelector() {
-  const [startDate, setStartDate] = React.useState<DateTime | null>(null);
-  const [endDate, setEndDate] = React.useState<DateTime | null>(null);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const [token] = useLocalStorage<string>(sofarApiTokenStorageKey, '');
+  const [startDate, setStartDate] = useLocalStorage<DateTime | null>(
+    spotterDataStartDateStorageKey,
+    null,
+    parseDateTime,
+  );
+  const [endDate, setEndDate] = useLocalStorage<DateTime | null>(
+    spotterDataEndDateStorageKey,
+    null,
+    parseDateTime,
+  );
+  const [selectedSpotter, setSelectedSpotter] = useLocalStorage<Spotter | null>(
+    selectedSpotterStorageKey,
+    null,
+  );
+  const spottersList = useSelector(spottersListSelector);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const open = Boolean(anchorEl);
+
+  const handleChangeSpotterClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleChangeSpotterClose = (spotter?: Spotter) => {
+    if (spotter) setSelectedSpotter(spotter);
+    setAnchorEl(null);
+  };
+
+  React.useEffect(() => {
+    if (selectedSpotter === null && spottersList.length !== 0) {
+      setSelectedSpotter(spottersList[0]);
+    }
+  }, [setSelectedSpotter, selectedSpotter, spottersList]);
+
+  async function handleRefresh() {
+    const result = await dispatch(spottersRequest(token));
+    if (result.meta.requestStatus === 'fulfilled') return;
+
+    navigate('/');
+  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
       <PaperContainer>
         <Stack gap="2rem">
-          <Typography variant="h6" fontWeight="bold">
-            Spot ID
-          </Typography>
+          <TypographyWrapText variant="h6" fontWeight="bold">
+            {selectedSpotter?.name || '(no name)'}
+          </TypographyWrapText>
           <Stack>
             <Stack direction="row" justifyContent="space-between">
-              <StyledButton variant="text" endIcon={<ExpandCircleDownIcon />}>
+              <StyledButton
+                onClick={(e) => handleChangeSpotterClick(e)}
+                variant="text"
+                endIcon={<ExpandCircleDownIcon />}
+              >
                 Change
               </StyledButton>
-              <StyledButton variant="text" endIcon={<MapIcon />}>
+              <Menu
+                anchorEl={anchorEl}
+                open={open}
+                onClose={() => handleChangeSpotterClose()}
+              >
+                {spottersList.map((spotter) => (
+                  <MenuItem onClick={() => handleChangeSpotterClose(spotter)}>
+                    {spotter.spotterId}
+                  </MenuItem>
+                ))}
+              </Menu>
+              <StyledButton disabled variant="text" endIcon={<MapIcon />}>
                 Locate on map
               </StyledButton>
             </Stack>
             <Divider />
           </Stack>
-          <Typography variant="h5" fontWeight="bold">
-            SPOT - 1742
-          </Typography>
+          <TypographyWrapText variant="h5" fontWeight="bold">
+            {selectedSpotter?.spotterId}
+          </TypographyWrapText>
 
           <DatePicker
             label="Start Date"
@@ -64,7 +149,7 @@ function SensorSelector() {
             onChange={(newValue) => setEndDate(newValue)}
           />
 
-          <StyledButton variant="contained">
+          <StyledButton variant="contained" onClick={() => handleRefresh()}>
             <Typography
               lineHeight="2rem"
               fontWeight="bold"
