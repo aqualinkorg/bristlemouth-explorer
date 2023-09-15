@@ -1,7 +1,28 @@
 import { render } from '@testing-library/react';
 import Sensors from '.';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  spotters: {
+    list: [],
+    spottersRequestLoading: false,
+    error: null,
+  },
+});
+
+store.dispatch = jest.fn();
 
 it('renders as expected', () => {
-  const { container } = render(<Sensors />);
+  const { container } = render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Sensors />
+      </BrowserRouter>
+    </Provider>,
+  );
   expect(container).toMatchSnapshot();
 });

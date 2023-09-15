@@ -36,9 +36,9 @@ exports[`renders as expected 1`] = `
           class="MuiStack-root css-wcshwo-MuiStack-root"
         >
           <h6
-            class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h6 css-oszn88-MuiTypography-root"
           >
-            Spot ID
+            (no name)
           </h6>
           <div
             class="MuiStack-root css-nen11g-MuiStack-root"
@@ -72,8 +72,9 @@ exports[`renders as expected 1`] = `
                 />
               </button>
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1o4hy9k-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1o4hy9k-MuiButtonBase-root-MuiButton-root"
+                disabled=""
+                tabindex="-1"
                 type="button"
               >
                 Locate on map
@@ -92,9 +93,6 @@ exports[`renders as expected 1`] = `
                     />
                   </svg>
                 </span>
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
               </button>
             </div>
             <hr
@@ -102,10 +100,8 @@ exports[`renders as expected 1`] = `
             />
           </div>
           <h5
-            class="MuiTypography-root MuiTypography-h5 css-bezmlo-MuiTypography-root"
-          >
-            SPOT - 1742
-          </h5>
+            class="MuiTypography-root MuiTypography-h5 css-108wz0i-MuiTypography-root"
+          />
           <div
             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
           >
