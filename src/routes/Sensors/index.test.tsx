@@ -3,12 +3,15 @@ import Sensors from '.';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { sensorDataMock } from 'src/mocks/sensorDataMock';
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   spotters: {
     list: [],
+    sensorData: sensorDataMock,
+    sensorDataLoading: false,
     spottersRequestLoading: false,
     error: null,
   },
