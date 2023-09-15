@@ -44,9 +44,7 @@ const spottersSlice = createSlice({
     builder.addCase(spottersRequest.rejected, (state, action) => {
       return {
         ...state,
-        error: action.error.message
-          ? action.error.message
-          : action.error.toString(),
+        error: action.payload,
         spottersRequestLoading: false,
       };
     });

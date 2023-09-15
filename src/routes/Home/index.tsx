@@ -1,7 +1,5 @@
 import {
-  Backdrop,
   Button,
-  CircularProgress,
   Link,
   Stack,
   TextField,
@@ -9,23 +7,16 @@ import {
   styled,
 } from '@mui/material';
 import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
-import React from 'react';
-import {
-  spottersListErrorSelector,
-  spottersListLoadingSelector,
-  spottersListSelector,
-  spottersRequest,
-} from 'src/store/spotters/spottersSlice';
-import { useSelector } from 'react-redux';
+import { spottersRequest } from 'src/store/spotters/spottersSlice';
 import { useAppDispatch } from 'src/store/hooks';
-import { toast } from 'react-toastify';
 import {
   bristlemouthURL,
-  sofarApiTokenLocalStorageKey,
+  sofarApiTokenStorageKey,
   sofarDocsURL,
 } from 'src/helpers/constants';
 import useLocalStorage from 'src/helpers/useLocalStorage';
 import Footer from 'src/common/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const WrapperDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -54,26 +45,18 @@ const StyledLink = styled(Link)(() => ({
 
 function Home() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [token, setToken] = useLocalStorage<string>(
-    sofarApiTokenLocalStorageKey,
+    sofarApiTokenStorageKey,
     '',
   );
-  const spottersRequestLoading = useSelector(spottersListLoadingSelector);
-  const spotters = useSelector(spottersListSelector);
-  const spottersRequestError = useSelector(spottersListErrorSelector);
 
-  function onTokenSubmit() {
-    dispatch(spottersRequest(token));
+  async function onTokenSubmit() {
+    const result = await dispatch(spottersRequest(token));
+    if (result.meta.requestStatus === 'rejected') return;
+
+    navigate('/sensors');
   }
-
-  React.useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(spotters);
-  }, [spotters]);
-
-  React.useEffect(() => {
-    if (spottersRequestError !== null) toast.warn(spottersRequestError);
-  }, [spottersRequestError]);
 
   return (
     <WrapperDiv>
@@ -118,11 +101,6 @@ function Home() {
           </Stack>
         </Stack>
       </Stack>
-
-      <Backdrop open={spottersRequestLoading}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
       <Footer />
     </WrapperDiv>
   );
