@@ -75,6 +75,7 @@ function SensorSelector() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
+  const canFetchData = selectedSpotter?.spotterId && token;
 
   const handleChangeSpotterClick = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -88,7 +89,7 @@ function SensorSelector() {
   };
 
   async function handleRefresh() {
-    if (selectedSpotter?.spotterId && token)
+    if (canFetchData)
       dispatch(
         sensorDataRequest({
           token,
@@ -117,11 +118,14 @@ function SensorSelector() {
         <Stack justifyContent="space-between" height="100%">
           <Stack gap="2rem">
             <TypographyWrapText variant="h6" fontWeight="bold">
-              {selectedSpotter?.name || '(no name)'}
+              {selectedSpotter?.name ||
+                selectedSpotter?.spotterId ||
+                'No spotters available for this token'}
             </TypographyWrapText>
             <Stack>
               <Stack direction="row" justifyContent="space-between">
                 <StyledButton
+                  disabled={spottersList.length === 0}
                   onClick={(e) => handleChangeSpotterClick(e)}
                   variant="text"
                   endIcon={<ExpandCircleDownIcon />}
@@ -153,19 +157,25 @@ function SensorSelector() {
             </TypographyWrapText>
 
             <DatePicker
+              disabled={spottersList.length === 0}
               timezone="UTC"
               label="Start Date"
               value={startDate}
               onChange={(newValue) => setStartDate(newValue)}
             />
             <DatePicker
+              disabled={spottersList.length === 0}
               timezone="UTC"
               label="End Date"
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
             />
 
-            <StyledButton variant="contained" onClick={() => handleRefresh()}>
+            <StyledButton
+              disabled={!canFetchData}
+              variant="contained"
+              onClick={() => handleRefresh()}
+            >
               <Typography
                 lineHeight="2rem"
                 fontWeight="bold"
