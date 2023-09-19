@@ -56,7 +56,16 @@ function Row({ data }: RowProps) {
           {data.timestamp}
         </TableCell>
         <TableCell align="right">{data.sensorPosition}</TableCell>
-        <TableCell align="right">{data.rawData}</TableCell>
+        <TableCell align="right">
+          <Typography
+            textOverflow="ellipsis"
+            whiteSpace="nowrap"
+            overflow="hidden"
+            maxWidth="calc((100vw - 70rem))"
+          >
+            {data.rawData}
+          </Typography>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -74,7 +83,7 @@ function Row({ data }: RowProps) {
 }
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
-  width: '100vw',
+  width: 'calc(100vw - 45rem)',
   height: '60vh',
   margin: '1rem 0.5rem 0.5rem 0.5rem',
   padding: '1rem',
