@@ -93,7 +93,7 @@ function SensorSelector() {
       dispatch(
         sensorDataRequest({
           token,
-          spotterId: selectedSpotter?.spotterId,
+          spotterId: selectedSpotter.spotterId,
           startDate: startDate?.startOf('day').toISO() || undefined,
           endDate: endDate?.endOf('day').toISO() || undefined,
         }),
@@ -186,7 +186,7 @@ function SensorSelector() {
               </Typography>
             </StyledButton>
           </Stack>
-          <Link href="/">Change your api token</Link>
+          <Link href="/">Change your API token</Link>
         </Stack>
       </PaperContainer>
     </LocalizationProvider>

@@ -123,7 +123,7 @@ function DataTable() {
               <TableRow>
                 <HeaderTableCell />
                 <HeaderTableCell>Timestamp</HeaderTableCell>
-                <HeaderTableCell align="right">Sensor Position</HeaderTableCell>
+                <HeaderTableCell align="right">Sensor position</HeaderTableCell>
                 <HeaderTableCell align="right">Encoded value</HeaderTableCell>
               </TableRow>
             </StyledTableHead>

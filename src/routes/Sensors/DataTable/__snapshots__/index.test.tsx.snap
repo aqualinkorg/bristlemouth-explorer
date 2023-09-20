@@ -3,7 +3,7 @@
 exports[`renders as expected 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1u4d61m-MuiPaper-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-5d47qe-MuiPaper-root"
   >
     <div
       class="MuiStack-root css-1p9m833-MuiStack-root"
@@ -39,7 +39,7 @@ exports[`renders as expected 1`] = `
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignRight MuiTableCell-sizeSmall css-e30gri-MuiTableCell-root"
                 scope="col"
               >
-                Sensor Position
+                Sensor position
               </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignRight MuiTableCell-sizeSmall css-e30gri-MuiTableCell-root"
@@ -94,7 +94,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.22
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.22
+                </p>
               </td>
             </tr>
             <tr
@@ -148,7 +152,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.1
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.1
+                </p>
               </td>
             </tr>
             <tr
@@ -202,7 +210,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.240000000000002
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.240000000000002
+                </p>
               </td>
             </tr>
             <tr
@@ -256,7 +268,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.119999999999997
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.119999999999997
+                </p>
               </td>
             </tr>
             <tr
@@ -310,7 +326,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.259999999999998
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.259999999999998
+                </p>
               </td>
             </tr>
             <tr
@@ -364,7 +384,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.14
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.14
+                </p>
               </td>
             </tr>
             <tr
@@ -418,7 +442,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.300000000000004
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.300000000000004
+                </p>
               </td>
             </tr>
             <tr
@@ -472,7 +500,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.160000000000004
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.160000000000004
+                </p>
               </td>
             </tr>
             <tr
@@ -526,7 +558,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.340000000000003
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.340000000000003
+                </p>
               </td>
             </tr>
             <tr
@@ -580,7 +616,11 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
               >
-                26.200000000000003
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-1ka5c6r-MuiTypography-root"
+                >
+                  26.200000000000003
+                </p>
               </td>
             </tr>
             <tr

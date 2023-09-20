@@ -1,7 +1,3 @@
-import { AxiosError } from 'axios';
-
-export const getAxiosErrorMessage = (err: unknown): string =>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (((err as AxiosError)?.response?.data as any)?.message as
-    | string
-    | undefined) || 'Something went wrong';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getAxiosErrorMessage = (err: any): string =>
+  err?.response?.data?.message ?? 'Something went wrong';
