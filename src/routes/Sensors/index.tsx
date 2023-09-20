@@ -2,11 +2,17 @@ import {
   bristlemouthURL,
   sofarApiTokenStorageKey,
 } from 'src/helpers/constants';
-import { Link, Stack, Typography, styled } from '@mui/material';
+import {
+  Button,
+  Link,
+  Stack,
+  Tooltip,
+  Typography,
+  styled,
+} from '@mui/material';
 import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
 import SensorSelector from './SensorSelector';
 import DataTable from './DataTable';
-import Decoder from './Decoder';
 import Terminal from './Terminal';
 import useLocalStorage from 'src/helpers/useLocalStorage';
 import React from 'react';
@@ -17,6 +23,7 @@ import {
 } from 'src/store/spotters/spottersSlice';
 import { useAppDispatch } from 'src/store/hooks';
 import { useNavigate } from 'react-router-dom';
+import MapIcon from '@mui/icons-material/Map';
 
 const Logo = styled('img')(({ theme }) => ({
   borderRadius: theme.spacing(1),
@@ -27,6 +34,11 @@ const Logo = styled('img')(({ theme }) => ({
 const StackContainer = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.grey[100],
   height: '100vh',
+}));
+
+const RoundedButton = styled(Button)(() => ({
+  textTransform: 'none',
+  borderRadius: '50px',
 }));
 
 function Sensors() {
@@ -51,16 +63,32 @@ function Sensors() {
 
   return (
     <StackContainer>
-      <Stack direction="row" alignItems="center" gap="1rem" padding="1rem">
-        <Link target="_blank" rel="noopener" href={bristlemouthURL}>
-          <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
-        </Link>
-        <Typography variant="h5">Bristlemouth for developers</Typography>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        padding="1rem"
+      >
+        <Stack direction="row" alignItems="center" gap="1rem">
+          <Link target="_blank" rel="noopener" href={bristlemouthURL}>
+            <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
+          </Link>
+          <Typography variant="h5">Bristlemouth for developers</Typography>
+        </Stack>
+        <Tooltip title="coming soon">
+          <span>
+            <RoundedButton disabled variant="outlined" startIcon={<MapIcon />}>
+              <Typography variant="inherit" color="black" fontWeight="bold">
+                View on map
+              </Typography>
+            </RoundedButton>
+          </span>
+        </Tooltip>
       </Stack>
+
       <Stack direction="row">
         <SensorSelector />
         <DataTable />
-        <Decoder />
       </Stack>
       <Terminal />
     </StackContainer>

@@ -61,7 +61,7 @@ function Row({ data }: RowProps) {
             textOverflow="ellipsis"
             whiteSpace="nowrap"
             overflow="hidden"
-            maxWidth="calc((100vw - 70rem))"
+            maxWidth="calc((100vw - 53rem))"
           >
             {data.rawData}
           </Typography>
@@ -83,7 +83,7 @@ function Row({ data }: RowProps) {
 }
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
-  width: 'calc(100vw - 45rem)',
+  width: 'calc(100vw - 27rem)',
   height: '60vh',
   margin: '1rem 0.5rem 0.5rem 0.5rem',
   padding: '1rem',

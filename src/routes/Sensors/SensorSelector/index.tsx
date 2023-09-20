@@ -1,17 +1,17 @@
 import React from 'react';
 import {
   Button,
-  Divider,
+  FormControl,
   Link,
-  Menu,
   MenuItem,
   Paper,
+  Select,
   Stack,
+  ToggleButton,
+  ToggleButtonGroup,
   Typography,
   styled,
 } from '@mui/material';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-import MapIcon from '@mui/icons-material/Map';
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { useSelector } from 'react-redux';
@@ -31,7 +31,7 @@ import { DateTime } from 'luxon';
 import { useAppDispatch } from 'src/store/hooks';
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
-  width: '15rem',
+  width: '20rem',
   height: '60vh',
   margin: '1rem 0.5rem 0.5rem 1rem',
   padding: '1rem',
@@ -44,10 +44,6 @@ const StyledButton = styled(Button)(() => ({
   borderRadius: '50px',
 }));
 
-const TypographyWrapText = styled(Typography)(() => ({
-  wordWrap: 'break-word',
-}));
-
 function parseDateTime(parsedValue: unknown) {
   if (typeof parsedValue !== 'string') return null;
   return DateTime.fromISO(parsedValue);
@@ -56,6 +52,7 @@ function parseDateTime(parsedValue: unknown) {
 function SensorSelector() {
   const dispatch = useAppDispatch();
 
+  const [timezone, setTimezone] = React.useState<'native' | 'UTC'>('native');
   const [token] = useLocalStorage<string>(sofarApiTokenStorageKey, '');
   const [startDate, setStartDate] = useLocalStorage<DateTime | null>(
     spotterDataStartDateStorageKey,
@@ -72,20 +69,12 @@ function SensorSelector() {
     null,
   );
   const spottersList = useSelector(spottersListSelector);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const open = Boolean(anchorEl);
   const canFetchData = selectedSpotter?.spotterId && token;
 
-  const handleChangeSpotterClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleChangeSpotterClose = (spotter?: Spotter) => {
+  const handleChangeSpotter = (spotterId: string) => {
+    const spotter = spottersList.find((x) => x.spotterId === spotterId);
     if (spotter) setSelectedSpotter(spotter);
-    setAnchorEl(null);
   };
 
   async function handleRefresh() {
@@ -117,59 +106,82 @@ function SensorSelector() {
       <PaperContainer>
         <Stack justifyContent="space-between" height="100%">
           <Stack gap="2rem">
-            <TypographyWrapText variant="h6" fontWeight="bold">
-              {selectedSpotter?.name ||
-                selectedSpotter?.spotterId ||
-                'No spotters available for this token'}
-            </TypographyWrapText>
-            <Stack>
-              <Stack direction="row" justifyContent="space-between">
-                <StyledButton
-                  disabled={spottersList.length === 0}
-                  onClick={(e) => handleChangeSpotterClick(e)}
-                  variant="text"
-                  endIcon={<ExpandCircleDownIcon />}
+            <Stack gap="0.5rem">
+              <Typography fontWeight="bold">SPOT ID</Typography>
+              <FormControl size="small">
+                <Select
+                  value={selectedSpotter?.spotterId}
+                  onChange={(e) => handleChangeSpotter(e.target.value)}
                 >
-                  Change
-                </StyledButton>
-                <Menu
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={() => handleChangeSpotterClose()}
-                >
-                  {spottersList.map((spotter) => (
-                    <MenuItem
-                      key={spotter.spotterId}
-                      onClick={() => handleChangeSpotterClose(spotter)}
-                    >
-                      {spotter.spotterId}
+                  {spottersList.map((x) => (
+                    <MenuItem value={x.spotterId} key={x.spotterId}>
+                      {x.spotterId}
                     </MenuItem>
                   ))}
-                </Menu>
-                <StyledButton disabled variant="text" endIcon={<MapIcon />}>
-                  Locate on map
-                </StyledButton>
-              </Stack>
-              <Divider />
+                </Select>
+              </FormControl>
             </Stack>
-            <TypographyWrapText variant="h5" fontWeight="bold">
-              {selectedSpotter?.spotterId}
-            </TypographyWrapText>
 
-            <DatePicker
-              disabled={spottersList.length === 0}
-              timezone="UTC"
-              label="Start Date"
-              value={startDate}
-              onChange={(newValue) => setStartDate(newValue)}
-            />
-            <DatePicker
-              disabled={spottersList.length === 0}
-              timezone="UTC"
-              label="End Date"
-              value={endDate}
-              onChange={(newValue) => setEndDate(newValue)}
-            />
+            <Stack gap="0.5rem">
+              <Typography fontWeight="bold">Date range</Typography>
+              <Stack direction="row" justifyContent="space-between" gap="1rem">
+                <Stack>
+                  <Typography>Start date</Typography>
+                  <DatePicker
+                    maxDate={endDate}
+                    slotProps={{ textField: { size: 'small' } }}
+                    disabled={spottersList.length === 0}
+                    timezone="UTC"
+                    value={startDate}
+                    onChange={(newValue) => setStartDate(newValue)}
+                  />
+                </Stack>
+                <Stack>
+                  <Typography>End date</Typography>
+                  <DatePicker
+                    minDate={startDate}
+                    slotProps={{ textField: { size: 'small' } }}
+                    disabled={spottersList.length === 0}
+                    timezone="UTC"
+                    value={endDate}
+                    onChange={(newValue) => setEndDate(newValue)}
+                  />
+                </Stack>
+              </Stack>
+            </Stack>
+
+            <Stack gap="0.5rem">
+              <Typography fontWeight="bold">Node ID</Typography>
+              <FormControl size="small">
+                <Select>
+                  <MenuItem value="some value">some value</MenuItem>
+                  <MenuItem value="some other value">some other value</MenuItem>
+                </Select>
+              </FormControl>
+            </Stack>
+
+            <Stack gap="0.5rem">
+              <Typography fontWeight="bold">Decoder</Typography>
+              <FormControl size="small">
+                <Select>
+                  <MenuItem value="Decoder 1">Decoder 1</MenuItem>
+                  <MenuItem value="Decoder 1">Decoder 1</MenuItem>
+                </Select>
+              </FormControl>
+            </Stack>
+
+            <Stack gap="0.5rem">
+              <Typography fontWeight="bold">Timestamp</Typography>
+              <ToggleButtonGroup
+                color="primary"
+                exclusive
+                value={timezone}
+                onChange={(_, val) => setTimezone(val)}
+              >
+                <ToggleButton value="native">Native</ToggleButton>
+                <ToggleButton value="UTC">UTC</ToggleButton>
+              </ToggleButtonGroup>
+            </Stack>
 
             <StyledButton
               disabled={!canFetchData}
