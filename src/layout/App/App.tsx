@@ -8,7 +8,6 @@ import {
 import theme from './theme';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from 'src/routes/Home';
-import About from 'src/routes/About';
 import { Provider as ReduxProvider, useSelector } from 'react-redux';
 import { store } from 'src/store/configure';
 import 'react-toastify/dist/ReactToastify.css';
@@ -57,7 +56,6 @@ function Contents() {
       </StyledBackdrop>
       <Routes>
         <Route path="/" element={<Home />} />,
-        <Route path="/about" element={<About />} />,
         <Route path="/sensors" element={<Sensors />} />,
       </Routes>
     </>

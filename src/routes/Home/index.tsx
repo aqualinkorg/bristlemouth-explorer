@@ -9,14 +9,15 @@ import {
 import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
 import { spottersRequest } from 'src/store/spotters/spottersSlice';
 import { useAppDispatch } from 'src/store/hooks';
-import {
-  bristlemouthURL,
-  sofarApiTokenStorageKey,
-  sofarDocsURL,
-} from 'src/helpers/constants';
-import useLocalStorage from 'src/helpers/useLocalStorage';
+import { bristlemouthURL, sofarDocsURL } from 'src/helpers/constants';
 import Footer from 'src/common/Footer';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import {
+  setSettings,
+  settingsSelector,
+} from 'src/store/settings/settingsSlice';
+import { useSelector } from 'react-redux';
 
 const WrapperDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -46,15 +47,16 @@ const StyledLink = styled(Link)(() => ({
 function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [token, setToken] = useLocalStorage<string>(
-    sofarApiTokenStorageKey,
-    '',
-  );
+
+  const { sofarApiToken } = useSelector(settingsSelector);
+
+  const [token, setToken] = React.useState<string>(sofarApiToken || '');
 
   async function onTokenSubmit() {
     const result = await dispatch(spottersRequest({ token }));
     if (result.meta.requestStatus === 'rejected') return;
 
+    dispatch(setSettings({ sofarApiToken: token }));
     navigate('/sensors');
   }
 

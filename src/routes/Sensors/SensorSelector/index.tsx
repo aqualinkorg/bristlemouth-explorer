@@ -19,16 +19,13 @@ import {
   sensorDataRequest,
   spottersListSelector,
 } from 'src/store/spotters/spottersSlice';
-import useLocalStorage from 'src/helpers/useLocalStorage';
-import {
-  selectedSpotterStorageKey,
-  sofarApiTokenStorageKey,
-  spotterDataEndDateStorageKey,
-  spotterDataStartDateStorageKey,
-} from 'src/helpers/constants';
 import { Spotter } from 'src/helpers/types';
 import { DateTime } from 'luxon';
 import { useAppDispatch } from 'src/store/hooks';
+import {
+  setSettings,
+  settingsSelector,
+} from 'src/store/settings/settingsSlice';
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: '20rem',
@@ -44,54 +41,67 @@ const StyledButton = styled(Button)(() => ({
   borderRadius: '50px',
 }));
 
-function parseDateTime(parsedValue: unknown) {
-  if (typeof parsedValue !== 'string') return null;
-  return DateTime.fromISO(parsedValue);
-}
-
 function SensorSelector() {
   const dispatch = useAppDispatch();
 
-  const [timezone, setTimezone] = React.useState<'native' | 'UTC'>('native');
-  const [token] = useLocalStorage<string>(sofarApiTokenStorageKey, '');
-  const [startDate, setStartDate] = useLocalStorage<DateTime | null>(
-    spotterDataStartDateStorageKey,
-    null,
-    parseDateTime,
-  );
-  const [endDate, setEndDate] = useLocalStorage<DateTime | null>(
-    spotterDataEndDateStorageKey,
-    null,
-    parseDateTime,
-  );
-  const [selectedSpotter, setSelectedSpotter] = useLocalStorage<Spotter | null>(
-    selectedSpotterStorageKey,
-    null,
-  );
   const spottersList = useSelector(spottersListSelector);
+  const appSettings = useSelector(settingsSelector);
 
-  const canFetchData = selectedSpotter?.spotterId && token;
+  const [timestamp, setTimestamp] = React.useState<'native' | 'utc'>(
+    appSettings.timestamp || 'utc',
+  );
+  const [startDate, setStartDate] = React.useState<DateTime | null>(
+    appSettings.spotterDataStartDate
+      ? DateTime.fromISO(appSettings.spotterDataStartDate)
+      : null,
+  );
+  const [endDate, setEndDate] = React.useState<DateTime | null>(
+    appSettings.spotterDataEndDate
+      ? DateTime.fromISO(appSettings.spotterDataEndDate)
+      : null,
+  );
+  const [selectedSpotter, setSelectedSpotter] = React.useState<Spotter | null>(
+    appSettings.selectedSpotter || null,
+  );
+  const [nodeId, setNodeId] = React.useState<string>(
+    appSettings.SpotterNodeId || '',
+  );
+  const [decoder, setDecoder] = React.useState<string>(
+    appSettings.decoder || '',
+  );
 
   const handleChangeSpotter = (spotterId: string) => {
     const spotter = spottersList.find((x) => x.spotterId === spotterId);
     if (spotter) setSelectedSpotter(spotter);
   };
 
-  async function handleRefresh() {
-    if (canFetchData)
+  async function handleRefresh(updateSettings: boolean) {
+    if (selectedSpotter?.spotterId && appSettings.sofarApiToken)
       dispatch(
         sensorDataRequest({
-          token,
+          token: appSettings.sofarApiToken,
           spotterId: selectedSpotter.spotterId,
           startDate: startDate?.startOf('day').toISO() || undefined,
           endDate: endDate?.endOf('day').toISO() || undefined,
+        }),
+      );
+
+    if (updateSettings)
+      dispatch(
+        setSettings({
+          timestamp,
+          spotterDataStartDate: startDate?.toISO(),
+          spotterDataEndDate: endDate?.toISO(),
+          selectedSpotter,
+          SpotterNodeId: nodeId,
+          decoder,
         }),
       );
   }
 
   // automatically fetch information on first render
   React.useEffect(() => {
-    handleRefresh();
+    handleRefresh(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -110,7 +120,9 @@ function SensorSelector() {
               <Typography fontWeight="bold">SPOT ID</Typography>
               <FormControl size="small">
                 <Select
-                  value={selectedSpotter?.spotterId}
+                  value={
+                    spottersList.length > 0 ? selectedSpotter?.spotterId : ''
+                  }
                   onChange={(e) => handleChangeSpotter(e.target.value)}
                 >
                   {spottersList.map((x) => (
@@ -153,7 +165,10 @@ function SensorSelector() {
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">Node ID</Typography>
               <FormControl size="small">
-                <Select>
+                <Select
+                  value={nodeId}
+                  onChange={(e) => setNodeId(e.target.value)}
+                >
                   <MenuItem value="some value">some value</MenuItem>
                   <MenuItem value="some other value">some other value</MenuItem>
                 </Select>
@@ -163,7 +178,10 @@ function SensorSelector() {
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">Decoder</Typography>
               <FormControl size="small">
-                <Select>
+                <Select
+                  value={decoder}
+                  onChange={(e) => setDecoder(e.target.value)}
+                >
                   <MenuItem value="Decoder 1">Decoder 1</MenuItem>
                   <MenuItem value="Decoder 1">Decoder 1</MenuItem>
                 </Select>
@@ -175,18 +193,20 @@ function SensorSelector() {
               <ToggleButtonGroup
                 color="primary"
                 exclusive
-                value={timezone}
-                onChange={(_, val) => setTimezone(val)}
+                value={timestamp}
+                onChange={(_, val) => setTimestamp(val)}
               >
                 <ToggleButton value="native">Native</ToggleButton>
-                <ToggleButton value="UTC">UTC</ToggleButton>
+                <ToggleButton value="utc">UTC</ToggleButton>
               </ToggleButtonGroup>
             </Stack>
 
             <StyledButton
-              disabled={!canFetchData}
+              disabled={
+                !(selectedSpotter?.spotterId && appSettings.sofarApiToken)
+              }
               variant="contained"
-              onClick={() => handleRefresh()}
+              onClick={() => handleRefresh(true)}
             >
               <Typography
                 lineHeight="2rem"

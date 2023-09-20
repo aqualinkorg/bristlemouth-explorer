@@ -48,7 +48,7 @@ exports[`renders as expected 1`] = `
                 id=":r0:"
                 placeholder="XXXX-XXX-XXXX-XXX"
                 type="text"
-                value=""
+                value="some token"
               />
               <fieldset
                 aria-hidden="true"

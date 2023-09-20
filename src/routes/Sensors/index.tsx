@@ -1,7 +1,4 @@
-import {
-  bristlemouthURL,
-  sofarApiTokenStorageKey,
-} from 'src/helpers/constants';
+import { bristlemouthURL } from 'src/helpers/constants';
 import {
   Button,
   Link,
@@ -14,7 +11,6 @@ import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
 import SensorSelector from './SensorSelector';
 import DataTable from './DataTable';
 import Terminal from './Terminal';
-import useLocalStorage from 'src/helpers/useLocalStorage';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -24,6 +20,7 @@ import {
 import { useAppDispatch } from 'src/store/hooks';
 import { useNavigate } from 'react-router-dom';
 import MapIcon from '@mui/icons-material/Map';
+import { settingsSelector } from 'src/store/settings/settingsSlice';
 
 const Logo = styled('img')(({ theme }) => ({
   borderRadius: theme.spacing(1),
@@ -44,13 +41,15 @@ const RoundedButton = styled(Button)(() => ({
 function Sensors() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [token] = useLocalStorage<string>(sofarApiTokenStorageKey, '');
+  const { sofarApiToken } = useSelector(settingsSelector);
   const spottersList = useSelector(spottersListSelector);
 
   React.useEffect(() => {
     async function getSpotters() {
-      if (token !== '' && spottersList.length === 0) {
-        const result = await dispatch(spottersRequest({ token }));
+      if (sofarApiToken && spottersList.length === 0) {
+        const result = await dispatch(
+          spottersRequest({ token: sofarApiToken }),
+        );
         if (result.meta.requestStatus === 'fulfilled') return;
 
         navigate('/');

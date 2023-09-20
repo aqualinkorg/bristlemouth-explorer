@@ -12,6 +12,15 @@ const store = mockStore({
     spottersRequestLoading: false,
     error: null,
   },
+  settings: {
+    selectedSpotter: undefined,
+    sofarApiToken: 'some token',
+    spotterDataStartDate: undefined,
+    spotterDataEndDate: undefined,
+    SpotterNodeId: undefined,
+    decoder: undefined,
+    timestamp: undefined,
+  },
 });
 
 store.dispatch = jest.fn();

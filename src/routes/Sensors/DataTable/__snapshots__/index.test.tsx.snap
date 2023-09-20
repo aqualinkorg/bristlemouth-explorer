@@ -107,7 +107,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -165,7 +165,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -223,7 +223,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -281,7 +281,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -339,7 +339,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -397,7 +397,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -455,7 +455,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -513,7 +513,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -571,7 +571,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
             <tr
@@ -629,7 +629,7 @@ exports[`renders as expected 1`] = `
               <td
                 class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
                 colspan="6"
-                style="padding-bottom: 0px; padding-top: 0px;"
+                style="padding-bottom: 0px; padding-top: 0px; border-bottom: 0;"
               />
             </tr>
           </tbody>

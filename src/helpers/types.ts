@@ -1,5 +1,5 @@
 export interface Spotter {
-  name: string;
+  name?: string | null;
   spotterId: string;
 }
 
