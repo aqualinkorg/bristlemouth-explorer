@@ -73,7 +73,7 @@ function Row({ data, timestampFormat }: RowProps) {
             overflow="hidden"
             textOverflow="ellipsis"
           >
-            {data.encodedData}
+            {data.nodeId}
           </Typography>
         </TableCell>
         <TableCell align="right">
@@ -81,10 +81,12 @@ function Row({ data, timestampFormat }: RowProps) {
             textOverflow="ellipsis"
             whiteSpace="nowrap"
             overflow="hidden"
+            marginLeft="auto"
             maxWidth={`calc(100vw - ${
               timestampFormat === 'utc' ? '63rem' : '65rem'
             })`}
           >
+            {/* this is here temporary until we create a decoder */}
             {data.encodedData}
           </Typography>
         </TableCell>
@@ -182,7 +184,7 @@ function DataTable() {
                 <HeaderTableCell width="2rem" />
                 <HeaderTableCell>Timestamp</HeaderTableCell>
                 <HeaderTableCell width="12rem" align="right">
-                  Encoded value
+                  Node ID
                 </HeaderTableCell>
                 <HeaderTableCell align="right">Decoded value</HeaderTableCell>
               </TableRow>
