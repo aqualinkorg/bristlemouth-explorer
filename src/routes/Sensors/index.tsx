@@ -66,7 +66,7 @@ function Sensors() {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        padding="1rem"
+        padding="1rem 1rem 0.5rem 1rem"
       >
         <Stack direction="row" alignItems="center" gap="1rem">
           <Link target="_blank" rel="noopener" href={bristlemouthURL}>

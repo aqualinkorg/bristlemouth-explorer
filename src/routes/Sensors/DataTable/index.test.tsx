@@ -3,16 +3,26 @@ import DataTable from '.';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { sensorDataMock } from 'src/mocks/sensorDataMock';
+import { spotterListMock } from 'src/mocks/spotterListMock';
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   spotters: {
-    list: [],
+    list: spotterListMock,
     sensorData: sensorDataMock,
     sensorDataLoading: false,
     spottersRequestLoading: false,
     error: null,
+  },
+  settings: {
+    selectedSpotter: spotterListMock[0],
+    sofarApiToken: 'some token',
+    spotterDataStartDate: undefined,
+    spotterDataEndDate: undefined,
+    spotterNodeId: undefined,
+    decoder: undefined,
+    timestamp: undefined,
   },
 });
 

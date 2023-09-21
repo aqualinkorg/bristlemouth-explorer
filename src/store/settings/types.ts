@@ -5,9 +5,9 @@ export interface Settings {
   sofarApiToken: string;
   spotterDataStartDate: string | null;
   spotterDataEndDate: string | null;
-  SpotterNodeId: string;
+  spotterNodeId: string;
   decoder: string;
-  timestamp: 'native' | 'utc';
+  timestamp: 'user' | 'utc';
 }
 
 export type SettingsState = Partial<Settings>;
