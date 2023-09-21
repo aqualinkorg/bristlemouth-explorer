@@ -38,8 +38,8 @@ const MainText = styled(Typography)(({ theme }) => ({
   textAlign: 'left',
   color: theme.palette.primary.main,
 }));
-const Logo = styled('img')(() => ({
-  borderRadius: '8px',
+const Logo = styled('img')(({ theme }) => ({
+  borderRadius: theme.spacing(1),
   height: '2.5rem',
 }));
 

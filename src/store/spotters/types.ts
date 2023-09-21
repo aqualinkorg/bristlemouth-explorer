@@ -1,7 +1,9 @@
-import { Spotter } from 'src/helpers/types';
+import { SensorData, Spotter } from 'src/helpers/types';
 
 export interface SpottersState {
   list: Spotter[];
+  sensorData: SensorData[];
   spottersRequestLoading: boolean;
-  error: string | null;
+  sensorDataLoading: boolean;
+  error: string | null | undefined;
 }

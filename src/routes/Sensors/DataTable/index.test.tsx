@@ -1,25 +1,18 @@
 import { render } from '@testing-library/react';
-import configureStore from 'redux-mock-store';
+import DataTable from '.';
 import { Provider } from 'react-redux';
-import Home from '.';
-import { BrowserRouter } from 'react-router-dom';
+import configureStore from 'redux-mock-store';
+import { sensorDataMock } from 'src/mocks/sensorDataMock';
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   spotters: {
     list: [],
+    sensorData: sensorDataMock,
+    sensorDataLoading: false,
     spottersRequestLoading: false,
     error: null,
-  },
-  settings: {
-    selectedSpotter: undefined,
-    sofarApiToken: 'some token',
-    spotterDataStartDate: undefined,
-    spotterDataEndDate: undefined,
-    SpotterNodeId: undefined,
-    decoder: undefined,
-    timestamp: undefined,
   },
 });
 
@@ -28,9 +21,7 @@ store.dispatch = jest.fn();
 it('renders as expected', () => {
   const { container } = render(
     <Provider store={store}>
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>
+      <DataTable />
     </Provider>,
   );
   expect(container).toMatchSnapshot();

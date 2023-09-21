@@ -1,22 +1,26 @@
 import { render } from '@testing-library/react';
+import Sensors from '.';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import Home from '.';
 import { BrowserRouter } from 'react-router-dom';
+import { sensorDataMock } from 'src/mocks/sensorDataMock';
+import { spotterListMock } from 'src/mocks/spotterListMock';
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   spotters: {
-    list: [],
+    list: spotterListMock,
+    sensorData: sensorDataMock,
+    sensorDataLoading: false,
     spottersRequestLoading: false,
     error: null,
   },
   settings: {
-    selectedSpotter: undefined,
-    sofarApiToken: 'some token',
-    spotterDataStartDate: undefined,
-    spotterDataEndDate: undefined,
+    selectedSpotter: spotterListMock[0],
+    sofarApiToken: undefined,
+    spotterDataStartDate: '2023-09-20T03:00:00.000+03:00',
+    spotterDataEndDate: '2023-09-20T03:00:00.000+03:00',
     SpotterNodeId: undefined,
     decoder: undefined,
     timestamp: undefined,
@@ -29,7 +33,7 @@ it('renders as expected', () => {
   const { container } = render(
     <Provider store={store}>
       <BrowserRouter>
-        <Home />
+        <Sensors />
       </BrowserRouter>
     </Provider>,
   );

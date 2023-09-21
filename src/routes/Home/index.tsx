@@ -1,26 +1,23 @@
 import {
-  Backdrop,
   Button,
-  CircularProgress,
   Link,
   Stack,
   TextField,
   Typography,
   styled,
 } from '@mui/material';
-import Footer from 'src/common/Footer';
 import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
+import { spottersRequest } from 'src/store/spotters/spottersSlice';
+import { useAppDispatch } from 'src/store/hooks';
+import { bristlemouthURL, sofarDocsURL } from 'src/helpers/constants';
+import Footer from 'src/common/Footer';
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import {
-  spottersListErrorSelector,
-  spottersListLoadingSelector,
-  spottersListSelector,
-  spottersRequest,
-} from 'src/store/spotters/spottersSlice';
+  setSettings,
+  settingsSelector,
+} from 'src/store/settings/settingsSlice';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'src/store/hooks';
-import { toast } from 'react-toastify';
-import { bristlemouthURL, sofarDocsURL } from 'src/helpers/constants';
 
 const WrapperDiv = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -31,14 +28,14 @@ const WrapperDiv = styled('div')(({ theme }) => ({
   gap: theme.spacing(12),
 }));
 
-const Logo = styled('img')(() => ({
-  borderRadius: '8px',
+const Logo = styled('img')(({ theme }) => ({
+  borderRadius: theme.spacing(1),
   height: '5rem',
   width: '5rem',
 }));
 
-const StyledButton = styled(Button)(() => ({
-  borderRadius: '16px',
+const StyledButton = styled(Button)(({ theme }) => ({
+  borderRadius: theme.spacing(2),
   color: 'white',
 }));
 
@@ -49,23 +46,19 @@ const StyledLink = styled(Link)(() => ({
 
 function Home() {
   const dispatch = useAppDispatch();
-  const [token, setToken] = React.useState<string>('');
-  const spottersRequestLoading = useSelector(spottersListLoadingSelector);
-  const spotters = useSelector(spottersListSelector);
-  const spottersRequestError = useSelector(spottersListErrorSelector);
+  const navigate = useNavigate();
 
-  function onTokenSubmit() {
-    dispatch(spottersRequest(token));
+  const { sofarApiToken } = useSelector(settingsSelector);
+
+  const [token, setToken] = React.useState<string>(sofarApiToken || '');
+
+  async function onTokenSubmit() {
+    const result = await dispatch(spottersRequest({ token }));
+    if (result.meta.requestStatus === 'rejected') return;
+
+    dispatch(setSettings({ sofarApiToken: token }));
+    navigate('/sensors');
   }
-
-  React.useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(spotters);
-  }, [spotters]);
-
-  React.useEffect(() => {
-    if (spottersRequestError !== null) toast.warn(spottersRequestError);
-  }, [spottersRequestError]);
 
   return (
     <WrapperDiv>
@@ -110,11 +103,6 @@ function Home() {
           </Stack>
         </Stack>
       </Stack>
-
-      <Backdrop open={spottersRequestLoading}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-
       <Footer />
     </WrapperDiv>
   );
