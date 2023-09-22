@@ -3,13 +3,13 @@
 exports[`renders as expected 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-u69bze-MuiPaper-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-56b7da-MuiPaper-root"
   >
     <div
-      class="MuiStack-root css-1shxafo-MuiStack-root"
+      class="MuiStack-root css-16slztd-MuiStack-root"
     >
       <div
-        class="MuiStack-root css-wcshwo-MuiStack-root"
+        class="MuiStack-root css-qre78q-MuiStack-root"
       >
         <div
           class="MuiStack-root css-5u2gm5-MuiStack-root"
@@ -108,7 +108,7 @@ exports[`renders as expected 1`] = `
                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
                   >
                     <button
-                      aria-label="Choose date, selected date is Sep 20, 2023"
+                      aria-label="Choose date, selected date is Sep 19, 2023"
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
                       tabindex="0"
                       type="button"
@@ -174,7 +174,7 @@ exports[`renders as expected 1`] = `
                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
                   >
                     <button
-                      aria-label="Choose date, selected date is Sep 20, 2023"
+                      aria-label="Choose date, selected date is Sep 19, 2023"
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
                       tabindex="0"
                       type="button"
@@ -285,17 +285,19 @@ exports[`renders as expected 1`] = `
             Decoder
           </p>
           <div
+            aria-label="coming soon"
             class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
+            data-mui-internal-clone-element="true"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl MuiInputBase-sizeSmall  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
             >
               <div
+                aria-disabled="true"
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                class="MuiSelect-select MuiSelect-outlined Mui-disabled MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
                 role="button"
-                tabindex="0"
               >
                 <span
                   class="notranslate"
@@ -307,12 +309,13 @@ exports[`renders as expected 1`] = `
                 aria-hidden="true"
                 aria-invalid="false"
                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                disabled=""
                 tabindex="-1"
                 value=""
               />
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined Mui-disabled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
                 data-testid="ArrowDropDownIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -355,9 +358,9 @@ exports[`renders as expected 1`] = `
               class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-primary MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-d9c359-MuiButtonBase-root-MuiToggleButton-root"
               tabindex="0"
               type="button"
-              value="native"
+              value="user"
             >
-              Native
+              User
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
@@ -390,7 +393,7 @@ exports[`renders as expected 1`] = `
         </button>
       </div>
       <a
-        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-2gjjad-MuiTypography-root-MuiLink-root"
         href="/"
       >
         Change your API token

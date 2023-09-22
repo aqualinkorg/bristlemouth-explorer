@@ -17,7 +17,7 @@ const store = mockStore({
     sofarApiToken: 'some token',
     spotterDataStartDate: undefined,
     spotterDataEndDate: undefined,
-    SpotterNodeId: undefined,
+    spotterNodeId: undefined,
     decoder: undefined,
     timestamp: undefined,
   },

@@ -9,6 +9,7 @@ import {
   Stack,
   ToggleButton,
   ToggleButtonGroup,
+  Tooltip,
   Typography,
   styled,
 } from '@mui/material';
@@ -17,6 +18,7 @@ import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { useSelector } from 'react-redux';
 import {
   sensorDataRequest,
+  sensorDataSelector,
   spottersListSelector,
 } from 'src/store/spotters/spottersSlice';
 import { Spotter } from 'src/helpers/types';
@@ -30,7 +32,7 @@ import {
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: '20rem',
   height: '60vh',
-  margin: '1rem 0.5rem 0.5rem 1rem',
+  margin: '0.5rem 0.5rem 0.5rem 1rem',
   padding: '1rem',
   flexShrink: 0,
   borderRadius: theme.spacing(1),
@@ -46,26 +48,26 @@ function SensorSelector() {
 
   const spottersList = useSelector(spottersListSelector);
   const appSettings = useSelector(settingsSelector);
+  const sensorData = useSelector(sensorDataSelector);
 
-  const [timestamp, setTimestamp] = React.useState<'native' | 'utc'>(
-    appSettings.timestamp || 'utc',
+  const [timestampFormat, setTimestampFormat] = React.useState<'user' | 'utc'>(
+    appSettings.timestampFormat || 'utc',
   );
   const [startDate, setStartDate] = React.useState<DateTime | null>(
     appSettings.spotterDataStartDate
       ? DateTime.fromISO(appSettings.spotterDataStartDate)
-      : null,
+      : DateTime.now().minus({ month: 1 }),
   );
   const [endDate, setEndDate] = React.useState<DateTime | null>(
     appSettings.spotterDataEndDate
       ? DateTime.fromISO(appSettings.spotterDataEndDate)
-      : null,
+      : DateTime.now(),
   );
   const [selectedSpotter, setSelectedSpotter] = React.useState<Spotter | null>(
     appSettings.selectedSpotter || null,
   );
-  const [nodeId, setNodeId] = React.useState<string>(
-    appSettings.SpotterNodeId || '',
-  );
+  const [availableNodeIds, setAvailableNodeIds] = React.useState<string[]>([]);
+  const [nodeId, setNodeId] = React.useState<string>('');
   const [decoder, setDecoder] = React.useState<string>(
     appSettings.decoder || '',
   );
@@ -89,11 +91,11 @@ function SensorSelector() {
     if (updateSettings)
       dispatch(
         setSettings({
-          timestamp,
+          timestampFormat,
           spotterDataStartDate: startDate?.toISO(),
           spotterDataEndDate: endDate?.toISO(),
           selectedSpotter,
-          SpotterNodeId: nodeId,
+          spotterNodeId: nodeId,
           decoder,
         }),
       );
@@ -111,11 +113,33 @@ function SensorSelector() {
     }
   }, [setSelectedSpotter, selectedSpotter, spottersList]);
 
+  React.useEffect(() => {
+    if (sensorData.length === 0) return;
+
+    const uniqueNodeIds = [
+      ...new Map(sensorData.map((x) => [x.bristlemouth_node_id, null])).keys(),
+    ];
+
+    setAvailableNodeIds(uniqueNodeIds);
+  }, [sensorData]);
+
+  /**
+   * Initialize the 'nodeId' after obtaining 'availableNodeIds' to prevent
+   * MUI warnings related to out-of-range values for the 'Select' component.
+   */
+  React.useEffect(() => {
+    if (!availableNodeIds) return;
+    const node = availableNodeIds.find((x) => x === appSettings.spotterNodeId);
+    if (node !== undefined) setNodeId(node);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [availableNodeIds]);
+
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
       <PaperContainer>
-        <Stack justifyContent="space-between" height="100%">
-          <Stack gap="2rem">
+        <Stack justifyContent="space-between" height="100%" overflow="scroll">
+          <Stack gap="1.5rem">
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">SPOT ID</Typography>
               <FormControl size="small">
@@ -167,25 +191,47 @@ function SensorSelector() {
               <FormControl size="small">
                 <Select
                   value={nodeId}
-                  onChange={(e) => setNodeId(e.target.value)}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setNodeId(value);
+                    dispatch(
+                      setSettings({
+                        spotterNodeId: value,
+                      }),
+                    );
+                  }}
                 >
-                  <MenuItem value="some value">some value</MenuItem>
-                  <MenuItem value="some other value">some other value</MenuItem>
+                  <MenuItem value="">&nbsp;</MenuItem>
+                  {availableNodeIds.map((x) => (
+                    <MenuItem key={x} value={x}>
+                      {x}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Stack>
 
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">Decoder</Typography>
-              <FormControl size="small">
-                <Select
-                  value={decoder}
-                  onChange={(e) => setDecoder(e.target.value)}
-                >
-                  <MenuItem value="Decoder 1">Decoder 1</MenuItem>
-                  <MenuItem value="Decoder 1">Decoder 1</MenuItem>
-                </Select>
-              </FormControl>
+              <Tooltip title="coming soon">
+                <FormControl size="small">
+                  <Select
+                    disabled
+                    value={decoder}
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      setDecoder(value);
+                      dispatch(
+                        setSettings({
+                          decoder: value,
+                        }),
+                      );
+                    }}
+                  >
+                    <MenuItem value="">&nbsp;</MenuItem>
+                  </Select>
+                </FormControl>
+              </Tooltip>
             </Stack>
 
             <Stack gap="0.5rem">
@@ -193,10 +239,19 @@ function SensorSelector() {
               <ToggleButtonGroup
                 color="primary"
                 exclusive
-                value={timestamp}
-                onChange={(_, val) => setTimestamp(val)}
+                value={timestampFormat}
+                onChange={(_, val) => {
+                  if (val) {
+                    setTimestampFormat(val);
+                    dispatch(
+                      setSettings({
+                        timestampFormat: val,
+                      }),
+                    );
+                  }
+                }}
               >
-                <ToggleButton value="native">Native</ToggleButton>
+                <ToggleButton value="user">User</ToggleButton>
                 <ToggleButton value="utc">UTC</ToggleButton>
               </ToggleButtonGroup>
             </Stack>
@@ -218,7 +273,9 @@ function SensorSelector() {
               </Typography>
             </StyledButton>
           </Stack>
-          <Link href="/">Change your API token</Link>
+          <Link paddingTop="0.5rem" href="/">
+            Change your API token
+          </Link>
         </Stack>
       </PaperContainer>
     </LocalizationProvider>

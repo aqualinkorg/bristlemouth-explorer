@@ -18,16 +18,26 @@ import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import { useSelector } from 'react-redux';
 import { sensorDataSelector } from 'src/store/spotters/spottersSlice';
 import { SensorData } from 'src/helpers/types';
+import { settingsSelector } from 'src/store/settings/settingsSlice';
+import { Settings } from 'src/store/settings/types';
+import { DateTime } from 'luxon';
 
 interface TableData {
   timestamp: string;
-  sensorPosition: string;
-  rawData: string;
+  encodedData: string;
+  decodedData: string;
+  nodeId: string;
+  rawJSON: string;
 }
 
 interface RowProps {
   data: TableData;
 }
+
+const StyledCode = styled('code')(() => ({
+  whiteSpace: 'break-spaces',
+  overflowWrap: 'anywhere',
+}));
 
 function Row({ data }: RowProps) {
   const [open, setOpen] = React.useState(false);
@@ -35,7 +45,7 @@ function Row({ data }: RowProps) {
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell>
+        <TableCell width="2rem">
           <IconButton
             aria-label="expand row"
             size="small"
@@ -53,30 +63,51 @@ function Row({ data }: RowProps) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {data.timestamp}
+          <Typography whiteSpace="nowrap">{data.timestamp}</Typography>
         </TableCell>
-        <TableCell align="right">{data.sensorPosition}</TableCell>
+        <TableCell align="right">
+          <Typography
+            whiteSpace="nowrap"
+            maxWidth="12rem"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
+            {data.nodeId}
+          </Typography>
+        </TableCell>
         <TableCell align="right">
           <Typography
             textOverflow="ellipsis"
             whiteSpace="nowrap"
             overflow="hidden"
-            maxWidth="calc((100vw - 53rem))"
+            marginLeft="auto"
+            maxWidth={`calc(100vw - 58rem)`}
           >
-            {data.rawData}
+            {data.encodedData}
           </Typography>
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell
-          style={{ paddingBottom: 0, paddingTop: 0, borderBottom: 0 }}
+          style={{
+            paddingBottom: 0,
+            paddingTop: 0,
+            borderBottom: open ? undefined : 0,
+          }}
           colSpan={6}
         >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Extra Information
-              </Typography>
+              <Stack gap="1rem">
+                <Stack gap="0.5rem">
+                  <Typography fontWeight="bold">Decoded value:</Typography>
+                  <StyledCode>{data.decodedData}</StyledCode>
+                </Stack>
+                <Stack gap="0.5rem">
+                  <Typography fontWeight="bold">Raw data:</Typography>
+                  <StyledCode>{data.rawJSON}</StyledCode>
+                </Stack>
+              </Stack>
             </Box>
           </Collapse>
         </TableCell>
@@ -88,7 +119,7 @@ function Row({ data }: RowProps) {
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: 'calc(100vw - 27rem)',
   height: '60vh',
-  margin: '1rem 0.5rem 0.5rem 0.5rem',
+  margin: '0.5rem',
   padding: '1rem',
   borderRadius: theme.spacing(1),
 }));
@@ -102,16 +133,38 @@ const HeaderTableCell = styled(TableCell)(() => ({
   fontWeight: 'bold',
 }));
 
-function transform(data: SensorData[]): TableData[] {
-  return data.map((x) => ({
-    timestamp: x.timestamp,
-    sensorPosition: String(x.sensorPosition),
-    rawData: x.value as string,
+function transform(
+  data: SensorData[],
+  nodeId: string,
+  timestamp: Settings['timestampFormat'],
+): TableData[] {
+  const unique = [
+    ...new Map(
+      data.map((x) => [`${x.timestamp}${x.bristlemouth_node_id}`, x]),
+    ).values(),
+  ];
+
+  const filteredByNodeId =
+    nodeId === ''
+      ? unique
+      : unique.filter((x) => x.bristlemouth_node_id === nodeId);
+
+  return filteredByNodeId.map((x) => ({
+    timestamp: String(
+      timestamp === 'user'
+        ? DateTime.fromISO(x.timestamp).toFormat('yyyy-MM-dd HH:mm:ss')
+        : DateTime.fromISO(x.timestamp).toUTC().toFormat('yyyy-MM-dd HH:mm:ss'),
+    ),
+    encodedData: String(x.value),
+    decodedData: 'coming soon',
+    nodeId: x.bristlemouth_node_id,
+    rawJSON: JSON.stringify(x, null, 2),
   }));
 }
 
 function DataTable() {
   const sensorData = useSelector(sensorDataSelector);
+  const { spotterNodeId, timestampFormat } = useSelector(settingsSelector);
 
   return (
     <PaperContainer>
@@ -124,18 +177,24 @@ function DataTable() {
           <Table size="small" stickyHeader>
             <StyledTableHead>
               <TableRow>
-                <HeaderTableCell />
-                <HeaderTableCell>Timestamp</HeaderTableCell>
-                <HeaderTableCell align="right">Sensor position</HeaderTableCell>
+                <HeaderTableCell width="2rem" />
+                <HeaderTableCell>
+                  Timestamp{' '}
+                  {timestampFormat === 'utc'
+                    ? 'UTC'
+                    : DateTime.now().offsetNameShort}
+                </HeaderTableCell>
+                <HeaderTableCell align="right">Node ID</HeaderTableCell>
                 <HeaderTableCell align="right">Encoded value</HeaderTableCell>
               </TableRow>
             </StyledTableHead>
             <TableBody>
-              {transform(sensorData).map((data) => (
-                <Row
-                  key={`${data.timestamp}_${data.sensorPosition}`}
-                  data={data}
-                />
+              {transform(
+                sensorData,
+                spotterNodeId || '',
+                timestampFormat || 'utc',
+              ).map((data) => (
+                <Row key={`${data.timestamp}_${data.nodeId}`} data={data} />
               ))}
             </TableBody>
           </Table>

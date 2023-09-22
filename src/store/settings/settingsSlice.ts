@@ -8,9 +8,9 @@ const emptyState: SettingsState = {
   sofarApiToken: undefined,
   spotterDataStartDate: undefined,
   spotterDataEndDate: undefined,
-  SpotterNodeId: undefined,
+  spotterNodeId: undefined,
   decoder: undefined,
-  timestamp: undefined,
+  timestampFormat: undefined,
 };
 
 function getInitialState(): SettingsState {

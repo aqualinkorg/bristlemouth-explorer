@@ -15,6 +15,7 @@ export interface SensorData {
   longitude: number;
   timestamp: string;
   sensorPosition: number | null;
+  bristlemouth_node_id: string;
   units: string;
   value: string | number;
   unit_type: string;
