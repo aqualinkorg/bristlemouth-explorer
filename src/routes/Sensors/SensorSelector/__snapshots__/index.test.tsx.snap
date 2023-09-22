@@ -108,7 +108,7 @@ exports[`renders as expected 1`] = `
                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
                   >
                     <button
-                      aria-label="Choose date, selected date is Sep 20, 2023"
+                      aria-label="Choose date, selected date is Sep 19, 2023"
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
                       tabindex="0"
                       type="button"
@@ -174,7 +174,7 @@ exports[`renders as expected 1`] = `
                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
                   >
                     <button
-                      aria-label="Choose date, selected date is Sep 20, 2023"
+                      aria-label="Choose date, selected date is Sep 19, 2023"
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
                       tabindex="0"
                       type="button"

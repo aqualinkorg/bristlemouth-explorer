@@ -36,7 +36,7 @@ exports[`renders as expected 1`] = `
               >
                 Timestamp
                  
-                GMT+3
+                PDT
               </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignRight MuiTableCell-sizeSmall css-e30gri-MuiTableCell-root"
