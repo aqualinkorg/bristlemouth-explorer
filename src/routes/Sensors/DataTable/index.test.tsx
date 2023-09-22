@@ -22,7 +22,7 @@ const store = mockStore({
     spotterDataEndDate: undefined,
     spotterNodeId: undefined,
     decoder: undefined,
-    timestamp: undefined,
+    timestampFormat: undefined,
   },
 });
 

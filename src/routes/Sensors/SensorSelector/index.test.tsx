@@ -23,7 +23,7 @@ const store = mockStore({
     spotterDataEndDate: '2023-09-20T03:00:00.000+03:00',
     spotterNodeId: undefined,
     decoder: undefined,
-    timestamp: undefined,
+    timestampFormat: undefined,
   },
 });
 

@@ -50,8 +50,8 @@ function SensorSelector() {
   const appSettings = useSelector(settingsSelector);
   const sensorData = useSelector(sensorDataSelector);
 
-  const [timestamp, setTimestamp] = React.useState<'user' | 'utc'>(
-    appSettings.timestamp || 'utc',
+  const [timestampFormat, setTimestampFormat] = React.useState<'user' | 'utc'>(
+    appSettings.timestampFormat || 'utc',
   );
   const [startDate, setStartDate] = React.useState<DateTime | null>(
     appSettings.spotterDataStartDate
@@ -91,7 +91,7 @@ function SensorSelector() {
     if (updateSettings)
       dispatch(
         setSettings({
-          timestamp,
+          timestampFormat,
           spotterDataStartDate: startDate?.toISO(),
           spotterDataEndDate: endDate?.toISO(),
           selectedSpotter,
@@ -239,13 +239,13 @@ function SensorSelector() {
               <ToggleButtonGroup
                 color="primary"
                 exclusive
-                value={timestamp}
+                value={timestampFormat}
                 onChange={(_, val) => {
                   if (val) {
-                    setTimestamp(val);
+                    setTimestampFormat(val);
                     dispatch(
                       setSettings({
-                        timestamp: val,
+                        timestampFormat: val,
                       }),
                     );
                   }

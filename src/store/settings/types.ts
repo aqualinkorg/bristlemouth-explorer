@@ -7,7 +7,7 @@ export interface Settings {
   spotterDataEndDate: string | null;
   spotterNodeId: string;
   decoder: string;
-  timestamp: 'user' | 'utc';
+  timestampFormat: 'user' | 'utc';
 }
 
 export type SettingsState = Partial<Settings>;

@@ -10,7 +10,7 @@ const emptyState: SettingsState = {
   spotterDataEndDate: undefined,
   spotterNodeId: undefined,
   decoder: undefined,
-  timestamp: undefined,
+  timestampFormat: undefined,
 };
 
 function getInitialState(): SettingsState {

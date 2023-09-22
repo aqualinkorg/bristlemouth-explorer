@@ -19,7 +19,7 @@ import { useSelector } from 'react-redux';
 import { sensorDataSelector } from 'src/store/spotters/spottersSlice';
 import { SensorData } from 'src/helpers/types';
 import { settingsSelector } from 'src/store/settings/settingsSlice';
-import { Settings, SettingsState } from 'src/store/settings/types';
+import { Settings } from 'src/store/settings/types';
 import { DateTime } from 'luxon';
 
 interface TableData {
@@ -32,7 +32,6 @@ interface TableData {
 
 interface RowProps {
   data: TableData;
-  timestampFormat: SettingsState['timestamp'];
 }
 
 const StyledCode = styled('code')(() => ({
@@ -40,7 +39,7 @@ const StyledCode = styled('code')(() => ({
   overflowWrap: 'anywhere',
 }));
 
-function Row({ data, timestampFormat }: RowProps) {
+function Row({ data }: RowProps) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -82,11 +81,8 @@ function Row({ data, timestampFormat }: RowProps) {
             whiteSpace="nowrap"
             overflow="hidden"
             marginLeft="auto"
-            maxWidth={`calc(100vw - ${
-              timestampFormat === 'utc' ? '63rem' : '65rem'
-            })`}
+            maxWidth={`calc(100vw - 58rem)`}
           >
-            {/* this is here temporary until we create a decoder */}
             {data.encodedData}
           </Typography>
         </TableCell>
@@ -140,7 +136,7 @@ const HeaderTableCell = styled(TableCell)(() => ({
 function transform(
   data: SensorData[],
   nodeId: string,
-  timestamp: Settings['timestamp'],
+  timestamp: Settings['timestampFormat'],
 ): TableData[] {
   const unique = [
     ...new Map(
@@ -148,16 +144,16 @@ function transform(
     ).values(),
   ];
 
-  const filtered =
+  const filteredByNodeId =
     nodeId === ''
       ? unique
       : unique.filter((x) => x.bristlemouth_node_id === nodeId);
 
-  return filtered.map((x) => ({
+  return filteredByNodeId.map((x) => ({
     timestamp: String(
       timestamp === 'user'
-        ? DateTime.fromISO(x.timestamp).toISO()
-        : DateTime.fromISO(x.timestamp).toUTC().toISO(),
+        ? DateTime.fromISO(x.timestamp).toFormat('yyyy-MM-dd HH:mm:ss')
+        : DateTime.fromISO(x.timestamp).toUTC().toFormat('yyyy-MM-dd HH:mm:ss'),
     ),
     encodedData: String(x.value),
     decodedData: 'coming soon',
@@ -168,7 +164,7 @@ function transform(
 
 function DataTable() {
   const sensorData = useSelector(sensorDataSelector);
-  const { spotterNodeId, timestamp } = useSelector(settingsSelector);
+  const { spotterNodeId, timestampFormat } = useSelector(settingsSelector);
 
   return (
     <PaperContainer>
@@ -182,24 +178,23 @@ function DataTable() {
             <StyledTableHead>
               <TableRow>
                 <HeaderTableCell width="2rem" />
-                <HeaderTableCell>Timestamp</HeaderTableCell>
-                <HeaderTableCell width="12rem" align="right">
-                  Node ID
+                <HeaderTableCell>
+                  Timestamp{' '}
+                  {timestampFormat === 'utc'
+                    ? 'UTC'
+                    : DateTime.now().offsetNameShort}
                 </HeaderTableCell>
-                <HeaderTableCell align="right">Decoded value</HeaderTableCell>
+                <HeaderTableCell align="right">Node ID</HeaderTableCell>
+                <HeaderTableCell align="right">Encoded value</HeaderTableCell>
               </TableRow>
             </StyledTableHead>
             <TableBody>
               {transform(
                 sensorData,
                 spotterNodeId || '',
-                timestamp || 'utc',
+                timestampFormat || 'utc',
               ).map((data) => (
-                <Row
-                  key={`${data.timestamp}_${data.nodeId}`}
-                  timestampFormat={timestamp}
-                  data={data}
-                />
+                <Row key={`${data.timestamp}_${data.nodeId}`} data={data} />
               ))}
             </TableBody>
           </Table>
