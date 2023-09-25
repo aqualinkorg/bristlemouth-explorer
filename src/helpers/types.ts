@@ -17,7 +17,7 @@ export interface SensorData {
   sensorPosition: number | null;
   bristlemouth_node_id: string;
   units: string;
-  value: string | number;
+  value: string;
   unit_type: string;
   data_type_name: string;
 }
@@ -25,4 +25,27 @@ export interface SensorData {
 export interface GetSensorDataRequestResponse {
   status: string;
   data: SensorData[];
+}
+
+export type EncodedDataType = 'uint16_t' | 'float' | 'double';
+
+export type SensorStruct = Array<{
+  key: string;
+  dataType: EncodedDataType;
+}>;
+
+export type DecoderConfig = Array<{
+  name: string;
+  struct: SensorStruct;
+}>;
+
+export interface Decoder {
+  name: string;
+  config: DecoderConfig;
+}
+
+export interface DecoderOutput {
+  [sensor: string]: {
+    [elem: string]: number;
+  };
 }

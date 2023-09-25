@@ -17,15 +17,16 @@ import {
 import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import { useSelector } from 'react-redux';
 import { sensorDataSelector } from 'src/store/spotters/spottersSlice';
-import { SensorData } from 'src/helpers/types';
+import { DecoderConfig, DecoderOutput, SensorData } from 'src/helpers/types';
 import { settingsSelector } from 'src/store/settings/settingsSlice';
 import { Settings } from 'src/store/settings/types';
 import { DateTime } from 'luxon';
+import { decode, defaultDecoders } from 'src/helpers/decoder';
 
 interface TableData {
   timestamp: string;
   encodedData: string;
-  decodedData: string;
+  decodedData: DecoderOutput | null;
   nodeId: string;
   rawJSON: string;
 }
@@ -101,7 +102,9 @@ function Row({ data }: RowProps) {
               <Stack gap="1rem">
                 <Stack gap="0.5rem">
                   <Typography fontWeight="bold">Decoded value:</Typography>
-                  <StyledCode>{data.decodedData}</StyledCode>
+                  <StyledCode>
+                    {JSON.stringify(data.decodedData, null, 2)}
+                  </StyledCode>
                 </Stack>
                 <Stack gap="0.5rem">
                   <Typography fontWeight="bold">Raw data:</Typography>
@@ -137,6 +140,7 @@ function transform(
   data: SensorData[],
   nodeId: string,
   timestamp: Settings['timestampFormat'],
+  decoderConfig?: DecoderConfig,
 ): TableData[] {
   const unique = [
     ...new Map(
@@ -156,7 +160,9 @@ function transform(
         : DateTime.fromISO(x.timestamp).toUTC().toFormat('yyyy-MM-dd HH:mm:ss'),
     ),
     encodedData: String(x.value),
-    decodedData: 'coming soon',
+    decodedData: decoderConfig
+      ? decode({ decoderConfig, hexData: x.value })
+      : null,
     nodeId: x.bristlemouth_node_id,
     rawJSON: JSON.stringify(x, null, 2),
   }));
@@ -164,7 +170,13 @@ function transform(
 
 function DataTable() {
   const sensorData = useSelector(sensorDataSelector);
-  const { spotterNodeId, timestampFormat } = useSelector(settingsSelector);
+  const { spotterNodeId, timestampFormat, decoder, userDefinedDecoders } =
+    useSelector(settingsSelector);
+
+  const decoderConfig = [
+    ...defaultDecoders,
+    ...(userDefinedDecoders || []),
+  ].find((x) => x.name === decoder)?.config;
 
   return (
     <PaperContainer>
@@ -193,6 +205,7 @@ function DataTable() {
                 sensorData,
                 spotterNodeId || '',
                 timestampFormat || 'utc',
+                decoderConfig,
               ).map((data) => (
                 <Row key={`${data.timestamp}_${data.nodeId}`} data={data} />
               ))}

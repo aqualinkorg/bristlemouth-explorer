@@ -9,6 +9,7 @@ const emptyState: SettingsState = {
   spotterDataStartDate: undefined,
   spotterDataEndDate: undefined,
   spotterNodeId: undefined,
+  userDefinedDecoders: [],
   decoder: undefined,
   timestampFormat: undefined,
 };
