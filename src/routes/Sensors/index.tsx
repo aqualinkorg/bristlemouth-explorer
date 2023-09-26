@@ -72,7 +72,7 @@ function Sensors() {
           <Link target="_blank" rel="noopener" href={bristlemouthURL}>
             <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
           </Link>
-          <Typography variant="h5">Bristlemouth for developers</Typography>
+          <Typography variant="h5">Bristlemouth Explorer</Typography>
         </Stack>
         <Tooltip title="coming soon">
           <span>

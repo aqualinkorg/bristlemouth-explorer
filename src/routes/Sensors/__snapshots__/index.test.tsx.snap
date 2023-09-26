@@ -26,7 +26,7 @@ exports[`renders as expected 1`] = `
         <h5
           class="MuiTypography-root MuiTypography-h5 css-ag7rrr-MuiTypography-root"
         >
-          Bristlemouth for developers
+          Bristlemouth Explorer
         </h5>
       </div>
       <span
