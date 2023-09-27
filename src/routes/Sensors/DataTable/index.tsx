@@ -153,7 +153,14 @@ function transform(
       ? unique
       : unique.filter((x) => x.bristlemouth_node_id === nodeId);
 
-  return filteredByNodeId.map((x) => ({
+  // eslint-disable-next-line fp/no-mutating-methods
+  const orderedByTimestamp = filteredByNodeId.sort((a, b) => {
+    if (a.timestamp > b.timestamp) return -1;
+    else if (a.timestamp < b.timestamp) return 1;
+    else return 0;
+  });
+
+  return orderedByTimestamp.map((x) => ({
     timestamp: String(
       timestamp === 'user'
         ? DateTime.fromISO(x.timestamp).toFormat('yyyy-MM-dd HH:mm:ss')
