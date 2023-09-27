@@ -21,7 +21,7 @@ import { DecoderConfig, DecoderOutput, SensorData } from 'src/helpers/types';
 import { settingsSelector } from 'src/store/settings/settingsSlice';
 import { Settings } from 'src/store/settings/types';
 import { DateTime } from 'luxon';
-import { decode, defaultDecoders } from 'src/helpers/decoder';
+import { decode, decoders } from 'src/helpers/decoder';
 
 interface TableData {
   timestamp: string;
@@ -33,6 +33,10 @@ interface TableData {
 
 interface RowProps {
   data: TableData;
+  extraColumns?: Array<{
+    sensor: string;
+    key: string;
+  }>;
 }
 
 const StyledCode = styled('code')(() => ({
@@ -40,7 +44,7 @@ const StyledCode = styled('code')(() => ({
   overflowWrap: 'anywhere',
 }));
 
-function Row({ data }: RowProps) {
+function Row({ data, extraColumns }: RowProps) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -67,26 +71,15 @@ function Row({ data }: RowProps) {
           <Typography whiteSpace="nowrap">{data.timestamp}</Typography>
         </TableCell>
         <TableCell align="right">
-          <Typography
-            whiteSpace="nowrap"
-            maxWidth="12rem"
-            overflow="hidden"
-            textOverflow="ellipsis"
-          >
-            {data.nodeId}
-          </Typography>
+          <Typography>{data.nodeId}</Typography>
         </TableCell>
-        <TableCell align="right">
-          <Typography
-            textOverflow="ellipsis"
-            whiteSpace="nowrap"
-            overflow="hidden"
-            marginLeft="auto"
-            maxWidth={`calc(100vw - 58rem)`}
-          >
-            {data.encodedData}
-          </Typography>
-        </TableCell>
+        {extraColumns?.map((x) => (
+          <TableCell align="right">
+            <Typography>
+              {data.decodedData && data.decodedData[x.sensor][x.key].toFixed(2)}
+            </Typography>
+          </TableCell>
+        ))}
       </TableRow>
       <TableRow>
         <TableCell
@@ -180,10 +173,16 @@ function DataTable() {
   const { spotterNodeId, timestampFormat, decoder, userDefinedDecoders } =
     useSelector(settingsSelector);
 
-  const decoderConfig = [
-    ...defaultDecoders,
-    ...(userDefinedDecoders || []),
-  ].find((x) => x.name === decoder)?.config;
+  const decoderConfig = [...decoders, ...(userDefinedDecoders || [])].find(
+    (x) => x.name === decoder,
+  )?.config;
+
+  const extraColumns = decoderConfig
+    ?.map((x) => {
+      const displayValues = x.struct.filter((y) => y.display);
+      return displayValues.map((y) => ({ sensor: x.name, key: y.key }));
+    })
+    .flat();
 
   return (
     <PaperContainer>
@@ -204,7 +203,9 @@ function DataTable() {
                     : DateTime.now().offsetNameShort}
                 </HeaderTableCell>
                 <HeaderTableCell align="right">Node ID</HeaderTableCell>
-                <HeaderTableCell align="right">Encoded value</HeaderTableCell>
+                {extraColumns?.map((x) => (
+                  <HeaderTableCell align="right">{`${x.sensor}_${x.key}`}</HeaderTableCell>
+                ))}
               </TableRow>
             </StyledTableHead>
             <TableBody>
@@ -214,7 +215,11 @@ function DataTable() {
                 timestampFormat || 'utc',
                 decoderConfig,
               ).map((data) => (
-                <Row key={`${data.timestamp}_${data.nodeId}`} data={data} />
+                <Row
+                  key={`${data.timestamp}_${data.nodeId}`}
+                  data={data}
+                  extraColumns={extraColumns}
+                />
               ))}
             </TableBody>
           </Table>

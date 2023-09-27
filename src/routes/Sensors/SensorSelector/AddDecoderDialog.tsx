@@ -55,7 +55,7 @@ function AddDecoderDialog({ open, onClose }: AddDecoderDialogProps) {
         else {
           const newStruct: SensorStruct = [
             ...curr.struct,
-            { key: '', dataType: 'uint16_t' },
+            { key: '', dataType: 'uint16_t', display: false },
           ];
           return [
             ...acc,
@@ -121,8 +121,8 @@ function AddDecoderDialog({ open, onClose }: AddDecoderDialogProps) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Create a decoder configuration. It will be able saved locally an you
-          will be able to re use it the next time you visit this website.
+          Create a decoder configuration. It will be saved locally and you will
+          be able to reuse it the next time you visit this website.
         </DialogContentText>
         <Stack paddingTop="2rem">
           <TextField

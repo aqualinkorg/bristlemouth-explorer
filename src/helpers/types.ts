@@ -32,6 +32,7 @@ export type EncodedDataType = 'uint16_t' | 'float' | 'double';
 export type SensorStruct = Array<{
   key: string;
   dataType: EncodedDataType;
+  display: boolean;
 }>;
 
 export type DecoderConfig = Array<{

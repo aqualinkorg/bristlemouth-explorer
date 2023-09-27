@@ -1,4 +1,5 @@
 /* eslint-disable fp/no-mutation */
+import { defaultDecoder } from 'src/decoders/default';
 import { Decoder, DecoderConfig, DecoderOutput, SensorStruct } from './types';
 import { Buffer } from 'buffer';
 
@@ -62,18 +63,4 @@ export function decode({ decoderConfig, hexData }: DecodeProps): DecoderOutput {
   return result;
 }
 
-const defaultSensorStruct: SensorStruct = [
-  { key: 'sample_count', dataType: 'uint16_t' },
-  { key: 'mean', dataType: 'float' },
-  { key: 'stdev', dataType: 'float' },
-];
-
-export const defaultDecoders: Decoder[] = [
-  {
-    name: 'default',
-    config: [
-      { name: 'temp', struct: defaultSensorStruct },
-      { name: 'hum', struct: defaultSensorStruct },
-    ],
-  },
-];
+export const decoders: Decoder[] = [defaultDecoder];

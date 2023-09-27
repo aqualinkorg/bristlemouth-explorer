@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
   FormControl,
-  IconButton,
   Link,
   MenuItem,
   Paper,
@@ -28,8 +27,7 @@ import {
   setSettings,
   settingsSelector,
 } from 'src/store/settings/settingsSlice';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { defaultDecoders } from 'src/helpers/decoder';
+import { decoders } from 'src/helpers/decoder';
 import AddDecoderDialog from './AddDecoderDialog';
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
@@ -78,7 +76,7 @@ function SensorSelector() {
     React.useState<boolean>(false);
 
   const decoderOptions = [
-    ...defaultDecoders,
+    ...decoders,
     ...(appSettings.userDefinedDecoders || []),
   ];
 
@@ -253,13 +251,14 @@ function SensorSelector() {
                     ))}
                   </Select>
                 </FormControl>
-                <IconButton
+                {/* hide add local decoder functionality for now */}
+                {/* <IconButton
                   color="primary"
                   style={{ padding: '0 0.5rem 0 0.5rem' }}
                   onClick={() => setDecoderDialogOpen(true)}
                 >
                   <AddCircleIcon style={{ fontSize: '2rem' }} />
-                </IconButton>
+                </IconButton> */}
               </Stack>
             </Stack>
 
