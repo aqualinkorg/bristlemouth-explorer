@@ -34,7 +34,7 @@ import AddDecoderDialog from './AddDecoderDialog';
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: '20rem',
-  height: '60vh',
+  height: '100%',
   margin: '0.5rem 0.5rem 0.5rem 1rem',
   padding: '1rem',
   flexShrink: 0,

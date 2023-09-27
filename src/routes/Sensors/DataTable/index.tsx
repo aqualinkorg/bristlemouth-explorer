@@ -121,7 +121,7 @@ function Row({ data }: RowProps) {
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: 'calc(100vw - 27rem)',
-  height: '60vh',
+  height: '100%',
   margin: '0.5rem',
   padding: '1rem',
   borderRadius: theme.spacing(1),

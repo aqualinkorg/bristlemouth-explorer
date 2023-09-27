@@ -64,10 +64,10 @@ exports[`renders as expected 1`] = `
       </span>
     </div>
     <div
-      class="MuiStack-root css-m69qwo-MuiStack-root"
+      class="MuiStack-root css-7ddr75-MuiStack-root"
     >
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-56b7da-MuiPaper-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-uhoyx7-MuiPaper-root"
       >
         <div
           class="MuiStack-root css-16slztd-MuiStack-root"
@@ -299,18 +299,14 @@ exports[`renders as expected 1`] = `
                     role="button"
                     tabindex="0"
                   >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
-                    </span>
+                    0xadef442a8e274b78
                   </div>
                   <input
                     aria-hidden="true"
                     aria-invalid="false"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                     tabindex="-1"
-                    value=""
+                    value="0xadef442a8e274b78"
                   />
                   <svg
                     aria-hidden="true"
@@ -488,7 +484,7 @@ exports[`renders as expected 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-2x32e5-MuiPaper-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-ft9xnb-MuiPaper-root"
       >
         <div
           class="MuiStack-root css-1p9m833-MuiStack-root"
@@ -1215,11 +1211,6 @@ exports[`renders as expected 1`] = `
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-69hhoj-MuiPaper-root"
-    >
-      Terminal
     </div>
   </div>
 </div>
