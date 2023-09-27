@@ -142,9 +142,10 @@ function SensorSelector() {
    * MUI warnings related to out-of-range values for the 'Select' component.
    */
   React.useEffect(() => {
-    if (!availableNodeIds) return;
+    if (availableNodeIds.length === 0) return;
     const node = availableNodeIds.find((x) => x === appSettings.spotterNodeId);
     if (node !== undefined) setNodeId(node);
+    else if (appSettings.spotterNodeId !== '') setNodeId(availableNodeIds[0]);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableNodeIds]);
