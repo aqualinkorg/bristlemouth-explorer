@@ -94,7 +94,7 @@ function Row({ data, extraColumns }: RowProps) {
             <Box sx={{ margin: 1 }}>
               <Stack gap="1rem">
                 <Stack gap="0.5rem">
-                  <Typography fontWeight="bold">Decoded value:</Typography>
+                  <Typography fontWeight="bold">Decoded Data:</Typography>
                   <StyledCode>
                     {JSON.stringify(data.decodedData, null, 2)}
                   </StyledCode>
