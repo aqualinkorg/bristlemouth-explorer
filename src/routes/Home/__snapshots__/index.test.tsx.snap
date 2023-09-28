@@ -117,10 +117,8 @@ exports[`renders as expected 1`] = `
               rel="noopener"
               target="_blank"
             >
-              Bristlemouth
+              Bristlemouth Explorer
             </a>
-             
-            for developers
           </h5>
         </div>
         <div
