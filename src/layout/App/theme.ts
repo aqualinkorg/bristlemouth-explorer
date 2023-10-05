@@ -12,7 +12,7 @@ declare module '@mui/material/styles' {
 const themePrimaryColor = '#ff6700';
 const darkTextColor = '#101010';
 
-const fontFamily = 'Poppins';
+const fontFamily = `'Poppins', sans-serif`;
 
 const theme = createTheme({
   palette: {
