@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Autocomplete,
   Button,
   FormControl,
   Link,
@@ -7,6 +8,7 @@ import {
   Paper,
   Select,
   Stack,
+  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
@@ -160,18 +162,14 @@ function SensorSelector() {
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">SPOT ID</Typography>
               <FormControl size="small">
-                <Select
+                <Autocomplete
+                  options={spottersList.map((x) => x.spotterId)}
                   value={
                     spottersList.length > 0 ? selectedSpotter?.spotterId : ''
                   }
-                  onChange={(e) => handleChangeSpotter(e.target.value)}
-                >
-                  {spottersList.map((x) => (
-                    <MenuItem value={x.spotterId} key={x.spotterId}>
-                      {x.spotterId}
-                    </MenuItem>
-                  ))}
-                </Select>
+                  onChange={(_e, val) => handleChangeSpotter(val || '')}
+                  renderInput={(params) => <TextField {...params} />}
+                />
               </FormControl>
             </Stack>
 
@@ -265,7 +263,6 @@ function SensorSelector() {
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">Timestamp</Typography>
               <ToggleButtonGroup
-                color="primary"
                 exclusive
                 value={timestampFormat}
                 onChange={(_, val) => {
@@ -279,8 +276,15 @@ function SensorSelector() {
                   }
                 }}
               >
-                <ToggleButton value="user">User</ToggleButton>
-                <ToggleButton value="utc">UTC</ToggleButton>
+                <ToggleButton
+                  selected={timestampFormat === 'user'}
+                  value="user"
+                >
+                  User
+                </ToggleButton>
+                <ToggleButton selected={timestampFormat === 'utc'} value="utc">
+                  UTC
+                </ToggleButton>
               </ToggleButtonGroup>
             </Stack>
 

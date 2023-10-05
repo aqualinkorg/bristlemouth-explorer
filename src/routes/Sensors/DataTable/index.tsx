@@ -70,11 +70,11 @@ function Row({ data, extraColumns }: RowProps) {
         <TableCell component="th" scope="row">
           <Typography whiteSpace="nowrap">{data.timestamp}</Typography>
         </TableCell>
-        <TableCell align="right">
+        <TableCell align="left">
           <Typography>{data.nodeId}</Typography>
         </TableCell>
         {extraColumns?.map((x) => (
-          <TableCell align="right">
+          <TableCell align="left">
             <Typography>
               {data.decodedData && data.decodedData[x.sensor][x.key].toFixed(2)}
             </Typography>
@@ -202,9 +202,9 @@ function DataTable() {
                     ? 'UTC'
                     : DateTime.now().offsetNameShort}
                 </HeaderTableCell>
-                <HeaderTableCell align="right">Node ID</HeaderTableCell>
+                <HeaderTableCell align="left">Node ID</HeaderTableCell>
                 {extraColumns?.map((x) => (
-                  <HeaderTableCell align="right">{`${x.sensor}_${x.key}`}</HeaderTableCell>
+                  <HeaderTableCell align="left">{`${x.sensor}_${x.key}`}</HeaderTableCell>
                 ))}
               </TableRow>
             </StyledTableHead>

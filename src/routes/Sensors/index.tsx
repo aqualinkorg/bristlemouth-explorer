@@ -76,7 +76,7 @@ function Sensors() {
         <Tooltip title="coming soon">
           <span>
             <RoundedButton disabled variant="outlined" startIcon={<MapIcon />}>
-              <Typography variant="inherit" color="black" fontWeight="bold">
+              <Typography variant="inherit" color="black">
                 View on map
               </Typography>
             </RoundedButton>
