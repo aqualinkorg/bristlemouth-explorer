@@ -55,9 +55,8 @@ function Footer() {
         <Grid item>
           <MainText variant="h5">
             <StyledLink target="_blank" rel="noopener" href={bristlemouthURL}>
-              Bristlemouth
-            </StyledLink>{' '}
-            for developers
+              Bristlemouth Explorer
+            </StyledLink>
           </MainText>
         </Grid>
 
