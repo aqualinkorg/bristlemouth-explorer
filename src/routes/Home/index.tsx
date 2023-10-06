@@ -68,7 +68,7 @@ function Home() {
         </Link>
         <Stack direction="column" alignItems="center" spacing={5}>
           <Typography variant="h3" fontWeight="bold">
-            Bristlemouth for developers
+            Bristlemouth Explorer
           </Typography>
           <Stack direction="column" spacing={1} width="50%">
             <Typography fontWeight="bold">

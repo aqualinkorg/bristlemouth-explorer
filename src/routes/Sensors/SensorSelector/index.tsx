@@ -9,7 +9,6 @@ import {
   Stack,
   ToggleButton,
   ToggleButtonGroup,
-  Tooltip,
   Typography,
   styled,
 } from '@mui/material';
@@ -28,10 +27,12 @@ import {
   setSettings,
   settingsSelector,
 } from 'src/store/settings/settingsSlice';
+import { decoders } from 'src/helpers/decoder';
+import AddDecoderDialog from './AddDecoderDialog';
 
 const PaperContainer = styled(Paper)(({ theme }) => ({
   width: '20rem',
-  height: '60vh',
+  height: '100%',
   margin: '0.5rem 0.5rem 0.5rem 1rem',
   padding: '1rem',
   flexShrink: 0,
@@ -71,6 +72,13 @@ function SensorSelector() {
   const [decoder, setDecoder] = React.useState<string>(
     appSettings.decoder || '',
   );
+  const [decoderDialogOpen, setDecoderDialogOpen] =
+    React.useState<boolean>(false);
+
+  const decoderOptions = [
+    ...decoders,
+    ...(appSettings.userDefinedDecoders || []),
+  ];
 
   const handleChangeSpotter = (spotterId: string) => {
     const spotter = spottersList.find((x) => x.spotterId === spotterId);
@@ -95,7 +103,11 @@ function SensorSelector() {
           spotterDataStartDate: startDate?.toISO(),
           spotterDataEndDate: endDate?.toISO(),
           selectedSpotter,
-          spotterNodeId: nodeId,
+          spotterNodeId:
+            appSettings.selectedSpotter?.spotterId ===
+            selectedSpotter?.spotterId
+              ? appSettings.spotterNodeId
+              : null,
           decoder,
         }),
       );
@@ -128,15 +140,20 @@ function SensorSelector() {
    * MUI warnings related to out-of-range values for the 'Select' component.
    */
   React.useEffect(() => {
-    if (!availableNodeIds) return;
+    if (availableNodeIds.length === 0) return;
     const node = availableNodeIds.find((x) => x === appSettings.spotterNodeId);
     if (node !== undefined) setNodeId(node);
+    else if (appSettings.spotterNodeId !== '') setNodeId(availableNodeIds[0]);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableNodeIds]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
+      <AddDecoderDialog
+        open={decoderDialogOpen}
+        onClose={() => setDecoderDialogOpen(false)}
+      />
       <PaperContainer>
         <Stack justifyContent="space-between" height="100%" overflow="scroll">
           <Stack gap="1.5rem">
@@ -213,10 +230,9 @@ function SensorSelector() {
 
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">Decoder</Typography>
-              <Tooltip title="coming soon">
-                <FormControl size="small">
+              <Stack gap="1rem" direction="row" justifyContent="space-between">
+                <FormControl size="small" fullWidth>
                   <Select
-                    disabled
                     value={decoder}
                     onChange={(e) => {
                       const { value } = e.target;
@@ -228,10 +244,22 @@ function SensorSelector() {
                       );
                     }}
                   >
-                    <MenuItem value="">&nbsp;</MenuItem>
+                    {decoderOptions.map((x) => (
+                      <MenuItem key={x.name} value={x.name}>
+                        {x.name}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
-              </Tooltip>
+                {/* hide add local decoder functionality for now */}
+                {/* <IconButton
+                  color="primary"
+                  style={{ padding: '0 0.5rem 0 0.5rem' }}
+                  onClick={() => setDecoderDialogOpen(true)}
+                >
+                  <AddCircleIcon style={{ fontSize: '2rem' }} />
+                </IconButton> */}
+              </Stack>
             </Stack>
 
             <Stack gap="0.5rem">

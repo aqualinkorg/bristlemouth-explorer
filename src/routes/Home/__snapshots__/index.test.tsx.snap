@@ -26,7 +26,7 @@ exports[`renders as expected 1`] = `
         <h3
           class="MuiTypography-root MuiTypography-h3 css-1ey9xtw-MuiTypography-root"
         >
-          Bristlemouth for developers
+          Bristlemouth Explorer
         </h3>
         <div
           class="MuiStack-root css-7fatpr-MuiStack-root"
@@ -117,10 +117,8 @@ exports[`renders as expected 1`] = `
               rel="noopener"
               target="_blank"
             >
-              Bristlemouth
+              Bristlemouth Explorer
             </a>
-             
-            for developers
           </h5>
         </div>
         <div

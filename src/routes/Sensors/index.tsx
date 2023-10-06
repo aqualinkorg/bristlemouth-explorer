@@ -10,7 +10,6 @@ import {
 import bristlemouthLogo from 'src/assets/bristlemouth-logo.png';
 import SensorSelector from './SensorSelector';
 import DataTable from './DataTable';
-import Terminal from './Terminal';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -72,7 +71,7 @@ function Sensors() {
           <Link target="_blank" rel="noopener" href={bristlemouthURL}>
             <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
           </Link>
-          <Typography variant="h5">Bristlemouth for developers</Typography>
+          <Typography variant="h5">Bristlemouth Explorer</Typography>
         </Stack>
         <Tooltip title="coming soon">
           <span>
@@ -85,11 +84,10 @@ function Sensors() {
         </Tooltip>
       </Stack>
 
-      <Stack direction="row">
+      <Stack direction="row" height="calc(100vh - 8rem)">
         <SensorSelector />
         <DataTable />
       </Stack>
-      <Terminal />
     </StackContainer>
   );
 }
