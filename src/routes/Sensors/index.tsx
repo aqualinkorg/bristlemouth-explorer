@@ -71,12 +71,12 @@ function Sensors() {
           <Link target="_blank" rel="noopener" href={bristlemouthURL}>
             <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
           </Link>
-          <Typography variant="h5">Bristlemouth Explorer</Typography>
+          <Typography variant="h4">Bristlemouth Explorer</Typography>
         </Stack>
         <Tooltip title="coming soon">
           <span>
             <RoundedButton disabled variant="outlined" startIcon={<MapIcon />}>
-              <Typography variant="inherit" color="black" fontWeight="bold">
+              <Typography variant="inherit" color="black">
                 View on map
               </Typography>
             </RoundedButton>

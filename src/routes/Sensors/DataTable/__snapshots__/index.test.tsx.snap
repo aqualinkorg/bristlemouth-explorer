@@ -39,7 +39,7 @@ exports[`renders as expected 1`] = `
                 PDT
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignRight MuiTableCell-sizeSmall css-e30gri-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignLeft MuiTableCell-sizeSmall css-1hrvygi-MuiTableCell-root"
                 scope="col"
               >
                 Node ID
@@ -89,7 +89,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -147,7 +147,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -205,7 +205,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -263,7 +263,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -321,7 +321,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -379,7 +379,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -437,7 +437,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -495,7 +495,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -553,7 +553,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
@@ -611,7 +611,7 @@ exports[`renders as expected 1`] = `
                 </p>
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall css-dv0mq-MuiTableCell-root"
+                class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeSmall css-dsuxgy-MuiTableCell-root"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
