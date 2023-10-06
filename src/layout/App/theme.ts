@@ -19,41 +19,38 @@ const theme = createTheme({
     primary: { main: themePrimaryColor },
     dark: { main: '#222020' },
   },
+  typography: {
+    fontFamily,
+  },
   components: {
     MuiTypography: {
       styleOverrides: {
         h1: {
-          fontFamily,
           fontSize: '40px',
           lineHeight: '50px',
           fontWeight: 600,
         },
         h2: {
-          fontFamily,
           fontSize: '42px',
           lineHeight: '40px',
           fontWeight: 600,
         },
         h3: {
-          fontFamily,
           fontSize: '24px',
           lineHeight: '30px',
           fontWeight: 600,
         },
         h4: {
-          fontFamily,
           fontSize: '20px',
           lineHeight: '24px',
           fontWeight: 600,
         },
         h5: {
-          fontFamily,
           fontSize: '20px',
           lineHeight: '26px',
           fontWeight: 500,
         },
         paragraph: {
-          fontFamily,
           fontSize: '16px',
           lineHeight: '24px',
           fontWeight: 400,
