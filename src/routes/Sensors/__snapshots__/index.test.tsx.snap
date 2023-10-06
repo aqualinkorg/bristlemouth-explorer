@@ -30,7 +30,7 @@ exports[`renders as expected 1`] = `
         </h4>
       </div>
       <span
-        aria-label=""
+        aria-label="Last known position""
         class=""
         data-mui-internal-clone-element="true"
       >
