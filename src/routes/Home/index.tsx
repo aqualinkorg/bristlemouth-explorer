@@ -88,9 +88,14 @@ function Home() {
             <Button
               color="primary"
               variant="contained"
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+                textTransform: 'none',
+              }}
               onClick={() => onTokenSubmit()}
             >
-              GO
+              Go
             </Button>
           </Stack>
           <Stack direction="column" alignItems="center" spacing={1}>
