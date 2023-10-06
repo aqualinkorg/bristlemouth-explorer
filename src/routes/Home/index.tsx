@@ -55,6 +55,12 @@ function Home() {
     navigate('/sensors');
   }
 
+  const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setToken(e.target.value);
+  };
+
+  const maskedToken = token.replace(/.(?=.{6})/g, 'x'); // Mask all characters except the last 4
+
   return (
     <WrapperDiv>
       <Stack direction="column" alignItems="center" spacing={10}>
@@ -71,8 +77,8 @@ function Home() {
                 Enter your Sofar API Token
               </Typography>
               <TextField
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
+                value={maskedToken}
+                onChange={handleTokenChange}
                 placeholder="XXXX-XXX-XXXX-XXX"
                 variant="outlined"
                 size="small"
