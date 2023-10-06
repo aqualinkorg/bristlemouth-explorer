@@ -86,30 +86,35 @@ function Sensors() {
         padding="1rem 1rem 0.5rem 1rem"
       >
         <Stack direction="row" alignItems="center" gap="1rem">
-          <Link target="_blank" rel="noopener" href={bristlemouthURL}>
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href={bristlemouthURL}
+          >
             <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
           </Link>
           <Typography variant="h4">Bristlemouth Explorer</Typography>
         </Stack>
         <Tooltip
-          title={latestSpotterPosition === null ? 'o spotter information' : ''}
+          title={latestSpotterPosition === null ? 'no spotter information' : ''}
         >
           <span>
-            <Link
-              target="_blank"
-              rel="noopener"
-              href={`http://www.google.com/maps/place/${latestSpotterPosition?.latitude},${latestSpotterPosition?.longitude}`}
+            <RoundedButton
+              disabled={latestSpotterPosition === null}
+              variant="outlined"
+              startIcon={<MapIcon />}
             >
-              <RoundedButton
-                disabled={latestSpotterPosition === null}
-                variant="outlined"
-                startIcon={<MapIcon />}
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+                href={`http://www.google.com/maps/place/${latestSpotterPosition?.latitude},${latestSpotterPosition?.longitude}`}
               >
                 <Typography variant="inherit" color="black">
                   View on map
                 </Typography>
-              </RoundedButton>
-            </Link>
+              </Link>
+            </RoundedButton>
           </span>
         </Tooltip>
       </Stack>

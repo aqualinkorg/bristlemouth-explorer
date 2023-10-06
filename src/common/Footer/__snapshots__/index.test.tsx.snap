@@ -17,7 +17,7 @@ exports[`renders as expected 1`] = `
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
             href="https://www.bristlemouth.org/"
-            rel="noopener"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Bristlemouth Explorer
@@ -46,7 +46,7 @@ exports[`renders as expected 1`] = `
               <a
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                 href="https://aqualink.org"
-                rel="noopener"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <img
@@ -74,7 +74,7 @@ exports[`renders as expected 1`] = `
               <a
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                 href="https://www.sofarocean.com"
-                rel="noopener"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <img
@@ -101,7 +101,7 @@ exports[`renders as expected 1`] = `
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
             href="mailto:info@aqualink.org"
-            rel="noopener"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Contact Us

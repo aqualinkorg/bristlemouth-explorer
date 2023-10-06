@@ -64,7 +64,7 @@ function Home() {
   return (
     <WrapperDiv>
       <Stack direction="column" alignItems="center" spacing={10}>
-        <Link target="_blank" rel="noopener" href={bristlemouthURL}>
+        <Link target="_blank" rel="noopener noreferrer" href={bristlemouthURL}>
           <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
         </Link>
         <Stack direction="column" alignItems="center" spacing={5}>
@@ -96,12 +96,16 @@ function Home() {
           <Stack direction="column" alignItems="center" spacing={1}>
             <StyledLink
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="mailto:info@aqualink.org"
             >
               Can&apos;t find or need a Sofar API Token?
             </StyledLink>
-            <StyledLink target="_blank" rel="noopener" href={sofarDocsURL}>
+            <StyledLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href={sofarDocsURL}
+            >
               What can you do with this Sofar API?
             </StyledLink>
           </Stack>
