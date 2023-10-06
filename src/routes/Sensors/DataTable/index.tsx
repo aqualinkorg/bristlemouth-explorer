@@ -293,7 +293,10 @@ function DataTable() {
                 </HeaderTableCell>
                 <HeaderTableCell align="left">Node ID</HeaderTableCell>
                 {extraColumns?.map((x) => (
-                  <HeaderTableCell align="left">{`${x.sensor}_${x.key}`}</HeaderTableCell>
+                  <HeaderTableCell
+                    key={`${x.sensor}_${x.key}`}
+                    align="left"
+                  >{`${x.sensor}_${x.key}`}</HeaderTableCell>
                 ))}
               </TableRow>
             </StyledTableHead>
