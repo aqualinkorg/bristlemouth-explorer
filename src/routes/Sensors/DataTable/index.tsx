@@ -83,7 +83,7 @@ function Row({ data, extraColumns }: RowProps) {
           <Typography>{data.nodeId}</Typography>
         </TableCell>
         {extraColumns?.map((x) => (
-          <TableCell align="left">
+          <TableCell align="left" key={`${x.sensor}_${x.key}`}>
             <Typography>
               {data.decodedData && data.decodedData[x.sensor][x.key].toFixed(2)}
             </Typography>
