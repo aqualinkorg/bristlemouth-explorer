@@ -11,7 +11,7 @@ exports[`renders as expected 1`] = `
       <a
         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
         href="https://www.bristlemouth.org/"
-        rel="noopener"
+        rel="noopener noreferrer"
         target="_blank"
       >
         <img
@@ -23,51 +23,55 @@ exports[`renders as expected 1`] = `
       <div
         class="MuiStack-root css-57vmio-MuiStack-root"
       >
-        <h3
-          class="MuiTypography-root MuiTypography-h3 css-1ey9xtw-MuiTypography-root"
+        <h1
+          class="MuiTypography-root MuiTypography-h1 css-1e0njhx-MuiTypography-root"
         >
           Bristlemouth Explorer
-        </h3>
+        </h1>
         <div
-          class="MuiStack-root css-7fatpr-MuiStack-root"
+          class="MuiStack-root css-lgn0cp-MuiStack-root"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
-          >
-            Enter your Sofar API Token
-          </p>
           <div
-            class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+            class="MuiStack-root css-nen11g-MuiStack-root"
           >
-            <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
             >
-              <input
-                aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
-                id=":r0:"
-                placeholder="XXXX-XXX-XXXX-XXX"
-                type="text"
-                value="some token"
-              />
-              <fieldset
-                aria-hidden="true"
-                class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+              Enter your Sofar API Token
+            </p>
+            <div
+              class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+            >
+              <div
+                class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
               >
-                <legend
-                  class="css-ihdtdm"
+                <input
+                  aria-invalid="false"
+                  class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input"
+                  id=":r0:"
+                  placeholder="XXXX-XXX-XXXX-XXX"
+                  type="text"
+                  value="xxxx token"
+                />
+                <fieldset
+                  aria-hidden="true"
+                  class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
                 >
-                  <span
-                    class="notranslate"
+                  <legend
+                    class="css-ihdtdm"
                   >
-                    ​
-                  </span>
-                </legend>
-              </fieldset>
+                    <span
+                      class="notranslate"
+                    >
+                      ​
+                    </span>
+                  </legend>
+                </fieldset>
+              </div>
             </div>
           </div>
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1hvsj9x-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >
@@ -83,7 +87,7 @@ exports[`renders as expected 1`] = `
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-14kpg5b-MuiTypography-root-MuiLink-root"
             href="mailto:info@aqualink.org"
-            rel="noopener"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Can't find or need a Sofar API Token?
@@ -91,7 +95,7 @@ exports[`renders as expected 1`] = `
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-14kpg5b-MuiTypography-root-MuiLink-root"
             href="https://docs.sofarocean.com/"
-            rel="noopener"
+            rel="noopener noreferrer"
             target="_blank"
           >
             What can you do with this Sofar API?
@@ -114,7 +118,7 @@ exports[`renders as expected 1`] = `
             <a
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
               href="https://www.bristlemouth.org/"
-              rel="noopener"
+              rel="noopener noreferrer"
               target="_blank"
             >
               Bristlemouth Explorer
@@ -143,7 +147,7 @@ exports[`renders as expected 1`] = `
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                   href="https://aqualink.org"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img
@@ -171,7 +175,7 @@ exports[`renders as expected 1`] = `
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
                   href="https://www.sofarocean.com"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <img
@@ -198,7 +202,7 @@ exports[`renders as expected 1`] = `
             <a
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
               href="mailto:info@aqualink.org"
-              rel="noopener"
+              rel="noopener noreferrer"
               target="_blank"
             >
               Contact Us

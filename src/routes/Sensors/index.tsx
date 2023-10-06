@@ -13,6 +13,7 @@ import DataTable from './DataTable';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
+  sensorDataSelector,
   spottersListSelector,
   spottersRequest,
 } from 'src/store/spotters/spottersSlice';
@@ -20,6 +21,7 @@ import { useAppDispatch } from 'src/store/hooks';
 import { useNavigate } from 'react-router-dom';
 import MapIcon from '@mui/icons-material/Map';
 import { settingsSelector } from 'src/store/settings/settingsSlice';
+import { Location, SensorData } from 'src/helpers/types';
 
 const Logo = styled('img')(({ theme }) => ({
   borderRadius: theme.spacing(1),
@@ -37,11 +39,27 @@ const RoundedButton = styled(Button)(() => ({
   borderRadius: '50px',
 }));
 
+function findLastSensorPosition(data: SensorData[]): Location | null {
+  if (data.length === 0) return null;
+  const latest = data.reduce((max, curr) => {
+    if (max.timestamp < curr.timestamp) return curr;
+    else return max;
+  }, data[0]);
+
+  return {
+    latitude: latest.latitude,
+    longitude: latest.longitude,
+  };
+}
+
 function Sensors() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { sofarApiToken } = useSelector(settingsSelector);
   const spottersList = useSelector(spottersListSelector);
+  const sensorData = useSelector(sensorDataSelector);
+
+  const latestSpotterPosition = findLastSensorPosition(sensorData);
 
   React.useEffect(() => {
     async function getSpotters() {
@@ -68,17 +86,38 @@ function Sensors() {
         padding="1rem 1rem 0.5rem 1rem"
       >
         <Stack direction="row" alignItems="center" gap="1rem">
-          <Link target="_blank" rel="noopener" href={bristlemouthURL}>
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href={bristlemouthURL}
+          >
             <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
           </Link>
-          <Typography variant="h5">Bristlemouth Explorer</Typography>
+          <Typography variant="h4">Bristlemouth Explorer</Typography>
         </Stack>
-        <Tooltip title="coming soon">
+        <Tooltip
+          title={
+            latestSpotterPosition === null
+              ? 'No spotter information'
+              : 'Last known position"'
+          }
+        >
           <span>
-            <RoundedButton disabled variant="outlined" startIcon={<MapIcon />}>
-              <Typography variant="inherit" color="black" fontWeight="bold">
-                View on map
-              </Typography>
+            <RoundedButton
+              disabled={latestSpotterPosition === null}
+              variant="outlined"
+              startIcon={<MapIcon />}
+            >
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+                href={`http://www.google.com/maps/place/${latestSpotterPosition?.latitude},${latestSpotterPosition?.longitude}`}
+              >
+                <Typography variant="inherit" color="black">
+                  View on map
+                </Typography>
+              </Link>
             </RoundedButton>
           </span>
         </Tooltip>

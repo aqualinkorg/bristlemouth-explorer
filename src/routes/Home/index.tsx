@@ -34,11 +34,6 @@ const Logo = styled('img')(({ theme }) => ({
   width: '5rem',
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: theme.spacing(2),
-  color: 'white',
-}));
-
 const StyledLink = styled(Link)(() => ({
   color: 'black',
   textDecorationColor: 'unset',
@@ -60,44 +55,57 @@ function Home() {
     navigate('/sensors');
   }
 
+  const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setToken(e.target.value);
+  };
+
+  const maskedToken = token.replace(/.(?=.{6})/g, 'x'); // Mask all characters except the last 4
+
   return (
     <WrapperDiv>
       <Stack direction="column" alignItems="center" spacing={10}>
-        <Link target="_blank" rel="noopener" href={bristlemouthURL}>
+        <Link target="_blank" rel="noopener noreferrer" href={bristlemouthURL}>
           <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
         </Link>
         <Stack direction="column" alignItems="center" spacing={5}>
-          <Typography variant="h3" fontWeight="bold">
+          <Typography variant="h1" fontWeight="bold">
             Bristlemouth Explorer
           </Typography>
-          <Stack direction="column" spacing={1} width="50%">
-            <Typography fontWeight="bold">
-              Enter your Sofar API Token
-            </Typography>
-            <TextField
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              placeholder="XXXX-XXX-XXXX-XXX"
-              variant="outlined"
-              size="small"
-            />
-            <StyledButton
+          <Stack direction="column" gap="1rem" spacing={1} width="20rem">
+            <Stack>
+              <Typography fontWeight="bold">
+                Enter your Sofar API Token
+              </Typography>
+              <TextField
+                value={maskedToken}
+                onChange={handleTokenChange}
+                placeholder="XXXX-XXX-XXXX-XXX"
+                variant="outlined"
+                size="small"
+              />
+            </Stack>
+
+            <Button
               color="primary"
               variant="contained"
               onClick={() => onTokenSubmit()}
             >
               GO
-            </StyledButton>
+            </Button>
           </Stack>
           <Stack direction="column" alignItems="center" spacing={1}>
             <StyledLink
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="mailto:info@aqualink.org"
             >
               Can&apos;t find or need a Sofar API Token?
             </StyledLink>
-            <StyledLink target="_blank" rel="noopener" href={sofarDocsURL}>
+            <StyledLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href={sofarDocsURL}
+            >
               What can you do with this Sofar API?
             </StyledLink>
           </Stack>

@@ -54,7 +54,11 @@ function Footer() {
       <GridContainer container>
         <Grid item>
           <MainText variant="h5">
-            <StyledLink target="_blank" rel="noopener" href={bristlemouthURL}>
+            <StyledLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href={bristlemouthURL}
+            >
               Bristlemouth Explorer
             </StyledLink>
           </MainText>
@@ -65,7 +69,11 @@ function Footer() {
             <Grid item>
               <GridMiddleContainer container style={{ gap: theme.spacing(1) }}>
                 <Typography textAlign="center">Developed with ❤️ by</Typography>
-                <Link target="_blank" rel="noopener" href={aqualinkURL}>
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={aqualinkURL}
+                >
                   <Logo src={aqualinkLogo} alt="Aqualink logo" />
                 </Link>
               </GridMiddleContainer>
@@ -75,7 +83,7 @@ function Footer() {
                 <Typography textAlign="left">
                   Bristlemouth is an open <br /> standard pioneered by
                 </Typography>
-                <Link target="_blank" rel="noopener" href={sofarURL}>
+                <Link target="_blank" rel="noopener noreferrer" href={sofarURL}>
                   <Logo src={sofarLogo} alt="Sofar logo" />
                 </Link>
               </GridMiddleContainer>
@@ -89,7 +97,7 @@ function Footer() {
             -&nbsp;
             <StyledLink
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               href="mailto:info@aqualink.org"
             >
               Contact Us
