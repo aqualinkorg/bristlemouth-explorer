@@ -13,6 +13,7 @@ import DataTable from './DataTable';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
+  sensorDataSelector,
   spottersListSelector,
   spottersRequest,
 } from 'src/store/spotters/spottersSlice';
@@ -20,6 +21,7 @@ import { useAppDispatch } from 'src/store/hooks';
 import { useNavigate } from 'react-router-dom';
 import MapIcon from '@mui/icons-material/Map';
 import { settingsSelector } from 'src/store/settings/settingsSlice';
+import { Location, SensorData } from 'src/helpers/types';
 
 const Logo = styled('img')(({ theme }) => ({
   borderRadius: theme.spacing(1),
@@ -37,11 +39,27 @@ const RoundedButton = styled(Button)(() => ({
   borderRadius: '50px',
 }));
 
+function findLastSensorPosition(data: SensorData[]): Location | null {
+  if (data.length === 0) return null;
+  const latest = data.reduce((max, curr) => {
+    if (max.timestamp < curr.timestamp) return curr;
+    else return max;
+  }, data[0]);
+
+  return {
+    latitude: latest.latitude,
+    longitude: latest.longitude,
+  };
+}
+
 function Sensors() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { sofarApiToken } = useSelector(settingsSelector);
   const spottersList = useSelector(spottersListSelector);
+  const sensorData = useSelector(sensorDataSelector);
+
+  const latestSpotterPosition = findLastSensorPosition(sensorData);
 
   React.useEffect(() => {
     async function getSpotters() {
@@ -73,13 +91,25 @@ function Sensors() {
           </Link>
           <Typography variant="h4">Bristlemouth Explorer</Typography>
         </Stack>
-        <Tooltip title="coming soon">
+        <Tooltip
+          title={latestSpotterPosition === null ? 'o spotter information' : ''}
+        >
           <span>
-            <RoundedButton disabled variant="outlined" startIcon={<MapIcon />}>
-              <Typography variant="inherit" color="black">
-                View on map
-              </Typography>
-            </RoundedButton>
+            <Link
+              target="_blank"
+              rel="noopener"
+              href={`http://www.google.com/maps/place/${latestSpotterPosition?.latitude},${latestSpotterPosition?.longitude}`}
+            >
+              <RoundedButton
+                disabled={latestSpotterPosition === null}
+                variant="outlined"
+                startIcon={<MapIcon />}
+              >
+                <Typography variant="inherit" color="black">
+                  View on map
+                </Typography>
+              </RoundedButton>
+            </Link>
           </span>
         </Tooltip>
       </Stack>

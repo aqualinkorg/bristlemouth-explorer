@@ -50,3 +50,8 @@ export interface DecoderOutput {
     [elem: string]: number;
   };
 }
+
+export interface Location {
+  latitude: number;
+  longitude: number;
+}

@@ -30,37 +30,46 @@ exports[`renders as expected 1`] = `
         </h4>
       </div>
       <span
-        aria-label="coming soon"
+        aria-label=""
         class=""
         data-mui-internal-clone-element="true"
       >
-        <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-19ku3c0-MuiButtonBase-root-MuiButton-root"
-          disabled=""
-          tabindex="-1"
-          type="button"
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+          href="http://www.google.com/maps/place/37.7882667,-122.38695"
+          rel="noopener"
+          target="_blank"
         >
-          <span
-            class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-19ku3c0-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              data-testid="MapIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
             >
-              <path
-                d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"
-              />
-            </svg>
-          </span>
-          <p
-            class="MuiTypography-root MuiTypography-inherit css-89rxlm-MuiTypography-root"
-          >
-            View on map
-          </p>
-        </button>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="MapIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"
+                />
+              </svg>
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-inherit css-89rxlm-MuiTypography-root"
+            >
+              View on map
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </a>
       </span>
     </div>
     <div
