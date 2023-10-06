@@ -157,7 +157,7 @@ function SensorSelector() {
         onClose={() => setDecoderDialogOpen(false)}
       />
       <PaperContainer>
-        <Stack justifyContent="space-between" height="100%" overflow="scroll">
+        <Stack justifyContent="space-between" height="100%" overflow="auto">
           <Stack gap="1.5rem">
             <Stack gap="0.5rem">
               <Typography fontWeight="bold">SPOT ID</Typography>
