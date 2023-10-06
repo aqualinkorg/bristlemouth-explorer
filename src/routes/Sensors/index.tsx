@@ -96,7 +96,11 @@ function Sensors() {
           <Typography variant="h4">Bristlemouth Explorer</Typography>
         </Stack>
         <Tooltip
-          title={latestSpotterPosition === null ? 'no spotter information' : ''}
+          title={
+            latestSpotterPosition === null
+              ? 'No spotter information'
+              : 'Last known position"'
+          }
         >
           <span>
             <RoundedButton
