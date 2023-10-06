@@ -519,11 +519,40 @@ exports[`renders as expected 1`] = `
         <div
           class="MuiStack-root css-1p9m833-MuiStack-root"
         >
-          <h6
-            class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+          <div
+            class="MuiStack-root css-hhz5ff-MuiStack-root"
           >
-            Data
-          </h6>
+            <h6
+              class="MuiTypography-root MuiTypography-h6 css-tjvwag-MuiTypography-root"
+            >
+              Data
+            </h6>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-19ku3c0-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="FileDownloadIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
+                  />
+                </svg>
+              </span>
+              Download CSV
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
           <div
             class="MuiTableContainer-root css-rorn0c-MuiTableContainer-root"
           >
