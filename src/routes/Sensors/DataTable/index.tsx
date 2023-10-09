@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Box,
+  Button,
   Collapse,
   IconButton,
   Paper,
@@ -22,6 +23,14 @@ import { settingsSelector } from 'src/store/settings/settingsSlice';
 import { Settings } from 'src/store/settings/types';
 import { DateTime } from 'luxon';
 import { decode, decoders } from 'src/helpers/decoder';
+import {
+  mkConfig,
+  generateCsv,
+  download,
+  ConfigOptions,
+  CsvOutput,
+} from 'export-to-csv';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 interface TableData {
   timestamp: string;
@@ -74,7 +83,7 @@ function Row({ data, extraColumns }: RowProps) {
           <Typography>{data.nodeId}</Typography>
         </TableCell>
         {extraColumns?.map((x) => (
-          <TableCell align="left">
+          <TableCell align="left" key={`${x.sensor}_${x.key}`}>
             <Typography>
               {data.decodedData && data.decodedData[x.sensor][x.key].toFixed(2)}
             </Typography>
@@ -129,7 +138,35 @@ const HeaderTableCell = styled(TableCell)(() => ({
   fontWeight: 'bold',
 }));
 
-function transform(
+const RoundedButton = styled(Button)(() => ({
+  textTransform: 'none',
+  borderRadius: '50px',
+}));
+
+interface NestedObject {
+  [key: string]: NestedObject | number;
+}
+
+function flattenObject(obj: NestedObject): { [key: string]: number } {
+  return Object.keys(obj).reduce(
+    (acc, key) => {
+      if (typeof obj[key] !== 'number') {
+        const nestedObject = flattenObject(obj[key] as NestedObject);
+        for (const nestedKey in nestedObject) {
+          // eslint-disable-next-line fp/no-mutation
+          acc[`${key}_${nestedKey}`] = nestedObject[nestedKey];
+        }
+      } else {
+        // eslint-disable-next-line fp/no-mutation
+        acc[key] = obj[key] as number;
+      }
+      return acc;
+    },
+    {} as { [key: string]: number },
+  );
+}
+
+function transformToTableData(
   data: SensorData[],
   nodeId: string,
   timestamp: Settings['timestampFormat'],
@@ -168,10 +205,38 @@ function transform(
   }));
 }
 
+function transformToCsv(
+  data: SensorData[],
+  csvConfig: Required<ConfigOptions>,
+  decoderConfig?: DecoderConfig,
+): CsvOutput {
+  const csvData = data.reduce((acc, curr) => {
+    const decodedData = decoderConfig
+      ? decode({ decoderConfig, hexData: curr.value })
+      : {};
+    const newRow = {
+      ...curr,
+      ...flattenObject(decodedData),
+    };
+
+    return [...acc, newRow];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  }, [] as Array<any>);
+
+  return generateCsv(csvConfig)(csvData);
+}
+
 function DataTable() {
   const sensorData = useSelector(sensorDataSelector);
-  const { spotterNodeId, timestampFormat, decoder, userDefinedDecoders } =
-    useSelector(settingsSelector);
+  const {
+    spotterNodeId,
+    timestampFormat,
+    decoder,
+    userDefinedDecoders,
+    selectedSpotter,
+    spotterDataStartDate,
+    spotterDataEndDate,
+  } = useSelector(settingsSelector);
 
   const decoderConfig = [...decoders, ...(userDefinedDecoders || [])].find(
     (x) => x.name === decoder,
@@ -184,12 +249,36 @@ function DataTable() {
     })
     .flat();
 
+  function downloadCsv() {
+    const filename = `${selectedSpotter?.spotterId}_${DateTime.fromISO(
+      spotterDataStartDate || '',
+    ).toFormat('yyyy-MM-dd')}_${DateTime.fromISO(
+      spotterDataEndDate || '',
+    ).toFormat('yyyy-MM-dd')}`;
+    const csvConfig = mkConfig({ useKeysAsHeaders: true, filename });
+
+    const csv = transformToCsv(sensorData, csvConfig, decoderConfig);
+
+    download(csvConfig)(csv);
+  }
+
   return (
     <PaperContainer>
       <Stack gap="2rem" height="100%">
-        <Typography variant="h6" fontWeight="bold">
-          Data
-        </Typography>
+        <Stack direction="row" display="flex" justifyContent="space-between">
+          <Typography variant="h6" fontWeight="bold">
+            Data
+          </Typography>
+
+          <RoundedButton
+            variant="outlined"
+            disabled={sensorData.length === 0}
+            startIcon={<FileDownloadIcon />}
+            onClick={() => downloadCsv()}
+          >
+            Download CSV
+          </RoundedButton>
+        </Stack>
 
         <TableContainer>
           <Table size="small" stickyHeader>
@@ -212,7 +301,7 @@ function DataTable() {
               </TableRow>
             </StyledTableHead>
             <TableBody>
-              {transform(
+              {transformToTableData(
                 sensorData,
                 spotterNodeId || '',
                 timestampFormat || 'utc',

@@ -51,7 +51,7 @@ exports[`renders as expected 1`] = `
                   id=":r0:"
                   placeholder="XXXX-XXX-XXXX-XXX"
                   type="text"
-                  value="xxxx token"
+                  value="•••• token"
                 />
                 <fieldset
                   aria-hidden="true"
@@ -72,10 +72,11 @@ exports[`renders as expected 1`] = `
           </div>
           <button
             class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+            style="color: white; font-weight: bold; text-transform: none;"
             tabindex="0"
             type="button"
           >
-            GO
+            Go
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />

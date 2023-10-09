@@ -3659,6 +3659,11 @@ exponential-backoff@^3.1.1:
   resolved "https://registry.yarnpkg.com/exponential-backoff/-/exponential-backoff-3.1.1.tgz#64ac7526fe341ab18a39016cd22c787d01e00bf6"
   integrity sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==
 
+export-to-csv@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/export-to-csv/-/export-to-csv-1.1.0.tgz#137abd06547351209b6f1e979432674f1505436c"
+  integrity sha512-gw6lpDvmYl6k0aJyd5yJ3aah3D2JOTrAtahckiuW3pUxsR597vfXrokpCmiwTPRC8o0tk76ZV6fIvZ24uFC4Mw==
+
 express@^4.16.4:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"

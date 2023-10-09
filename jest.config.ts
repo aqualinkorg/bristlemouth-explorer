@@ -1,4 +1,6 @@
-export default {
+import type { Config } from 'jest';
+
+const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
   globalSetup: '<rootDir>/tests/globalSetup.ts',
@@ -16,3 +18,5 @@ export default {
   roots: ['<rootDir>'],
   modulePaths: ['<rootDir>'],
 };
+
+export default config;

@@ -59,7 +59,8 @@ function Home() {
     setToken(e.target.value);
   };
 
-  const maskedToken = token.replace(/.(?=.{6})/g, 'x'); // Mask all characters except the last 4
+  // Mask all characters except the last 6
+  const maskedToken = token.replace(/.(?=.{6})/g, '•');
 
   return (
     <WrapperDiv>
@@ -88,9 +89,14 @@ function Home() {
             <Button
               color="primary"
               variant="contained"
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+                textTransform: 'none',
+              }}
               onClick={() => onTokenSubmit()}
             >
-              GO
+              Go
             </Button>
           </Stack>
           <Stack direction="column" alignItems="center" spacing={1}>

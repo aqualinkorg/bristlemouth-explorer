@@ -5,6 +5,8 @@ import configureStore from 'redux-mock-store';
 import { sensorDataMock } from 'src/mocks/sensorDataMock';
 import { spotterListMock } from 'src/mocks/spotterListMock';
 
+jest.mock('export-to-csv');
+
 const mockStore = configureStore([]);
 
 const store = mockStore({
