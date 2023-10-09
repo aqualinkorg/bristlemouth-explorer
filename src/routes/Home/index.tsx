@@ -59,7 +59,7 @@ function Home() {
     setToken(e.target.value);
   };
 
-  // Mask all characters except the last 4
+  // Mask all characters except the last 6
   const maskedToken = token.replace(/.(?=.{6})/g, '•');
 
   return (
