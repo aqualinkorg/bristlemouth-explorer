@@ -79,11 +79,24 @@ function Row({ data, extraColumns }: RowProps) {
         <TableCell component="th" scope="row">
           <Typography whiteSpace="nowrap">{data.timestamp}</Typography>
         </TableCell>
-        <TableCell align="left">
+        <TableCell>
           <Typography>{data.nodeId}</Typography>
         </TableCell>
+        {extraColumns === undefined && (
+          <TableCell>
+            <Typography
+              textOverflow="ellipsis"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              marginLeft="auto"
+              maxWidth={`calc(100vw - 59rem)`}
+            >
+              {data.encodedData}
+            </Typography>
+          </TableCell>
+        )}
         {extraColumns?.map((x) => (
-          <TableCell align="left" key={`${x.sensor}_${x.key}`}>
+          <TableCell key={`${x.sensor}_${x.key}`}>
             <Typography>
               {data.decodedData && data.decodedData[x.sensor][x.key].toFixed(2)}
             </Typography>
@@ -280,7 +293,7 @@ function DataTable() {
           </RoundedButton>
         </Stack>
 
-        <TableContainer>
+        <TableContainer style={{ overflow: 'hidden' }}>
           <Table size="small" stickyHeader>
             <StyledTableHead>
               <TableRow>
@@ -291,11 +304,13 @@ function DataTable() {
                     ? 'UTC'
                     : DateTime.now().offsetNameShort}
                 </HeaderTableCell>
-                <HeaderTableCell align="left">Node ID</HeaderTableCell>
+                <HeaderTableCell>Node ID</HeaderTableCell>
+                {extraColumns === undefined && (
+                  <HeaderTableCell>Raw data</HeaderTableCell>
+                )}
                 {extraColumns?.map((x) => (
                   <HeaderTableCell
                     key={`${x.sensor}_${x.key}`}
-                    align="left"
                   >{`${x.sensor}_${x.key}`}</HeaderTableCell>
                 ))}
               </TableRow>
