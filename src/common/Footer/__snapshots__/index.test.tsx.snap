@@ -6,81 +6,68 @@ exports[`renders as expected 1`] = `
     class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
   >
     <div
-      class="MuiGrid-root MuiGrid-container css-1so0nez-MuiGrid-root"
+      class="MuiStack-root css-1k3vm15-MuiStack-root"
     >
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-1x9j6pp-MuiTypography-root"
+      >
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+          href="https://www.bristlemouth.org/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Bristlemouth.org
+        </a>
+      </p>
       <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        class="MuiStack-root css-17fi1qs-MuiStack-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
         >
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
-            href="https://www.bristlemouth.org/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Bristlemouth.org
-          </a>
+          Developed with ❤️ by
         </p>
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
-      >
-        <div
-          class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-          style="gap: 8px;"
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+          href="https://aqualink.org"
+          rel="noopener noreferrer"
+          target="_blank"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-          >
-            Developed with ❤️ by
-          </p>
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-            href="https://aqualink.org"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img
-              alt="Aqualink logo"
-              class="css-4vnfkb"
-              src="[object Object]"
-            />
-          </a>
-        </div>
+          <img
+            alt="Aqualink logo"
+            class="css-4vnfkb"
+            src="[object Object]"
+          />
+        </a>
       </div>
-      <div
-        class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-154xjhl-MuiTypography-root"
       >
-        <p
-          class="MuiTypography-root MuiTypography-body1 css-hlnzui-MuiTypography-root"
+        Bristlemouth Explorer is open source!
+        <br />
+        Find us on
+         
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+          href="https://github.com/aqualinkorg/bristlemouth-explorer"
+          rel="noopener noreferrer"
+          target="_blank"
         >
-          Bristlemouth Explorer is open source!
-          <br />
-          Find us on
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
-            href="https://github.com/aqualinkorg/bristlemouth-explorer"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            GitHub
-          </a>
-           
-          or
-           
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
-            href="mailto:info@aqualink.org"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Contact Us
-          </a>
-        </p>
-      </div>
+          GitHub
+        </a>
+         
+        or
+         
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+          href="mailto:info@aqualink.org"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Contact Us
+        </a>
+      </p>
     </div>
   </header>
 </div>
