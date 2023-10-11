@@ -113,8 +113,8 @@ exports[`renders as expected 1`] = `
         <div
           class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
         >
-          <h5
-            class="MuiTypography-root MuiTypography-h5 css-3w66bp-MuiTypography-root"
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
           >
             <a
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
@@ -122,71 +122,34 @@ exports[`renders as expected 1`] = `
               rel="noopener noreferrer"
               target="_blank"
             >
-              Bristlemouth Explorer
+              Bristlemouth.org
             </a>
-          </h5>
+          </p>
         </div>
         <div
           class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-            style="gap: 32px;"
+            style="gap: 8px;"
           >
-            <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
             >
-              <div
-                class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-                style="gap: 8px;"
-              >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-1uwgr7b-MuiTypography-root"
-                >
-                  Developed with ❤️ by
-                </p>
-                <a
-                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-                  href="https://aqualink.org"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <img
-                    alt="Aqualink logo"
-                    class="css-4vnfkb"
-                    src="[object Object]"
-                  />
-                </a>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+              Developed with ❤️ by
+            </p>
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
+              href="https://aqualink.org"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <div
-                class="MuiGrid-root MuiGrid-container css-93nype-MuiGrid-root"
-                style="gap: 16px;"
-              >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-zpphrz-MuiTypography-root"
-                >
-                  Bristlemouth is an open 
-                  <br />
-                   standard pioneered by
-                </p>
-                <a
-                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-                  href="https://www.sofarocean.com"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <img
-                    alt="Sofar logo"
-                    class="css-4vnfkb"
-                    src="[object Object]"
-                  />
-                </a>
-              </div>
-            </div>
+              <img
+                alt="Aqualink logo"
+                class="css-4vnfkb"
+                src="[object Object]"
+              />
+            </a>
           </div>
         </div>
         <div
@@ -195,11 +158,21 @@ exports[`renders as expected 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body1 css-hlnzui-MuiTypography-root"
           >
-            © 
-            2023
-             All rights reserved 
+            Bristlemouth Explorer is open source!
             <br />
-             Privacy policy - 
+            Find us on
+             
+            <a
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+              href="https://github.com/aqualinkorg/bristlemouth-explorer"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              GitHub
+            </a>
+             
+            or
+             
             <a
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
               href="mailto:info@aqualink.org"
