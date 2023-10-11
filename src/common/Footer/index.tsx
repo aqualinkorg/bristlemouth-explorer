@@ -6,10 +6,12 @@ import {
   styled,
   useTheme,
 } from '@mui/material';
-import { DateTime } from 'luxon';
 import aqualinkLogo from 'src/assets/aqualink-logo.png';
-import sofarLogo from 'src/assets/sofar-logo.png';
-import { aqualinkURL, bristlemouthURL, sofarURL } from 'src/helpers/constants';
+import {
+  aqualinkURL,
+  bristlemouthURL,
+  bristlemouthExplorerGithub,
+} from 'src/helpers/constants';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   top: 'auto',
@@ -33,11 +35,6 @@ const GridMiddleContainer = styled(Grid)(() => ({
   alignItems: 'center',
 }));
 
-const MainText = styled(Typography)(({ theme }) => ({
-  width: '10rem',
-  textAlign: 'left',
-  color: theme.palette.primary.main,
-}));
 const Logo = styled('img')(({ theme }) => ({
   borderRadius: theme.spacing(1),
   height: '2.5rem',
@@ -53,48 +50,39 @@ function Footer() {
     <StyledAppBar position="fixed">
       <GridContainer container>
         <Grid item>
-          <MainText variant="h5">
+          <Typography>
             <StyledLink
               target="_blank"
               rel="noopener noreferrer"
               href={bristlemouthURL}
             >
-              Bristlemouth Explorer
+              Bristlemouth.org
             </StyledLink>
-          </MainText>
+          </Typography>
         </Grid>
 
         <Grid item>
-          <GridMiddleContainer container style={{ gap: theme.spacing(4) }}>
-            <Grid item>
-              <GridMiddleContainer container style={{ gap: theme.spacing(1) }}>
-                <Typography textAlign="center">Developed with ❤️ by</Typography>
-                <Link
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={aqualinkURL}
-                >
-                  <Logo src={aqualinkLogo} alt="Aqualink logo" />
-                </Link>
-              </GridMiddleContainer>
-            </Grid>
-            <Grid item>
-              <GridMiddleContainer container style={{ gap: theme.spacing(2) }}>
-                <Typography textAlign="left">
-                  Bristlemouth is an open <br /> standard pioneered by
-                </Typography>
-                <Link target="_blank" rel="noopener noreferrer" href={sofarURL}>
-                  <Logo src={sofarLogo} alt="Sofar logo" />
-                </Link>
-              </GridMiddleContainer>
-            </Grid>
+          <GridMiddleContainer container style={{ gap: theme.spacing(1) }}>
+            <Typography textAlign="center">Developed with ❤️ by</Typography>
+            <Link target="_blank" rel="noopener noreferrer" href={aqualinkURL}>
+              <Logo src={aqualinkLogo} alt="Aqualink logo" />
+            </Link>
           </GridMiddleContainer>
         </Grid>
 
         <Grid item>
           <Typography textAlign="right">
-            © {DateTime.utc().year} All rights reserved <br /> Privacy policy
-            -&nbsp;
+            Bristlemouth Explorer is open source!
+            <br />
+            Find us on{' '}
+            <StyledLink
+              target="_blank"
+              rel="noopener noreferrer"
+              href={bristlemouthExplorerGithub}
+            >
+              GitHub
+            </StyledLink>{' '}
+            or{' '}
             <StyledLink
               target="_blank"
               rel="noopener noreferrer"
