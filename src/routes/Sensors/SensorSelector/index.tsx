@@ -242,7 +242,7 @@ function SensorSelector() {
                       );
                     }}
                   >
-                    <MenuItem value="">&nbsp;</MenuItem>
+                    <MenuItem value="">no decoder</MenuItem>
                     {decoderOptions.map((x) => (
                       <MenuItem key={x.name} value={x.name}>
                         {x.name}
