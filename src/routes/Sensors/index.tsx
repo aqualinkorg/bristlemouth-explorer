@@ -85,7 +85,7 @@ function Sensors() {
         padding="1rem 1rem 0.5rem 1rem"
       >
         <Stack direction="row" alignItems="center" gap="1rem">
-          <Link target="_blank" rel="noopener noreferrer" href="/">
+          <Link href="/">
             <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
           </Link>
           <Typography variant="h4">Bristlemouth Explorer</Typography>
