@@ -13,9 +13,7 @@ exports[`renders as expected 1`] = `
       >
         <a
           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1xylxj1-MuiTypography-root-MuiLink-root"
-          href="https://www.bristlemouth.org/"
-          rel="noopener noreferrer"
-          target="_blank"
+          href="/"
         >
           <img
             alt="Bristlemouth logo"
