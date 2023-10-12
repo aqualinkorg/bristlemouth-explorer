@@ -45,10 +45,8 @@ const ContractUsTypography = styled(Typography)(({ theme }) => ({
 
 const BristlemouthLinkTypography = styled(Typography)(({ theme }) => ({
   position: 'absolute',
-  top: 0,
   left: theme.spacing(2),
   display: 'flex',
-  textAlign: 'center',
 }));
 
 function Footer() {
