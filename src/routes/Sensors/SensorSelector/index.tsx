@@ -216,7 +216,7 @@ function SensorSelector() {
                     );
                   }}
                 >
-                  <MenuItem value="">&nbsp;</MenuItem>
+                  <MenuItem value="">All nodes</MenuItem>
                   {availableNodeIds.map((x) => (
                     <MenuItem key={x} value={x}>
                       {x}
@@ -242,6 +242,7 @@ function SensorSelector() {
                       );
                     }}
                   >
+                    <MenuItem value="">Unselect decoder</MenuItem>
                     {decoderOptions.map((x) => (
                       <MenuItem key={x.name} value={x.name}>
                         {x.name}

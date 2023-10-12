@@ -15,7 +15,7 @@ const defaultSensorStruct: SensorStruct = [
 ];
 
 export const defaultDecoder: Decoder = {
-  name: 'default',
+  name: 'Toolkit example (default)',
   config: [
     { name: 'temp', struct: defaultSensorStruct },
     { name: 'hum', struct: defaultSensorStruct },
