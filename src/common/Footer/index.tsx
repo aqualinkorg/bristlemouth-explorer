@@ -20,6 +20,7 @@ const StackContainer = styled(Stack)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     gap: '1rem',
+    position: 'relative',
   },
 }));
 
@@ -40,14 +41,14 @@ const StyledLink = styled(Link)(() => ({
   textDecoration: 'none',
 }));
 
-const ContractUsTypography = styled(Typography)(({ theme }) => ({
+const ContactUsTypography = styled(Typography)(({ theme }) => ({
   textAlign: 'right',
   position: 'absolute',
   top: theme.spacing(2),
   right: theme.spacing(2),
   [theme.breakpoints.down('md')]: {
-    color: 'red',
     position: 'initial',
+    textAlign: 'center',
   },
 }));
 
@@ -82,7 +83,7 @@ function Footer() {
           </Link>
         </StackAqualinkLogo>
 
-        <ContractUsTypography>
+        <ContactUsTypography>
           Bristlemouth Explorer is open source!
           <br />
           Find us on{' '}
@@ -92,16 +93,8 @@ function Footer() {
             href={bristlemouthExplorerGithub}
           >
             GitHub
-          </StyledLink>{' '}
-          or{' '}
-          <StyledLink
-            target="_blank"
-            rel="noopener noreferrer"
-            href="mailto:info@aqualink.org"
-          >
-            Contact Us
           </StyledLink>
-        </ContractUsTypography>
+        </ContactUsTypography>
       </StackContainer>
     </StyledAppBar>
   );
