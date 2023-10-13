@@ -24,7 +24,7 @@ exports[`renders as expected 1`] = `
         class="MuiStack-root css-57vmio-MuiStack-root"
       >
         <h1
-          class="MuiTypography-root MuiTypography-h1 css-1e0njhx-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h1 css-rjn9pj-MuiTypography-root"
         >
           Bristlemouth Explorer
         </h1>
@@ -108,10 +108,10 @@ exports[`renders as expected 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1o4jfbn-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiStack-root css-1k3vm15-MuiStack-root"
+        class="MuiStack-root css-1r1na3e-MuiStack-root"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-1x9j6pp-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1cq5zax-MuiTypography-root"
         >
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
@@ -144,7 +144,7 @@ exports[`renders as expected 1`] = `
           </a>
         </div>
         <p
-          class="MuiTypography-root MuiTypography-body1 css-154xjhl-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-1pb6j1e-MuiTypography-root"
         >
           Bristlemouth Explorer is open source!
           <br />

@@ -17,6 +17,10 @@ const StackContainer = styled(Stack)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   padding: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    gap: '1rem',
+  },
 }));
 
 const StackAqualinkLogo = styled(Stack)(({ theme }) => ({
@@ -41,12 +45,20 @@ const ContractUsTypography = styled(Typography)(({ theme }) => ({
   position: 'absolute',
   top: theme.spacing(2),
   right: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    color: 'red',
+    position: 'initial',
+  },
 }));
 
 const BristlemouthLinkTypography = styled(Typography)(({ theme }) => ({
   position: 'absolute',
   left: theme.spacing(2),
   display: 'flex',
+  [theme.breakpoints.down('md')]: {
+    color: 'red',
+    position: 'initial',
+  },
 }));
 
 function Footer() {
