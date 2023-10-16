@@ -9,7 +9,7 @@ exports[`renders as expected 1`] = `
       class="MuiStack-root css-kzjm6r-MuiStack-root"
     >
       <p
-        class="MuiTypography-root MuiTypography-body1 css-1cq5zax-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 css-14ylj2n-MuiTypography-root"
       >
         <a
           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"

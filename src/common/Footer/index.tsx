@@ -57,7 +57,6 @@ const BristlemouthLinkTypography = styled(Typography)(({ theme }) => ({
   left: theme.spacing(2),
   display: 'flex',
   [theme.breakpoints.down('md')]: {
-    color: 'red',
     position: 'initial',
   },
 }));
