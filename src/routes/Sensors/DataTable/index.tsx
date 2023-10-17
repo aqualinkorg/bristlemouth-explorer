@@ -77,10 +77,19 @@ function Row({ data, extraColumns }: RowProps) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          <Typography whiteSpace="nowrap">{data.timestamp}</Typography>
+          <Typography whiteSpace="nowrap" width="11rem">
+            {data.timestamp}
+          </Typography>
         </TableCell>
         <TableCell>
-          <Typography>{data.nodeId}</Typography>
+          <Typography
+            width="12rem"
+            textOverflow="ellipsis"
+            whiteSpace="nowrap"
+            overflow="hidden"
+          >
+            {data.nodeId}
+          </Typography>
         </TableCell>
         {extraColumns === undefined && (
           <TableCell>
@@ -89,7 +98,7 @@ function Row({ data, extraColumns }: RowProps) {
               whiteSpace="nowrap"
               overflow="hidden"
               marginLeft="auto"
-              maxWidth={`calc(100vw - 59rem)`}
+              maxWidth={`calc(100vw - 60rem)`}
             >
               {data.encodedData}
             </Typography>
@@ -293,7 +302,7 @@ function DataTable() {
           </RoundedButton>
         </Stack>
 
-        <TableContainer style={{ overflow: 'hidden' }}>
+        <TableContainer>
           <Table size="small" stickyHeader>
             <StyledTableHead>
               <TableRow>
