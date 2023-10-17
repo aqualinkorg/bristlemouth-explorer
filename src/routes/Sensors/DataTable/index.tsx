@@ -11,6 +11,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   Typography,
   styled,
@@ -251,6 +252,8 @@ function transformToCsv(
 
 function DataTable() {
   const [tableData, setTableData] = React.useState<TableData[]>([]);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [page, setPage] = React.useState(0);
 
   const sensorData = useSelector(sensorDataSelector);
   const {
@@ -290,6 +293,17 @@ function DataTable() {
     }
   }
 
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   React.useEffect(() => {
     try {
       const newData = transformToTableData(
@@ -307,7 +321,7 @@ function DataTable() {
 
   return (
     <PaperContainer>
-      <Stack gap="2rem" height="100%">
+      <Stack height="100%" justifyContent="space-between">
         <Stack direction="row" display="flex" justifyContent="space-between">
           <Typography variant="h6" fontWeight="bold">
             Data
@@ -323,7 +337,7 @@ function DataTable() {
           </RoundedButton>
         </Stack>
 
-        <TableContainer>
+        <TableContainer style={{ height: '100%', marginTop: '1rem' }}>
           <Table size="small" stickyHeader>
             <StyledTableHead>
               <TableRow>
@@ -346,16 +360,29 @@ function DataTable() {
               </TableRow>
             </StyledTableHead>
             <TableBody>
-              {tableData.map((data) => (
-                <Row
-                  key={`${data.timestamp}_${data.nodeId}`}
-                  data={data}
-                  extraColumns={extraColumns}
-                />
-              ))}
+              {tableData
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((data) => (
+                  <Row
+                    key={`${data.timestamp}_${data.nodeId}`}
+                    data={data}
+                    extraColumns={extraColumns}
+                  />
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
+
+        <TablePagination
+          style={{ minHeight: '52px' }}
+          rowsPerPageOptions={[25, 50, 100]}
+          count={tableData.length}
+          rowsPerPage={rowsPerPage}
+          component="div"
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </Stack>
     </PaperContainer>
   );
