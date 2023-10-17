@@ -134,7 +134,9 @@ function SensorSelector() {
       ...new Map(sensorData.map((x) => [x.bristlemouth_node_id, null])).keys(),
     ];
 
-    setAvailableNodeIds(uniqueNodeIds);
+    const filtered = uniqueNodeIds.filter((x): x is string => x !== undefined);
+
+    setAvailableNodeIds(filtered);
   }, [sensorData]);
 
   /**

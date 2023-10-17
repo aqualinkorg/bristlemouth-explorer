@@ -31,6 +31,7 @@ import {
   CsvOutput,
 } from 'export-to-csv';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { toast } from 'react-toastify';
 
 interface TableData {
   timestamp: string;
@@ -220,9 +221,9 @@ function transformToTableData(
     ),
     encodedData: String(x.value),
     decodedData: decoderConfig
-      ? decode({ decoderConfig, hexData: x.value })
+      ? decode({ decoderConfig, hexData: String(x.value) })
       : null,
-    nodeId: x.bristlemouth_node_id,
+    nodeId: x.bristlemouth_node_id || '',
     rawJSON: JSON.stringify(x, null, 2),
   }));
 }
@@ -234,7 +235,7 @@ function transformToCsv(
 ): CsvOutput {
   const csvData = data.reduce((acc, curr) => {
     const decodedData = decoderConfig
-      ? decode({ decoderConfig, hexData: curr.value })
+      ? decode({ decoderConfig, hexData: String(curr.value) })
       : {};
     const newRow = {
       ...curr,
@@ -249,6 +250,8 @@ function transformToCsv(
 }
 
 function DataTable() {
+  const [tableData, setTableData] = React.useState<TableData[]>([]);
+
   const sensorData = useSelector(sensorDataSelector);
   const {
     spotterNodeId,
@@ -279,10 +282,28 @@ function DataTable() {
     ).toFormat('yyyy-MM-dd')}`;
     const csvConfig = mkConfig({ useKeysAsHeaders: true, filename });
 
-    const csv = transformToCsv(sensorData, csvConfig, decoderConfig);
-
-    download(csvConfig)(csv);
+    try {
+      const csv = transformToCsv(sensorData, csvConfig, decoderConfig);
+      download(csvConfig)(csv);
+    } catch (error) {
+      toast.warn('Could not use this decoder');
+    }
   }
+
+  React.useEffect(() => {
+    try {
+      const newData = transformToTableData(
+        sensorData,
+        spotterNodeId || '',
+        timestampFormat || 'utc',
+        decoderConfig,
+      );
+      setTableData(newData);
+    } catch {
+      toast.warn('Could not use this decoder');
+      setTableData([]);
+    }
+  }, [decoderConfig, sensorData, spotterNodeId, timestampFormat]);
 
   return (
     <PaperContainer>
@@ -325,12 +346,7 @@ function DataTable() {
               </TableRow>
             </StyledTableHead>
             <TableBody>
-              {transformToTableData(
-                sensorData,
-                spotterNodeId || '',
-                timestampFormat || 'utc',
-                decoderConfig,
-              ).map((data) => (
+              {tableData.map((data) => (
                 <Row
                   key={`${data.timestamp}_${data.nodeId}`}
                   data={data}
