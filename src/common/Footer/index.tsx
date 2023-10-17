@@ -17,6 +17,11 @@ const StackContainer = styled(Stack)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   padding: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    gap: '1rem',
+    position: 'relative',
+  },
 }));
 
 const StackAqualinkLogo = styled(Stack)(({ theme }) => ({
@@ -36,17 +41,24 @@ const StyledLink = styled(Link)(() => ({
   textDecoration: 'none',
 }));
 
-const ContractUsTypography = styled(Typography)(({ theme }) => ({
+const ContactUsTypography = styled(Typography)(({ theme }) => ({
   textAlign: 'right',
   position: 'absolute',
   top: theme.spacing(2),
   right: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    position: 'initial',
+    textAlign: 'center',
+  },
 }));
 
 const BristlemouthLinkTypography = styled(Typography)(({ theme }) => ({
   position: 'absolute',
   left: theme.spacing(2),
   display: 'flex',
+  [theme.breakpoints.down('md')]: {
+    position: 'initial',
+  },
 }));
 
 function Footer() {
@@ -70,7 +82,7 @@ function Footer() {
           </Link>
         </StackAqualinkLogo>
 
-        <ContractUsTypography>
+        <ContactUsTypography>
           Bristlemouth Explorer is open source!
           <br />
           Find us on{' '}
@@ -80,16 +92,8 @@ function Footer() {
             href={bristlemouthExplorerGithub}
           >
             GitHub
-          </StyledLink>{' '}
-          or{' '}
-          <StyledLink
-            target="_blank"
-            rel="noopener noreferrer"
-            href="mailto:info@aqualink.org"
-          >
-            Contact Us
           </StyledLink>
-        </ContractUsTypography>
+        </ContactUsTypography>
       </StackContainer>
     </StyledAppBar>
   );
