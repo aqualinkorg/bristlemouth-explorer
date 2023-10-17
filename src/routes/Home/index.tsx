@@ -19,6 +19,12 @@ import {
 } from 'src/store/settings/settingsSlice';
 import { useSelector } from 'react-redux';
 
+const TypographyTitle = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
+}));
+
 const WrapperDiv = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
@@ -69,9 +75,7 @@ function Home() {
           <Logo src={bristlemouthLogo} alt="Bristlemouth logo" />
         </Link>
         <Stack direction="column" alignItems="center" spacing={5}>
-          <Typography variant="h1" fontWeight="bold">
-            Bristlemouth Explorer
-          </Typography>
+          <TypographyTitle variant="h1">Bristlemouth Explorer</TypographyTitle>
           <Stack direction="column" gap="1rem" spacing={1} width="20rem">
             <Stack>
               <Typography fontWeight="bold">
