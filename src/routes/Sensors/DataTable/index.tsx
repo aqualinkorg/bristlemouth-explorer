@@ -56,7 +56,7 @@ const StyledCode = styled('code')(() => ({
 }));
 
 function formatNumber(n: number): string {
-  if (n > 10 * 9 - 1) return n.toExponential(4);
+  if (n > 10 * 9 - 1 || n < 1 - 10 * 9) return n.toExponential(4);
   return n.toFixed(2);
 }
 
