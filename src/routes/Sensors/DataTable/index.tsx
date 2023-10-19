@@ -55,6 +55,11 @@ const StyledCode = styled('code')(() => ({
   overflowWrap: 'anywhere',
 }));
 
+function formatNumber(n: number): string {
+  if (n > 10 * 9 - 1) return n.toExponential(4);
+  return n.toFixed(2);
+}
+
 function Row({ data, extraColumns }: RowProps) {
   const [open, setOpen] = React.useState(false);
 
@@ -109,7 +114,8 @@ function Row({ data, extraColumns }: RowProps) {
         {extraColumns?.map((x) => (
           <TableCell key={`${x.sensor}_${x.key}`}>
             <Typography>
-              {data.decodedData && data.decodedData[x.sensor][x.key].toFixed(2)}
+              {data.decodedData &&
+                formatNumber(data.decodedData[x.sensor][x.key])}
             </Typography>
           </TableCell>
         ))}
