@@ -11,6 +11,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
   Typography,
   styled,
@@ -31,6 +32,7 @@ import {
   CsvOutput,
 } from 'export-to-csv';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { toast } from 'react-toastify';
 
 interface TableData {
   timestamp: string;
@@ -52,6 +54,11 @@ const StyledCode = styled('code')(() => ({
   whiteSpace: 'break-spaces',
   overflowWrap: 'anywhere',
 }));
+
+function formatNumber(n: number): string {
+  if (n > 10 * 9 - 1 || n < 1 - 10 * 9) return n.toExponential(4);
+  return n.toFixed(2);
+}
 
 function Row({ data, extraColumns }: RowProps) {
   const [open, setOpen] = React.useState(false);
@@ -77,10 +84,19 @@ function Row({ data, extraColumns }: RowProps) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          <Typography whiteSpace="nowrap">{data.timestamp}</Typography>
+          <Typography whiteSpace="nowrap" width="11rem">
+            {data.timestamp}
+          </Typography>
         </TableCell>
         <TableCell>
-          <Typography>{data.nodeId}</Typography>
+          <Typography
+            width="12rem"
+            textOverflow="ellipsis"
+            whiteSpace="nowrap"
+            overflow="hidden"
+          >
+            {data.nodeId}
+          </Typography>
         </TableCell>
         {extraColumns === undefined && (
           <TableCell>
@@ -89,7 +105,7 @@ function Row({ data, extraColumns }: RowProps) {
               whiteSpace="nowrap"
               overflow="hidden"
               marginLeft="auto"
-              maxWidth={`calc(100vw - 59rem)`}
+              maxWidth={`calc(100vw - 60rem)`}
             >
               {data.encodedData}
             </Typography>
@@ -98,7 +114,8 @@ function Row({ data, extraColumns }: RowProps) {
         {extraColumns?.map((x) => (
           <TableCell key={`${x.sensor}_${x.key}`}>
             <Typography>
-              {data.decodedData && data.decodedData[x.sensor][x.key].toFixed(2)}
+              {data.decodedData &&
+                formatNumber(data.decodedData[x.sensor][x.key])}
             </Typography>
           </TableCell>
         ))}
@@ -211,9 +228,9 @@ function transformToTableData(
     ),
     encodedData: String(x.value),
     decodedData: decoderConfig
-      ? decode({ decoderConfig, hexData: x.value })
+      ? decode({ decoderConfig, hexData: String(x.value) })
       : null,
-    nodeId: x.bristlemouth_node_id,
+    nodeId: x.bristlemouth_node_id || '',
     rawJSON: JSON.stringify(x, null, 2),
   }));
 }
@@ -225,7 +242,7 @@ function transformToCsv(
 ): CsvOutput {
   const csvData = data.reduce((acc, curr) => {
     const decodedData = decoderConfig
-      ? decode({ decoderConfig, hexData: curr.value })
+      ? decode({ decoderConfig, hexData: String(curr.value) })
       : {};
     const newRow = {
       ...curr,
@@ -240,6 +257,10 @@ function transformToCsv(
 }
 
 function DataTable() {
+  const [tableData, setTableData] = React.useState<TableData[]>([]);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [page, setPage] = React.useState(0);
+
   const sensorData = useSelector(sensorDataSelector);
   const {
     spotterNodeId,
@@ -270,14 +291,43 @@ function DataTable() {
     ).toFormat('yyyy-MM-dd')}`;
     const csvConfig = mkConfig({ useKeysAsHeaders: true, filename });
 
-    const csv = transformToCsv(sensorData, csvConfig, decoderConfig);
-
-    download(csvConfig)(csv);
+    try {
+      const csv = transformToCsv(sensorData, csvConfig, decoderConfig);
+      download(csvConfig)(csv);
+    } catch (error) {
+      toast.warn('Could not use this decoder');
+    }
   }
+
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  React.useEffect(() => {
+    try {
+      const newData = transformToTableData(
+        sensorData,
+        spotterNodeId || '',
+        timestampFormat || 'utc',
+        decoderConfig,
+      );
+      setTableData(newData);
+    } catch {
+      toast.warn('Could not use this decoder');
+      setTableData([]);
+    }
+  }, [decoderConfig, sensorData, spotterNodeId, timestampFormat]);
 
   return (
     <PaperContainer>
-      <Stack gap="2rem" height="100%">
+      <Stack height="100%" justifyContent="space-between">
         <Stack direction="row" display="flex" justifyContent="space-between">
           <Typography variant="h6" fontWeight="bold">
             Data
@@ -293,7 +343,7 @@ function DataTable() {
           </RoundedButton>
         </Stack>
 
-        <TableContainer style={{ overflow: 'hidden' }}>
+        <TableContainer style={{ height: '100%', marginTop: '1rem' }}>
           <Table size="small" stickyHeader>
             <StyledTableHead>
               <TableRow>
@@ -316,21 +366,29 @@ function DataTable() {
               </TableRow>
             </StyledTableHead>
             <TableBody>
-              {transformToTableData(
-                sensorData,
-                spotterNodeId || '',
-                timestampFormat || 'utc',
-                decoderConfig,
-              ).map((data) => (
-                <Row
-                  key={`${data.timestamp}_${data.nodeId}`}
-                  data={data}
-                  extraColumns={extraColumns}
-                />
-              ))}
+              {tableData
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((data) => (
+                  <Row
+                    key={`${data.timestamp}_${data.nodeId}`}
+                    data={data}
+                    extraColumns={extraColumns}
+                  />
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
+
+        <TablePagination
+          style={{ minHeight: '52px' }}
+          rowsPerPageOptions={[25, 50, 100]}
+          count={tableData.length}
+          rowsPerPage={rowsPerPage}
+          component="div"
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </Stack>
     </PaperContainer>
   );

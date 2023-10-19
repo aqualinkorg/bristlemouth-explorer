@@ -128,13 +128,13 @@ function SensorSelector() {
   }, [setSelectedSpotter, selectedSpotter, spottersList]);
 
   React.useEffect(() => {
-    if (sensorData.length === 0) return;
-
     const uniqueNodeIds = [
       ...new Map(sensorData.map((x) => [x.bristlemouth_node_id, null])).keys(),
     ];
 
-    setAvailableNodeIds(uniqueNodeIds);
+    const filtered = uniqueNodeIds.filter((x): x is string => x !== undefined);
+
+    setAvailableNodeIds(filtered);
   }, [sensorData]);
 
   /**
@@ -142,11 +142,17 @@ function SensorSelector() {
    * MUI warnings related to out-of-range values for the 'Select' component.
    */
   React.useEffect(() => {
-    if (availableNodeIds.length === 0) return;
+    if (availableNodeIds.length === 0) {
+      setNodeId('');
+      return;
+    }
     const node = availableNodeIds.find((x) => x === appSettings.spotterNodeId);
     if (node !== undefined) setNodeId(node);
-    else if (appSettings.spotterNodeId !== '') setNodeId(availableNodeIds[0]);
-
+    else if (appSettings.spotterNodeId !== '') {
+      const newNodeId = availableNodeIds[0];
+      setNodeId(newNodeId);
+      dispatch(setSettings({ spotterNodeId: newNodeId }));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableNodeIds]);
 
