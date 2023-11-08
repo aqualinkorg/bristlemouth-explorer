@@ -575,7 +575,7 @@ exports[`renders as expected 1`] = `
                   >
                     Timestamp
                      
-                    PDT
+                    PST
                   </th>
                   <th
                     class="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-sizeSmall css-1hrvygi-MuiTableCell-root"

@@ -55,14 +55,22 @@ const StyledCode = styled('code')(() => ({
   overflowWrap: 'anywhere',
 }));
 
-function formatNumber(n: number): string {
+const FormattedNumber = ({ n }: { n: number }) => {
   if (n > 10 * 9 - 1 || n < 1 - 10 * 9) {
-    return n.toExponential(4).replace(/e[+-](\d+)/, function (_, digits) {
-      return ' x 10' + String(digits).sup();
-    });
+    const exponentialForm = n.toExponential(4);
+    const match = exponentialForm.match(/e[+-](\d+)/);
+    const digits = match ? match[1] : '';
+
+    return (
+      <span>
+        {exponentialForm.replace(/e[+-](\d+)/, ' x 10')}
+        <sup>{digits}</sup>
+      </span>
+    );
   }
-  return n.toFixed(2);
-}
+  return <>{n.toFixed(2)}</>;
+};
+
 function Row({ data, extraColumns }: RowProps) {
   const [open, setOpen] = React.useState(false);
 
@@ -116,13 +124,11 @@ function Row({ data, extraColumns }: RowProps) {
         )}
         {extraColumns?.map((x) => (
           <TableCell key={`${x.sensor}_${x.key}`}>
-            <Typography
-              dangerouslySetInnerHTML={{
-                __html: data.decodedData
-                  ? formatNumber(data.decodedData[x.sensor][x.key])
-                  : '',
-              }}
-            />
+            <Typography>
+              {data.decodedData && (
+                <FormattedNumber n={data.decodedData[x.sensor][x.key]} />
+              )}
+            </Typography>
           </TableCell>
         ))}
       </TableRow>
