@@ -56,10 +56,13 @@ const StyledCode = styled('code')(() => ({
 }));
 
 function formatNumber(n: number): string {
-  if (n > 10 * 9 - 1 || n < 1 - 10 * 9) return n.toExponential(4);
+  if (n > 10 * 9 - 1 || n < 1 - 10 * 9) {
+    return n.toExponential(4).replace(/e[+-](\d+)/, function (_, digits) {
+      return ' x 10' + String(digits).sup();
+    });
+  }
   return n.toFixed(2);
 }
-
 function Row({ data, extraColumns }: RowProps) {
   const [open, setOpen] = React.useState(false);
 
@@ -113,10 +116,13 @@ function Row({ data, extraColumns }: RowProps) {
         )}
         {extraColumns?.map((x) => (
           <TableCell key={`${x.sensor}_${x.key}`}>
-            <Typography>
-              {data.decodedData &&
-                formatNumber(data.decodedData[x.sensor][x.key])}
-            </Typography>
+            <Typography
+              dangerouslySetInnerHTML={{
+                __html: data.decodedData
+                  ? formatNumber(data.decodedData[x.sensor][x.key])
+                  : '',
+              }}
+            />
           </TableCell>
         ))}
       </TableRow>
