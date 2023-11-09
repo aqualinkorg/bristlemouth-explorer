@@ -56,6 +56,10 @@ const StyledCode = styled('code')(() => ({
 }));
 
 const FormattedNumber = ({ n }: { n: number }) => {
+  // if n is not a number, return it as a string
+  if (isNaN(n)) {
+    return <>{n.toString()}</>;
+  }
   if (n > 10 * 9 - 1 || n < 1 - 10 * 9) {
     const exponentialForm = n.toExponential(4);
     const match = exponentialForm.match(/e[+-](\d+)/);
