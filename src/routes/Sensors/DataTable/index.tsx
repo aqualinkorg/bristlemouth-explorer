@@ -61,17 +61,15 @@ const FormattedNumber = ({ n }: { n: number }) => {
     const match = exponentialForm.match(/e[+-](\d+)/);
     const digits = match ? match[1] : undefined;
 
-    // this should never occur, since regex should always match the exponential format
-    if (match === null || digits === undefined) {
-      return <>null</>;
+    // safety check although this should never be false
+    if (match !== null && digits !== undefined) {
+      return (
+        <span>
+          {exponentialForm.replace(/e[+-](\d+)/, ' x 10')}
+          <sup>{digits}</sup>
+        </span>
+      );
     }
-
-    return (
-      <span>
-        {exponentialForm.replace(/e[+-](\d+)/, ' x 10')}
-        <sup>{digits}</sup>
-      </span>
-    );
   }
   return <>{n.toFixed(2)}</>;
 };
