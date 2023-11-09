@@ -59,7 +59,12 @@ const FormattedNumber = ({ n }: { n: number }) => {
   if (n > 10 * 9 - 1 || n < 1 - 10 * 9) {
     const exponentialForm = n.toExponential(4);
     const match = exponentialForm.match(/e[+-](\d+)/);
-    const digits = match ? match[1] : '';
+    const digits = match ? match[1] : undefined;
+
+    // this should never occur, since regex should always match the exponential format
+    if (match === null || digits === undefined) {
+      return <>null</>;
+    }
 
     return (
       <span>
