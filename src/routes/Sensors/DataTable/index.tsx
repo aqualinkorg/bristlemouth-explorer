@@ -55,10 +55,28 @@ const StyledCode = styled('code')(() => ({
   overflowWrap: 'anywhere',
 }));
 
-function formatNumber(n: number): string {
-  if (n > 10 * 9 - 1 || n < 1 - 10 * 9) return n.toExponential(4);
-  return n.toFixed(2);
-}
+const FormattedNumber = ({ n }: { n: number }) => {
+  // if n is not a number, return it as a string
+  if (isNaN(n)) {
+    return <>{n.toString()}</>;
+  }
+  if (n > 10 * 9 - 1 || n < 1 - 10 * 9) {
+    const exponentialForm = n.toExponential(4);
+    const match = exponentialForm.match(/e[+-](\d+)/);
+    const digits = match ? match[1] : undefined;
+
+    // safety check although this should never be false
+    if (match !== null && digits !== undefined) {
+      return (
+        <span>
+          {exponentialForm.replace(/e[+-](\d+)/, ' x 10')}
+          <sup>{digits}</sup>
+        </span>
+      );
+    }
+  }
+  return <>{n.toFixed(2)}</>;
+};
 
 function Row({ data, extraColumns }: RowProps) {
   const [open, setOpen] = React.useState(false);
@@ -114,8 +132,9 @@ function Row({ data, extraColumns }: RowProps) {
         {extraColumns?.map((x) => (
           <TableCell key={`${x.sensor}_${x.key}`}>
             <Typography>
-              {data.decodedData &&
-                formatNumber(data.decodedData[x.sensor][x.key])}
+              {data.decodedData && (
+                <FormattedNumber n={data.decodedData[x.sensor][x.key]} />
+              )}
             </Typography>
           </TableCell>
         ))}
