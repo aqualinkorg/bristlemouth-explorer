@@ -1,4 +1,11 @@
-import { AppBar, Link, Stack, Typography, styled } from '@mui/material';
+import {
+  AppBar,
+  Link,
+  Stack,
+  Typography,
+  styled,
+  useMediaQuery,
+} from '@mui/material';
 import aqualinkLogo from 'src/assets/aqualink-logo.png';
 import {
   aqualinkURL,
@@ -62,8 +69,9 @@ const BristlemouthLinkTypography = styled(Typography)(({ theme }) => ({
 }));
 
 function Footer() {
+  const isMobile = useMediaQuery('(max-width: 760px)');
   return (
-    <StyledAppBar position="fixed">
+    <StyledAppBar position={isMobile ? 'relative' : 'fixed'}>
       <StackContainer direction="row">
         <BristlemouthLinkTypography>
           <StyledLink
@@ -72,6 +80,18 @@ function Footer() {
             href={bristlemouthURL}
           >
             Bristlemouth.org
+          </StyledLink>
+          <StyledLink
+            target="_blank"
+            rel="noopener noreferrer"
+            href={bristlemouthURL}
+            style={{
+              marginLeft: '2rem',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            Apply for the pioneer program
           </StyledLink>
         </BristlemouthLinkTypography>
 

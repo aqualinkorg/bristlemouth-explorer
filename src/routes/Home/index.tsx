@@ -76,6 +76,9 @@ function Home() {
         </Link>
         <Stack direction="column" alignItems="center" spacing={5}>
           <TypographyTitle variant="h1">Bristlemouth Explorer</TypographyTitle>
+          <Typography variant="h3" padding="0 2rem" textAlign="center">
+            Decode data from your Sofar Spotter and Bristlemouth DevKit
+          </Typography>
           <Stack direction="column" gap="1rem" spacing={1} width="20rem">
             <Stack>
               <Typography fontWeight="bold">
