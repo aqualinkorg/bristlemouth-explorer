@@ -11,6 +11,7 @@ import {
   aqualinkURL,
   bristlemouthURL,
   bristlemouthExplorerGithub,
+  bristlemouthPioneerURL,
 } from 'src/helpers/constants';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -84,7 +85,7 @@ function Footer() {
           <StyledLink
             target="_blank"
             rel="noopener noreferrer"
-            href={bristlemouthURL}
+            href={bristlemouthPioneerURL}
             style={{
               marginLeft: '2rem',
               fontWeight: 'bold',

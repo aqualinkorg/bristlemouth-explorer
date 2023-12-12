@@ -21,7 +21,7 @@ exports[`renders as expected 1`] = `
         </a>
         <a
           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
-          href="https://www.bristlemouth.org/"
+          href="https://www.bristlemouth.org/pioneer"
           rel="noopener noreferrer"
           style="margin-left: 2rem; font-weight: bold; text-align: center;"
           target="_blank"
