@@ -28,6 +28,11 @@ exports[`renders as expected 1`] = `
         >
           Bristlemouth Explorer
         </h1>
+        <h3
+          class="MuiTypography-root MuiTypography-h3 css-1coa7he-MuiTypography-root"
+        >
+          Decode data from your Sofar Spotter and Bristlemouth DevKit
+        </h3>
         <div
           class="MuiStack-root css-lgn0cp-MuiStack-root"
         >
@@ -120,6 +125,15 @@ exports[`renders as expected 1`] = `
             target="_blank"
           >
             Bristlemouth.org
+          </a>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+            href="https://www.bristlemouth.org/pioneer"
+            rel="noopener noreferrer"
+            style="margin-left: 2rem; font-weight: bold; text-align: center;"
+            target="_blank"
+          >
+            Apply for the pioneer program
           </a>
         </p>
         <div

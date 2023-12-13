@@ -19,6 +19,15 @@ exports[`renders as expected 1`] = `
         >
           Bristlemouth.org
         </a>
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-o4qrxl-MuiTypography-root-MuiLink-root"
+          href="https://www.bristlemouth.org/pioneer"
+          rel="noopener noreferrer"
+          style="margin-left: 2rem; font-weight: bold; text-align: center;"
+          target="_blank"
+        >
+          Apply for the pioneer program
+        </a>
       </p>
       <div
         class="MuiStack-root css-17fi1qs-MuiStack-root"
